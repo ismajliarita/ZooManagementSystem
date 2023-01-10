@@ -139,19 +139,29 @@
 }
 
 #ticket-button:hover {
-    transition: ease-in-out 0.2s;
+    transition: ease-in-out 0.1s;
     background-color: goldenrod;
 }
 
+#signup-overlay {
+    display: flex;
+}
+
+#login-overlay {
+    display: none;
+    height: 40vh;
+}
+
 .form-overlay {
+    box-sizing: unset;
     color: aliceblue;
-    width: 60%;
+    width: 50%;
     height: 70vh;
     background-color: #282c289c;
 
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
 
     padding: 3rem;
@@ -174,24 +184,41 @@
     border-bottom: 1px solid #757575;
 }
 
-#signup-button {
+.signup-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-button {
     margin: 0 1rem;
+    margin: 1rem 10px;
     cursor: pointer;
     border: 0;
     border-radius: 4px;
     font-weight: 600;
-    margin: 1rem 10px;
     width: 200px;
     padding: 10px 0;
-    box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+    box-shadow: 0 0 20px rgba(226,176,42, 0.2);
     transition: 0.4s;
     color: white;
-    background-color: rgba(104, 85, 224, 1);
+    /* background-color: rgba(104, 85, 224, 1); */
+    background-color: rgb(192,138,20);
 }
 
-#signup-button:hover {
+.signup-button:hover {
     color: white;
-    box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
-    background-color: rgba(104, 85, 224, 1);
+    box-shadow: 0 0 20px rgba(226,176,42, 0.6);
+    background-color: rgba(226,176,42, 1);
+}
 
+#login-link {
+    font-size: 0.9rem;
+    color: rgb(226,176,42);
+}
+
+#login-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
 }

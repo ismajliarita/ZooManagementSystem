@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../style.css">
+    <!-- <link rel="script" href="../index.js"> -->
 </head>
 
 <body>
@@ -30,7 +31,7 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="#">Sign Up</a></div>
+                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
             </div>
 
         </nav>
@@ -40,7 +41,7 @@
 
             </div>
             <div class="right">
-                <div class="form-overlay">
+                <div class="form-overlay" id="signup-overlay">
                     <form action="" method="post">
                         <p>First Name</p>
                         <input type="text" name="fname" id="fname-input">
@@ -57,10 +58,27 @@
                         <p>Confirm Password</p>
                         <input type="password" name="cpass" id="cpass-input">
                         
-                        <button type="submit" id="signup-button">Sign up</button>
-
+                        
+                        <div class="signup-submit">
+                            <button type="submit" class="signup-button">Sign up</button>
+                        </div>
                     </form>
 
+                    <a onclick="goLogin()" id="login-link">Already a user? Log in instead</a>
+                </div>
+
+                <div class="form-overlay" id="login-overlay">
+                    <form action="" method="post">
+                        <p>Email</p>
+                        <input type="email" name="email" id="email-input">
+
+                        <p>Password</p>
+                        <input type="password" name="pass" id="pass-input">
+                        
+                        <div class="signup-submit">
+                            <button type="submit" class="signup-button">Log in</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -69,5 +87,7 @@
     </div>
 
 </body>
+
+<script src="../index.js"></script>
 
 </html>
