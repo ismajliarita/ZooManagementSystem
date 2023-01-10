@@ -20,51 +20,38 @@
 </head>
 
 <body>
+    <div class="panel">
+        <nav class="nav">
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="d-block w-100"
-                    src="https://www.cbc.ca/kids/images/wild_and_wonderful_asian_animals_header_1140.jpg"
-                    alt="First slide">
+            <img src="./media/logo.png" id="logo" />
+
+            <div class="nav-items">
+                <div class="nav-item"><a href="#">Home</a></div>
+                <div class="nav-item"><a href="#">Animals</a></div>
+                <div class="nav-item"><a href="#">Tickets</a></div>
+                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="./pages/signup.php">Sign Up</a></div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100" src="https://a-z-animals.com/media/tiger_laying_hero_background.jpg"
-                    alt="Second slide">
+
+        </nav>
+
+        <div class="inner-panel">
+            <div class="left">
+                <div class="main-content">
+                    <h1>Welcome to The ZOO</h1>
+                    <pre>See the world's wildest animals <br> at The ZOO!</pre>
+                    <div class="buttons">
+                        <input type="button" id="animals-button" value="Check Animals">
+                        <input type="button" id="ticket-button" value="Book a Visit">
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item">
-                <img class="d-block w-100"
-                    src="https://www.cbc.ca/kids/images/wild_and_wonderful_asian_animals_header_1140.jpg"
-                    alt="Third slide">
-            </div>
+            <div class="right"></div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+
+
     </div>
 
-    <p class="test">TEST</p>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="" async defer></script>
 </body>
 
 </html>

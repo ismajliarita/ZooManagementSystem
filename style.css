@@ -2,5 +2,196 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    color: red;
+    /* color: red; */
+}
+
+.panel {
+    width: 100%;
+    height: 100vh;
+    background-image: url('./media/tiger.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.nav {
+    background-color: #76745a54;
+    width: 100%;
+    height: 8vh;
+
+    filter: drop-shadow(0px 10px 3px rgba(54, 54, 54, 0.452));
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* padding-left: 3rem; */
+
+    padding: 0 5rem;
+
+    user-select: none;
+}
+
+.nav:hover {
+    transition: ease-in-out 0.2s;
+    background-color: #76745A;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+}
+
+.nav-item {
+    color: white;
+    font-size: 1.3rem;
+    padding: 0 1rem;
+}
+
+.nav-item:hover {
+    color: #695a29;
+    font-weight: bold;
+}
+
+.nav-item a:hover {
+    color: #695a29;
+    font-weight: bold;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: white;
+}
+
+#logo {
+    width: 13.5%;
+    position: absolute;
+    left: 125px;
+    top: -30px;
+}
+
+.panel:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: inset 0px 0px 150px black;
+}
+
+.main-content {
+    /* background-color: greenyellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 3px 3px 3px black;
+}
+
+.main-content>pre {
+    color: gold;
+}
+
+.inner-panel>.left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-panel {
+    width: 100%;
+    height: 90vh;
+    display: flex;
+}
+
+.left,
+.right {
+    width: 50%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons>input {
+    border: 1px solid gold;
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+
+}
+
+#animals-button {
+    background-color: goldenrod;
+}
+
+#animals-button:hover {
+    transition: ease-in-out 0.2s;
+    background-color: #282c28;
+}
+
+#ticket-button {
+    background-color: #282c28;
+}
+
+#ticket-button:hover {
+    transition: ease-in-out 0.2s;
+    background-color: goldenrod;
+}
+
+.form-overlay {
+    color: aliceblue;
+    width: 60%;
+    height: 70vh;
+    background-color: #282c289c;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+
+    padding: 3rem;
+    font-size: 1.35rem;
+}
+
+.form-overlay p {
+    margin-top: 1rem;
+    margin-bottom: 0px;
+}
+
+.form-overlay input {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+#signup-button {
+    margin: 0 1rem;
+    cursor: pointer;
+    border: 0;
+    border-radius: 4px;
+    font-weight: 600;
+    margin: 1rem 10px;
+    width: 200px;
+    padding: 10px 0;
+    box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+    transition: 0.4s;
+    color: white;
+    background-color: rgba(104, 85, 224, 1);
+}
+
+#signup-button:hover {
+    color: white;
+    box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+    background-color: rgba(104, 85, 224, 1);
+
 }
