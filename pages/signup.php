@@ -1,6 +1,37 @@
 <!DOCTYPE html>
 <html>
+<?php 
+    if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['email']) && isset($_POST['pass']) && isset($_POST['cpass']) )
+    {
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $email = $_POST['reg-email'];
+        $pass = $_POST['reg-pass'];
+        $cpass = $_POST['reg-cpass'];
 
+        if($pass == $cpass)
+        {
+            $con = mysqli_connect("localhost", "root", "", "zoo");
+            if (!$con) {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+
+            $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$pass')";
+
+            if (mysqli_query($con, $sql_adduser)) {
+                echo "New record created successfully";
+                header('Location: ../index.php');
+            } else {
+                echo "Error: " . $sql_adduser . "<br>" . mysqli_error($con);
+            }
+
+            mysqli_close($con);
+        }
+        else {
+            echo "Passwords do not match";
+        }
+    }
+?>
 <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -28,7 +59,7 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.html">Sign Up</a></div>
+                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
             </div>
 
         </nav>
@@ -39,7 +70,7 @@
             </div>
             <div class="right">
                 <div class="form-overlay" id="signup-overlay">
-                    <form method="post">
+                    <form action="" method="post">
                         <p>First Name</p>
                         <input type="text" name="fname" id="fname-input" required>
 
@@ -57,7 +88,7 @@
                         
                         
                         <div class="signup-submit">
-                            <button type="submit" class="signup-button" onclick="register_auth()">Sign up</button>
+                            <button type="submit" class="signup-button">Sign up</button>
                         </div>
                     </form>
 
@@ -79,27 +110,10 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </body>
 
-<script>
-    $("signup-overlay").submit(function(e) {
-        e.preventDefault();
-        
-        $.ajax({
-            url: 'register-user.php',
-            type: 'POST',
-            data: $("signup-overlay").serialize(),
-            contentType: 'application/x-www-form-urlencoded',
-            success: function(response) {
-                // You can show the response from the server in the form of an alert
-                alert(response);
-            }
-        }); 
-    });
-</script>
+<script src="../index.js"></script>
 
 </html>
