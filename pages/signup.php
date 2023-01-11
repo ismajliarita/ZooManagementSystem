@@ -5,6 +5,12 @@
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
 
+<?php
+    // if(!$_POST['reg-email'] == null) {
+    //     echo "yay";
+    // }
+?>
+
 <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -31,7 +37,7 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
+                <div class="nav-item"><a href="signup.html">Sign Up</a></div>
             </div>
 
         </nav>
@@ -42,7 +48,7 @@
             </div>
             <div class="right">
                 <div class="form-overlay" id="signup-overlay">
-                    <form action="" method="post">
+                    <form method="post">
                         <p>First Name</p>
                         <input type="text" name="fname" id="fname-input">
 
@@ -50,13 +56,13 @@
                         <input type="text" name="lname" id="lname-input">
 
                         <p>Email</p>
-                        <input type="email" name="email" id="email-input">
+                        <input type="email" name="reg-email" id="email-input">
 
                         <p>Password</p>
-                        <input type="password" name="pass" id="pass-input">
+                        <input type="password" name="reg-pass" id="pass-input">
 
                         <p>Confirm Password</p>
-                        <input type="password" name="cpass" id="cpass-input">
+                        <input type="password" name="reg-cpass" id="cpass-input">
                         
                         
                         <div class="signup-submit">
