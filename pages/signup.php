@@ -51,23 +51,23 @@
                 <div class="form-overlay" id="signup-overlay">
                     <form method="post">
                         <p>First Name</p>
-                        <input type="text" name="fname" id="fname-input">
+                        <input type="text" name="fname" id="fname-input" required>
 
                         <p>Last Name</p>
-                        <input type="text" name="lname" id="lname-input">
+                        <input type="text" name="lname" id="lname-input" required>
 
                         <p>Email</p>
-                        <input type="email" name="reg-email" id="email-input">
+                        <input type="email" name="reg-email" id="email-input" required>
 
                         <p>Password</p>
-                        <input type="password" name="reg-pass" id="pass-input">
+                        <input type="password" name="reg-pass" id="pass-input" required>
 
                         <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="cpass-input">
+                        <input type="password" name="reg-cpass" id="cpass-input" required>
                         
                         
                         <div class="signup-submit">
-                            <button type="submit" class="signup-button">Sign up</button>
+                            <button type="submit" class="signup-button" onclick="register_auth()">Sign up</button>
                         </div>
                     </form>
 
@@ -96,21 +96,20 @@
 </body>
 
 <script>
-$("signup-overlay").submit(function(e) {
-    e.preventDefault();
-    
-    $.ajax({
-        url: 'register_user.php',
-        type: 'POST',
-        data: $("signup-overlay").serialize(),
-        contentType: 'application/x-www-form-urlencoded',
-        success: function(response) {
-            // You can show the response from the server in the form of an alert
-            alert(response);
-        }
+    $("signup-overlay").submit(function(e) {
+        e.preventDefault();
+        
+        $.ajax({
+            url: 'register-user.php',
+            type: 'POST',
+            data: $("signup-overlay").serialize(),
+            contentType: 'application/x-www-form-urlencoded',
+            success: function(response) {
+                // You can show the response from the server in the form of an alert
+                alert(response);
+            }
+        }); 
     });
-});
-
 </script>
 
 </html>
