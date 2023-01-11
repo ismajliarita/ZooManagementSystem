@@ -1,8 +1,9 @@
 <?php
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $password = $_POST['pass'];
+    $data = json_decode(file_get_contents('php://input'), true);
+    $fname = $data['fname'];
+    $lname = $data['lname'];
+    $email = $data['reg-email'];
+    $password = $data['reg-pass'];
 
     // $sql = "INSERT INTO User(, surname, email, password)
 	// VALUES ('$fname', '$lname', '$email', '$password')";

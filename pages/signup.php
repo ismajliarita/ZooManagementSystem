@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="../style.css">
     <!-- <link rel="script" href="../index.js"> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -94,6 +95,22 @@
 
 </body>
 
-<script src="../index.js"></script>
+<script>
+$("#signup-overlay").submit(function(e) {
+    e.preventDefault();
+    
+    $.ajax({
+        url: 'register_user.php',
+        type: 'POST',
+        data: JSON.stringify($("#signup-overlay").serialize()),
+        contentType: 'application/json',
+        success: function(response) {
+            // You can show the response from the server in the form of an alert
+            alert(response);
+        }
+    });
+});
+
+</script>
 
 </html>
