@@ -96,14 +96,14 @@
 </body>
 
 <script>
-$("#signup-overlay").submit(function(e) {
+$("signup-overlay").submit(function(e) {
     e.preventDefault();
     
     $.ajax({
         url: 'register_user.php',
         type: 'POST',
-        data: JSON.stringify($("#signup-overlay").serialize()),
-        contentType: 'application/json',
+        data: $("signup-overlay").serialize(),
+        contentType: 'application/x-www-form-urlencoded',
         success: function(response) {
             // You can show the response from the server in the form of an alert
             alert(response);
