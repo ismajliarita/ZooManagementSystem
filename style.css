@@ -235,22 +235,15 @@
     background-size: cover;
 }
 
-.maps{
-    position: relative;
-}
-
-
-
-
-
 .column {
     float: left;
     width: 50%;
     /* display: flex;
     justify-content: center; */
 }
-  
+
 .maps{
+    position: relative;
     width: 650px;
     transition: all .2s ease-in-out;
 }
