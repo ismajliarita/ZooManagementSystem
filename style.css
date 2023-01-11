@@ -230,8 +230,69 @@
 
 .panelHabitatMap {
     width: 100%;
-    height: 100vh;
-    background-image: url('./media/backgroundHabitatMap.png');
-    background-position: center;
+    height: 100%;
+    background-color: rgb(30, 31, 55);
     background-size: cover;
+}
+
+.maps{
+    position: relative;
+}
+
+
+
+
+
+.column {
+    float: left;
+    width: 50%;
+    /* display: flex;
+    justify-content: center; */
+}
+  
+.maps{
+    width: 650px;
+    transition: all .2s ease-in-out;
+}
+
+.maps:hover{
+    transform: scale(1.1);
+}
+
+/* Lefties  */
+#waterHabitat{
+    margin-top: 70px; 
+    margin-left: 10%;  
+}
+
+#jungleHabitat{
+    margin-top: 70px;
+    margin-left: 10%;
+}
+
+#iceHabitat{
+    margin-top: 70px; 
+    margin-left: 10%; 
+}
+
+/* Righties  */
+#forestHabitat{
+    margin-top: 300px;
+    margin-left: 10%;
+}
+
+#desertHabitat{
+    margin-top: 70px;
+    margin-left: 10%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 1200px) {
+    .column {
+        width: 100%;
+    }
 }

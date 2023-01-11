@@ -24,8 +24,33 @@
         </nav>
 
         <div class="habitatMap_innerPannel">
-            
+            <div class="row">
+                <div class="column">
+                    <a href="#">
+                        <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" />
+                    </a>
+                    <a href="#">
+                        <img src=" ../media/a-iceAreaNoBckg.png" class="maps" id="iceHabitat" />
+                    </a>
+                    <a href="#">
+                        <img src=" ../media/a-jungleAreaNoBckg.png" class="maps" id="jungleHabitat" />
+                    </a>
+                </div>
+                <div class="column">
+                    <a href="#">
+                        <img src=" ../media/a-forestNoBkg.png" class="maps" id="forestHabitat" />
+                    </a>
+                    <a href="#">
+                        <img src=" ../media/a-desertNoBckg.png" class="maps" id="desertHabitat" />
+                    </a>
+                </div>
+            </div>
 
+
+
+            <!-- <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" />
+            <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" /> -->
+            
 
         </div>
 
