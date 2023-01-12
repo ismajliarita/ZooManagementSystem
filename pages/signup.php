@@ -17,25 +17,30 @@
         $sql_auth = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_fetch_assoc(mysqli_query($con, $sql_auth));
         
-        if ($result['pass'] == $pass) {
-            echo "Successfully logged in";
-            $user_id = $result['id'];
-            $user_fname = $result['fname'];
-			$user_lname = $result['lname'];
-			$user_email = $result['email'];
-			$user_power = $result['power'];
-            
-            // $_COOKIE["user_id"] = (string)$user_id;
-            
-            setcookie("user_id", $user_id, time() + 600, "/");
-            setcookie("user_fname", $user_fname, time() + 600, "/");
-            setcookie("user_lname", $user_lname, time() + 600, "/");
-            setcookie("user_email", $user_email, time() + 600, "/");
-            setcookie("user_power", $user_power, time() + 600, "/");
-            
-            header('Location: ../index.php');
-        } else {
-            header("Loactaion: signup.php");
+        if ($result != null) {
+            if ($result['pass'] == $pass) {
+                echo "Successfully logged in";
+                $user_id = $result['id'];
+                $user_fname = $result['fname'];
+                $user_lname = $result['lname'];
+                $user_email = $result['email'];
+                $user_power = $result['power'];
+                
+                setcookie("user_id", $user_id, time() + 600, "/");
+                setcookie("user_fname", $user_fname, time() + 600, "/");
+                setcookie("user_lname", $user_lname, time() + 600, "/");
+                setcookie("user_email", $user_email, time() + 600, "/");
+                setcookie("user_power", $user_power, time() + 600, "/");
+                
+                header('Location: ../index.php');
+                die;
+            } else {
+                header('Location: '.$_SERVER['PHP_SELF']);
+				die;
+            }
+        }
+        else {
+            echo "no email like that";
         }
     }
 
@@ -50,7 +55,7 @@
     
         $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$regpass')";
         
-        if($regpass == $cpass) {
+        if($regpass === $cpass) {
             if (mysqli_query($con, $sql_adduser)) {
                 echo "New record created successfully";
                 header('Location: ../index.php');
@@ -117,13 +122,13 @@
                         <input type="text" name="lname" id="lname-input" required>
 
                         <p>Email</p>
-                        <input type="email" name="reg-email" id="reg-email-input" required>
+                        <input type="email" name="reg-email" id="email-input" required>
 
                         <p>Password</p>
-                        <input type="password" name="reg-pass" id="reg-pass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass()" required>
 
                         <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="reg-cpass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
                         
                         
                         <div class="signup-submit">
@@ -137,10 +142,10 @@
                 <div class="form-overlay" id="login-overlay">
                     <form action="#" method="get">
                         <p>Email</p>
-                        <input type="email" name="email" id="email-input">
+                        <input type="email" name="email" id="email">
 
                         <p>Password</p>
-                        <input type="password" name="pass" id="pass-input">
+                        <input type="password" name="pass" id="pass">
                         
                         <div class="signup-submit">
                             <button type="submit" class="signup-button">Log in</button>

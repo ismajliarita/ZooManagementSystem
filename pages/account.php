@@ -14,7 +14,6 @@
 	$user_id = $_COOKIE["user_id"];
 
 	$sql_user = "SELECT * FROM users WHERE id = $user_id";
-
 	$result = mysqli_fetch_assoc(mysqli_query($con, $sql_user));
 
 	$user_fname = $result['fname'];
@@ -23,7 +22,76 @@
 	$user_pass = $result['pass'];
 	$user_power = $result['power'];
 
-	// if(isset())
+	$sql_pass = "SELECT pass FROM users WHERE id = $user_id";
+	$result = mysqli_fetch_assoc(mysqli_query($con, $sql_pass));
+
+	// CHANGE PASSWORD
+	if(isset($_POST['pass-new-pass'])) {
+		if ($_POST['pass-old-pass'] === $result['pass']) {
+			$newpass = $_POST['pass-new-pass'];
+			$cpass = $_POST['pass-new-cpass'];
+
+			if ($newpass === $cpass) {
+				$sql_changepass = "UPDATE users SET pass = '$newpass' WHERE id = $user_id";
+				if (mysqli_query($con, $sql_changepass)) {
+					echo "yay";
+				}
+				else {
+					echo "nay";
+				}
+			}
+			else{
+				echo "new pass no match";
+			}
+		}
+		else {
+			echo "wrong pass";
+		}
+	}
+
+	// CHNAGE EMAIL
+	if(isset($_POST['email-new'])) {
+		if ($_POST['email-pass'] === $result['pass']) {
+			$newemail = $_POST['email-new'];
+
+			$sql_changeemail = "UPDATE users SET email = '$newemail' WHERE id = $user_id";
+			if (mysqli_query($con, $sql_changeemail)) {
+				setcookie("user_email", $newemail, time() + 600, "/");
+
+				header('Location: '.$_SERVER['PHP_SELF']);
+				die;
+			}
+			else {
+				echo "nay";
+			}
+		}
+		else{
+			echo "wrong pass";
+		}
+	}
+
+	// CHNAGE NAME
+	if(isset($_POST['fname-new'])) {
+		if ($_POST['name-pass'] === $result['pass']) {
+			$newfname = $_POST['fname-new'];
+			$newlname = $_POST['lname-new'];
+
+			$sql_changename = "UPDATE users SET fname = '$newfname', lname = '$newlname' WHERE id = $user_id";
+			if (mysqli_query($con, $sql_changename)) {
+				setcookie("user_fname", $newfname, time() + 600, "/");
+				setcookie("user_lname", $newlname, time() + 600, "/");
+				
+				header('Location: '.$_SERVER['PHP_SELF']);
+				die;
+			}
+			else {
+				echo "nay";
+			}
+		}
+		else{
+			echo "wrong pass";
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -95,16 +163,17 @@
             </div>
 
 			<div class="right">
+				<!-- CHANGE NAME OVERLAY -->
 				<div class="form-overlay" name="update-overlay" id="update-name-overlay">
 					<form action="#" method="post">
 						<p>First Name</p>
-						<input type="text" name="fname" id="fname-input" required>
+						<input type="text" name="fname-new" id="fname-input" required>
 
 						<p>Last Name</p>
-						<input type="text" name="lname" id="lname-input" required>
+						<input type="text" name="lname-new" id="lname-input" required>
 
 						<p>Password</p>
-						<input type="password" name="pass" id="pass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="name-pass" id="pass-check" required>
 						
 						<div class="signup-submit">
 							<button type="submit" class="signup-button">Save</button>
@@ -112,13 +181,14 @@
 					</form>
 				</div>
 
+				<!-- CHANGE EMAIL OVERLAY -->
 				<div class="form-overlay" name="update-overlay" id="update-email-overlay">
 					<form action="#" method="post">
 						<p>Email</p>
-						<input type="email" name="email" id="email-input" required>
+						<input type="email" name="email-new" id="email-new" required>
 
 						<p>Password</p>
-						<input type="password" name="pass" id="pass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="email-pass" id="pass-check" required>
 						
 						<div class="signup-submit">
 							<button type="submit" class="signup-button">Save</button>
@@ -126,16 +196,17 @@
 					</form>
 				</div>
 
+				<!-- CHANGE PASS OVERLAY -->
 				<div class="form-overlay" name="update-overlay" id="update-pass-overlay">
 					<form action="#" method="post">
 						<p>Current Password</p>
-						<input type="email" name="email" id="email-input" required>
+						<input type="password" name="pass-old-pass" id="email-input" required>
 
 						<p>New Password</p>
-						<input type="password" name="pass" id="pass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="pass-new-pass" id="pass-input" oninput="checkRepeatPass()" required>
 
 						<p>Confirm New Password</p>
-						<input type="password" name="pass" id="pass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="pass-new-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
 						
 						<div class="signup-submit">
 							<button type="submit" class="signup-button">Save</button>
