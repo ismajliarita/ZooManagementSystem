@@ -20,7 +20,7 @@
 </head>
 
 <body>
-    <div class="panel" style="background-image: url('../media/anda.jpg');">
+    <div class="panel" style="background-image: url('../media/aboutbg.png'); background-position: 0px -30vh;">
         <nav class="nav">
 
             <img src="../media/logo.png" id="logo" />
@@ -29,41 +29,23 @@
                 <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
-                <div class="nav-item"><a href="./about.php">About</a></div>
-                <div class="nav-item"><a href="#">Sign Up</a></div>
+                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="./signup.php">Sign Up</a></div>
             </div>
 
         </nav>
 
-        <div class="inner-panel">
-            <div class="left">
-
-            </div>
-            <div class="right">
-                <div class="form-overlay">
-                    <form action="" method="post">
-                        <p>First Name</p>
-                        <input type="text" name="fname" id="fname-input">
-
-                        <p>Last Name</p>
-                        <input type="text" name="lname" id="lname-input">
-
-                        <p>Email</p>
-                        <input type="email" name="email" id="email-input">
-
-                        <p>Password</p>
-                        <input type="password" name="pass" id="pass-input">
-
-                        <p>Confirm Password</p>
-                        <input type="password" name="cpass" id="cpass-input">
-                        
-                        <button type="submit" id="signup-button">Sign up</button>
-
-                    </form>
-
-                </div>
-            </div>
+        <div class="main-content main">
+            <h1>Welcome to Our Zoo!</h1>
+            <p>We are a family-friendly zoo in the heart of the city. Our diverse collection of animals, plants, and
+                habitats make us a great destination for fun and learning! Our mission is to inspire and educate people
+                of all ages about the natural world and its inhabitants.</p>
+            <p>We offer a variety of activities and experiences for our visitors, including educational programs,
+                interactive exhibits, and animal encounters. Our experienced staff and volunteers are passionate about
+                conservation and are committed to helping ensure the survival of our planet’s wildlife and habitats.</p>
+            <p>We invite you to come explore our zoo and make memories that will last a lifetime!</p>
         </div>
+
 
 
     </div>
