@@ -285,6 +285,16 @@
 }
 
 
+@media screen and (min-width: 1286px) {
+    .imgBot{
+        position: relative;
+        bottom: 40px;
+    }
+    .jungle{
+        align-self: flex-end;
+    }
+}
+
 @media only screen and (min-width: 855px) and (max-width: 1286px) {
     .imgBot{
         margin-top: 250px;
