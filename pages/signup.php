@@ -143,10 +143,10 @@
                 <div class="form-overlay" id="login-overlay">
                     <form action="#" method="get">
                         <p>Email</p>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" required>
 
                         <p>Password</p>
-                        <input type="password" name="pass" id="pass">
+                        <input type="password" name="pass" id="pass" required>
                         
                         <div class="signup-submit">
                             <button type="submit" class="signup-button">Log in</button>
