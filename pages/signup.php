@@ -1,20 +1,45 @@
 <?php
-    if (isset($_COOKIE['username']))
+    if (isset($_COOKIE['user_id'])){
         session_start();
+    }
 
     $con = mysqli_connect("localhost", "root", "", "zoo");
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
-    if(isset($_SESSION['user_id'])){
-        //user is logged in
-        echo "Logged in";
-    } else {
-        //user is not logged in
-        //show logged out user content
+    
+    // LOG IN
+    if (isset($_GET['email']) && isset($_GET['pass']) )
+    {
+        $email = mysqli_real_escape_string($con, $_GET['email']);
+        $pass = $_GET['pass'];
+        
+        $sql_auth = "SELECT * FROM users WHERE email = '$email'";
+        $result = mysqli_fetch_assoc(mysqli_query($con, $sql_auth));
+        
+        if ($result['pass'] == $pass) {
+            echo "Successfully logged in";
+            $user_id = $result['id'];
+            $user_fname = $result['fname'];
+			$user_lname = $result['lname'];
+			$user_email = $result['email'];
+			$user_power = $result['power'];
+            
+            // $_COOKIE["user_id"] = (string)$user_id;
+            
+            setcookie("user_id", $user_id, time() + 600, "/");
+            setcookie("user_fname", $user_fname, time() + 600, "/");
+            setcookie("user_lname", $user_lname, time() + 600, "/");
+            setcookie("user_email", $user_email, time() + 600, "/");
+            setcookie("user_power", $user_power, time() + 600, "/");
+            
+            header('Location: ../index.php');
+        } else {
+            header("Loactaion: signup.php");
+        }
     }
 
+    // SIGN UP
     if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['reg-email']) && isset($_POST['reg-pass']) && isset($_POST['reg-cpass']) )
     {
         $fname = $_POST['fname'];
@@ -22,7 +47,7 @@
         $email = $_POST['reg-email'];
         $regpass = $_POST['reg-pass'];
         $cpass = $_POST['reg-cpass'];
-
+    
         $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$regpass')";
         
         if($regpass == $cpass) {
@@ -36,28 +61,6 @@
         }
         else {
             echo "Passwords do not match";
-        }
-    }
-    
-    if (isset($_GET['email']) && isset($_GET['pass']) )
-    {
-        $email = mysqli_real_escape_string($con, $_GET['email']);
-        $pass = $_GET['pass'];
-
-        $sql_auth = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_fetch_assoc(mysqli_query($con, $sql_auth));
-    
-        if ($result['pass'] == $pass) {
-            echo "Successfully logged in";
-            $user_id = $result['id'];
-            $username = $result['fname'];
-
-            $_SESSION["user_id"] = (string)$user_id;
-            setcookie("username", "$username", time() + 5, "/");
-            
-            header('Location: ../index.php');
-        } else {
-            header("Loactaion: ../habitatMap.php");
         }
     }
 ?>
@@ -76,8 +79,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../style.css">
-    <!-- <link rel="script" href="../index.js"> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -92,8 +93,8 @@
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
                 <?php
-                    if (isset($_SESSION['user_id'])) {
-                        echo '<div class="nav-item"><a href="signup.php">Logged</a></div>';
+                    if (isset($_COOKIE['username'])) {
+                        echo '<div class="nav-item"><a href="account.php">Logged</a></div>';
                     }
                     else
                         echo '<div class="nav-item"><a href="signup.php">Sign Up</a></div>';

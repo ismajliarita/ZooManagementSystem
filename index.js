@@ -23,3 +23,13 @@ function checkRepeatPass() {
 
     return true;
 }
+
+function editOverlay(overlayId) {
+	let update_overlay = document.getElementById(overlayId);
+	let overlays = document.getElementsByName("update-overlay");
+	overlays.forEach(overlay =>
+		overlay.style.display = "none"
+	);
+
+	update_overlay.style.display = "flex";
+}

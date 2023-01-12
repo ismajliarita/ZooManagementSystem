@@ -30,9 +30,9 @@
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
                 <?php
-                    if (isset($_SESSION['user_id']) && isset($_COOKIE['username'])) {
-                        $username = $_COOKIE['username'];
-                        echo "<div class='nav-item'><a href='pages/signup.php'>$username</a></div>";
+                    if (isset($_COOKIE['user_fname'])) {
+                        $user_fname = $_COOKIE['user_fname'];
+                        echo "<div class='nav-item'><a href='pages/account.php'>$user_fname</a></div>";
                     }
                     else
                         echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
