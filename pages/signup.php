@@ -36,8 +36,8 @@
                 <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.html">Sign Up</a></div>
+                <div class="nav-item"><a href="./about.php">About</a></div>
+                <div class="nav-item"><a href="#">Sign Up</a></div>
             </div>
 
         </nav>
