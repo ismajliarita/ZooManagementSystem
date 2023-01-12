@@ -235,57 +235,64 @@
     background-size: cover;
 }
 
-.column {
-    float: left;
-    width: 50%;
-    /* display: flex;
-    justify-content: center; */
-}
 
-.maps{
-    position: relative;
-    width: 650px;
+.image{
+    width: 300px;
     transition: all .2s ease-in-out;
 }
 
-.maps:hover{
+.image:hover{
     transform: scale(1.1);
 }
 
-/* Lefties  */
-#waterHabitat{
-    margin-top: 70px; 
-    margin-left: 10%;  
+.habitatMap_innerPannel{
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
 }
 
-#jungleHabitat{
+.imgTop{
+    flex-wrap: wrap;
     margin-top: 70px;
-    margin-left: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;   
+    height: 350px;
 }
 
-#iceHabitat{
-    margin-top: 70px; 
-    margin-left: 10%; 
+
+#waterHabitat, #iceHabitat{
+    align-self: flex-start;
 }
 
-/* Righties  */
-#forestHabitat{
-    margin-top: 300px;
-    margin-left: 10%;
+.smol{
+    display: flex;
+    justify-content: center;
 }
 
-#desertHabitat{
-    margin-top: 70px;
-    margin-left: 10%;
+.imgBot{
+    flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
 }
+
 
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
-@media screen and (max-width: 1200px) {
-    .column {
-        width: 100%;
+
+
+@media only screen and (min-width: 855px) and (max-width: 1286px) {
+    .imgBot{
+        margin-top: 250px;
+    }
+ }
+
+ @media screen and (max-width: 854px) {
+    .imgBot{
+        margin-top: 540px;
     }
 }

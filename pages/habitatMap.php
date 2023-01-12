@@ -20,55 +20,23 @@
                 <div class="nav-item"><a href="#">About</a></div>
                 <div class="nav-item"><a href="./pages/signup.html">Sign Up</a></div>
             </div>
-
+            
         </nav>
-
-        <div class="habitatMap_innerPannel">
-            <div class="row">
-                <div class="column">
-                    <a href="#">
-                        <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" />
-                    </a>
-                    <a href="#">
-                        <img src=" ../media/a-iceAreaNoBckg.png" class="maps" id="iceHabitat" />
-                    </a>
-                    <a href="#">
-                        <img src=" ../media/a-jungleAreaNoBckg.png" class="maps" id="jungleHabitat" />
-                    </a>
+        <div class="smol">
+            <div class="habitatMap_innerPannel">
+                <div class="imgTop">
+                    <img src="../media/a-waterAreaNoBckg.png" alt="" class="image" id="waterHabitat">
+                    <div class="jungle">
+                        <img src="../media/a-jungleAreaNoBckg.png" alt="" class="image" id="jungleHabitat">
+                    </div>
+                    <img src="../media/a-iceAreaNoBckg.png" alt="" class="image" id="iceHabitat">
                 </div>
-                <div class="column">
-                    <a href="#">
-                        <img src=" ../media/a-forestNoBkg.png" class="maps" id="forestHabitat" />
-                    </a>
-                    <a href="#">
-                        <img src=" ../media/a-desertNoBckg.png" class="maps" id="desertHabitat" />
-                    </a>
+                <div class="imgBot">
+                    <img src="../media/a-forestNoBkg.png" alt="" class="image" id="forestHabitat">
+                    <img src="../media/a-desertNoBckg.png" alt="" class="image" id="desertHabitat">
                 </div>
             </div>
-
-
-
-            <!-- <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" />
-            <img src=" ../media/a-waterAreaNoBckg.png" class="maps" id="waterHabitat" /> -->
-            
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
 </body>
 </html>
