@@ -59,7 +59,7 @@
 				setcookie("user_email", $newemail, time() + 600, "/");
 
 				header('Location: '.$_SERVER['PHP_SELF']);
-				die;
+				die();
 			}
 			else {
 				echo "nay";

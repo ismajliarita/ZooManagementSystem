@@ -33,10 +33,10 @@
                 setcookie("user_power", $user_power, time() + 600, "/");
                 
                 header('Location: ../index.php');
-                die;
+                die();
             } else {
                 header('Location: '.$_SERVER['PHP_SELF']);
-				die;
+				die();
             }
         }
         else {
@@ -54,11 +54,26 @@
         $cpass = $_POST['reg-cpass'];
     
         $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$regpass')";
+
+        $sql_id = "SELECT id FROM users WHERE email = '$email'";
         
         if($regpass === $cpass) {
             if (mysqli_query($con, $sql_adduser)) {
                 echo "New record created successfully";
+    
+                $result = mysqli_fetch_assoc(mysqli_query($con, $sql_id));
+                if ($result != null) {
+                    $id = $result['id'];
+
+                    setcookie("user_id", $id, time() + 600, "/");
+                    setcookie("user_fname", $fname, time() + 600, "/");
+                    setcookie("user_lname", $lname, time() + 600, "/");
+                    setcookie("user_email", $email, time() + 600, "/");
+                    setcookie("user_power", $power, time() + 600, "/");
+                }
+
                 header('Location: ../index.php');
+                die();
             } else {
                 die("Connection failed: " . mysqli_connect_error());
             }
