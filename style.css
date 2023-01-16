@@ -227,82 +227,154 @@
 
 /* Habitat Map CSS Code */
 
-
-.panelHabitatMap {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(30, 31, 55);
-    background-size: cover;
-}
-
-
-.image{
-    width: 300px;
-    transition: all .2s ease-in-out;
-}
-
-.image:hover{
-    transform: scale(1.1);
-}
-
-.habitatMap_innerPannel{
-    display: flex;
-    flex-wrap: wrap;
-    width: 70%;
-}
-
-.imgTop{
-    flex-wrap: wrap;
-    margin-top: 70px;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;   
-    height: 350px;
-}
-
-
-#waterHabitat, #iceHabitat{
-    align-self: flex-start;
-}
-
-.smol{
-    display: flex;
-    justify-content: center;
-}
-
-.imgBot{
-    flex-wrap: wrap;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
-@media screen and (min-width: 1286px) {
+@media screen and (min-width: 1303px) {
+    .imgTop{
+        flex-wrap: wrap;
+        margin-top: 70px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;   
+        height: 350px;
+    }
     .imgBot{
+        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
         position: relative;
         bottom: 40px;
+    }
+    .habitatMap_innerPannel{
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        align-items: center;
+        height: 92vh;
+    }
+    .habitatMap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .panelHabitatMap {
+        width: 100%;
+    }
+    .image{
+        width: 300px;
+        transition: all .2s ease-in-out;
+    }
+    .image:hover{
+        transform: scale(1.1);
     }
     .jungle{
         align-self: flex-end;
     }
+    #waterHabitat, #iceHabitat{
+        align-self: flex-start;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
-@media only screen and (min-width: 855px) and (max-width: 1286px) {
+@media only screen and (min-width: 855px) and (max-width: 1303px) {
+    .imgTop{
+        flex-wrap: wrap;
+        margin-top: 70px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;   
+    }
     .imgBot{
-        margin-top: 250px;
+        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+        /* bottom: 40px; */
+    }
+    .habitatMap_innerPannel{
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        align-items: center;                      
+    }
+    .habitatMap{
+        display: flex;
+        justify-content: center;
+    }
+    .panelHabitatMap {
+        width: 100%;
+        height: fit-content;
+    }
+    .image{
+        width: 300px;
+        transition: all .2s ease-in-out;
+    }
+    .image:hover{
+        transform: scale(1.1);
+    }
+    .jungle{
+        align-self: flex-end;
+    }
+    #waterHabitat, #iceHabitat{
+        align-self: flex-start;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
     }
  }
 
  @media screen and (max-width: 854px) {
+    .imgTop{
+        flex-wrap: wrap;
+        margin-top: 70px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;   
+    }
     .imgBot{
-        margin-top: 540px;
+        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+        /* bottom: 40px; */
+    }
+    .habitatMap_innerPannel{
+        display: flex;
+        flex-wrap: wrap;
+        width: 70%;
+        align-items: center;                      
+    }
+    .habitatMap{
+        display: flex;
+        justify-content: center;
+    }
+    .panelHabitatMap {
+        width: 100%;
+        height: fit-content;
+    }
+    .image{
+        width: 300px;
+        transition: all .2s ease-in-out;
+    }
+    .image:hover{
+        transform: scale(1.1);
+    }
+    .jungle{
+        align-self: flex-end;
+    }
+    #waterHabitat, #iceHabitat{
+        align-self: flex-start;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
     }
 }

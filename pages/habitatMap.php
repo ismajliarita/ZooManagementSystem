@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="../style.css">
     <title>Document</title>
 </head>
-<body>
+<body style="
+    background-color: rgb(30, 31, 55);
+    background-position: 100% 100%;">
     <div class="panelHabitatMap">
         <nav class="nav">
 
@@ -22,7 +24,7 @@
             </div>
             
         </nav>
-        <div class="smol">
+        <div class="habitatMap">
             <div class="habitatMap_innerPannel">
                 <div class="imgTop">
                     <img src="../media/a-waterAreaNoBckg.png" alt="" class="image" id="waterHabitat">
