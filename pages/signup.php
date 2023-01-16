@@ -1,16 +1,77 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-
 <?php
-    // if(!$_POST['reg-email'] == null) {
-    //     echo "yay";
-    // }
+    if (isset($_COOKIE['user_id'])){
+        session_start();
+    }
+
+    $con = mysqli_connect("localhost", "root", "", "zoo");
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    
+    // LOG IN
+    if (isset($_GET['email']) && isset($_GET['pass']) )
+    {
+        $email = mysqli_real_escape_string($con, $_GET['email']);
+        $pass = $_GET['pass'];
+        
+        $sql_auth = "SELECT * FROM users WHERE email = '$email'";
+        $result = mysqli_fetch_assoc(mysqli_query($con, $sql_auth));
+        
+        if ($result != null) {
+            if ($result['pass'] == $pass) {
+                echo "Successfully logged in";
+                $user_id = $result['id'];
+                $user_fname = $result['fname'];
+                $user_lname = $result['lname'];
+                $user_email = $result['email'];
+                $user_power = $result['power'];
+                
+                setcookie("user_id", $user_id, time() + 600, "/");
+                setcookie("user_fname", $user_fname, time() + 600, "/");
+                setcookie("user_lname", $user_lname, time() + 600, "/");
+                setcookie("user_email", $user_email, time() + 600, "/");
+                setcookie("user_power", $user_power, time() + 600, "/");
+                
+                header('Location: ../index.php');
+                die;
+            } else {
+                header('Location: '.$_SERVER['PHP_SELF']);
+				die;
+            }
+        }
+        else {
+            echo "no email like that";
+        }
+    }
+
+    // SIGN UP
+    if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['reg-email']) && isset($_POST['reg-pass']) && isset($_POST['reg-cpass']) )
+    {
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $email = $_POST['reg-email'];
+        $regpass = $_POST['reg-pass'];
+        $cpass = $_POST['reg-cpass'];
+    
+        $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$regpass')";
+        
+        if($regpass === $cpass) {
+            if (mysqli_query($con, $sql_adduser)) {
+                echo "New record created successfully";
+                header('Location: ../index.php');
+            } else {
+                die("Connection failed: " . mysqli_connect_error());
+            }
+            mysqli_close($con);
+        }
+        else {
+            echo "Passwords do not match";
+        }
+    }
 ?>
 
+<!DOCTYPE html>
+<html>
 <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -37,7 +98,13 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.html">Sign Up</a></div>
+                <?php
+                    if (isset($_COOKIE['username'])) {
+                        echo '<div class="nav-item"><a href="account.php">Logged</a></div>';
+                    }
+                    else
+                        echo '<div class="nav-item"><a href="signup.php">Sign Up</a></div>';
+                ?>
             </div>
 
         </nav>
@@ -48,21 +115,21 @@
             </div>
             <div class="right">
                 <div class="form-overlay" id="signup-overlay">
-                    <form method="post">
+                    <form action="#" method="post">
                         <p>First Name</p>
-                        <input type="text" name="fname" id="fname-input">
+                        <input type="text" name="fname" id="fname-input" required>
 
                         <p>Last Name</p>
-                        <input type="text" name="lname" id="lname-input">
+                        <input type="text" name="lname" id="lname-input" required>
 
                         <p>Email</p>
-                        <input type="email" name="reg-email" id="email-input">
+                        <input type="email" name="reg-email" id="email-input" required>
 
                         <p>Password</p>
-                        <input type="password" name="reg-pass" id="pass-input">
+                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass()" required>
 
                         <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="cpass-input">
+                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
                         
                         
                         <div class="signup-submit">
@@ -74,12 +141,12 @@
                 </div>
 
                 <div class="form-overlay" id="login-overlay">
-                    <form action="" method="post">
+                    <form action="#" method="get">
                         <p>Email</p>
-                        <input type="email" name="email" id="email-input">
+                        <input type="email" name="email" id="email" required>
 
                         <p>Password</p>
-                        <input type="password" name="pass" id="pass-input">
+                        <input type="password" name="pass" id="pass" required>
                         
                         <div class="signup-submit">
                             <button type="submit" class="signup-button">Log in</button>
@@ -88,8 +155,6 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
 </body>

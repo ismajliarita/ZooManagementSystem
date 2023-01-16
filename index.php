@@ -1,10 +1,9 @@
+<?php
+    if (isset($_COOKIE['username']))
+        session_start();
+?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-
 <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -30,7 +29,14 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="./pages/signup.html">Sign Up</a></div>
+                <?php
+                    if (isset($_COOKIE['user_fname'])) {
+                        $user_fname = $_COOKIE['user_fname'];
+                        echo "<div class='nav-item'><a href='pages/account.php'>$user_fname</a></div>";
+                    }
+                    else
+                        echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
+                ?>
             </div>
 
         </nav>
