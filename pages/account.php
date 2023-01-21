@@ -138,7 +138,7 @@
 							$user_fname = $_COOKIE['user_fname'];
 							$user_lname = $_COOKIE['user_lname'];
 							$user_email = $_COOKIE['user_email'];
-							// $user_power = $_COOKIE['user_power'];
+							$user_power = $_COOKIE['user_power'];
 
 							echo <<<"EOD"
 								<p>User: $user_fname $user_lname
@@ -146,8 +146,8 @@
 								
 								<p>Email: $user_email
 								<button class='edit-btn' onclick="editOverlay('update-email-overlay')"> <i class='fa-solid fa-pen'></i></p> </button> <br>
-										
-								<p>Power: <span style='color: lime'>User</span> </p>
+								
+								<p>Power: <span style='color: lime'> $user_power </span> </p>
 							EOD;
 						?>
 
