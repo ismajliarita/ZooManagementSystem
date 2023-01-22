@@ -118,7 +118,14 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
+                <?php
+                    if (isset($_COOKIE['user_fname'])) {
+                        header('Location: ../pages/account.php');
+                        die();
+                    }
+                    else
+                        echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
+                ?>
             </div>
 
         </nav>
