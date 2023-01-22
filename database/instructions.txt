@@ -1,1 +1,1 @@
-copy paste 'zoo' folder in 'C:\xampp\mysql\data' directory
+import zoo.sql file in phpmyadmin
