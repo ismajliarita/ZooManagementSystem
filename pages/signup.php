@@ -3,6 +3,8 @@
         session_start();
     }
 
+    // if (isset($_COOKIE['username'])) {
+
     $con = mysqli_connect("localhost", "root", "", "zoo");
     if (!$con) {
         die("Connection failed: " . mysqli_connect_error());
@@ -17,30 +19,24 @@
         $sql_auth = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_fetch_assoc(mysqli_query($con, $sql_auth));
         
-        if ($result != null) {
-            if ($result['pass'] == $pass) {
-                echo "Successfully logged in";
-                $user_id = $result['id'];
-                $user_fname = $result['fname'];
-                $user_lname = $result['lname'];
-                $user_email = $result['email'];
-                $user_power = $result['power'];
-                
-                setcookie("user_id", $user_id, time() + 600, "/");
-                setcookie("user_fname", $user_fname, time() + 600, "/");
-                setcookie("user_lname", $user_lname, time() + 600, "/");
-                setcookie("user_email", $user_email, time() + 600, "/");
-                setcookie("user_power", $user_power, time() + 600, "/");
-                
-                header('Location: ../index.php');
-                die;
-            } else {
-                header('Location: '.$_SERVER['PHP_SELF']);
-				die;
-            }
-        }
-        else {
-            echo "no email like that";
+        if ($result != null && $result['pass'] == $pass) {
+            echo "Successfully logged in";
+            $user_id = $result['id'];
+            $user_fname = $result['fname'];
+            $user_lname = $result['lname'];
+            $user_email = $result['email'];
+            $user_power = $result['power'];
+            
+            setcookie("user_id", $user_id, time() + 600, "/");
+            setcookie("user_fname", $user_fname, time() + 600, "/");
+            setcookie("user_lname", $user_lname, time() + 600, "/");
+            setcookie("user_email", $user_email, time() + 600, "/");
+            setcookie("user_power", $user_power, time() + 600, "/");
+            
+            header('Location: ../index.php');
+            die();
+        } else {
+            $GLOBALS["exception"] = "Credentials incorrect!";
         }
     }
 
@@ -53,19 +49,42 @@
         $regpass = $_POST['reg-pass'];
         $cpass = $_POST['reg-cpass'];
     
-        $sql_adduser = "INSERT INTO users (fname, lname, email, pass) VALUES ('$fname', '$lname', '$email', '$regpass')";
+        $sql_adduser = "INSERT INTO users (fname, lname, email, pass, power) VALUES ('$fname', '$lname', '$email', '$regpass', 'User')";
+
+        $sql_id = "SELECT * FROM users WHERE email = '$email'";
         
         if($regpass === $cpass) {
-            if (mysqli_query($con, $sql_adduser)) {
+
+            try {
+                mysqli_query($con, $sql_adduser);
                 echo "New record created successfully";
+    
+                $result = mysqli_fetch_assoc(mysqli_query($con, $sql_id));
+
+                $id = $result['id'];
+                $power = $result['power'];
+                setcookie("user_id", $id, time() + 600, "/");
+                setcookie("user_fname", $fname, time() + 600, "/");
+                setcookie("user_lname", $lname, time() + 600, "/");
+                setcookie("user_email", $email, time() + 600, "/");
+                setcookie("user_power", $power, time() + 600, "/");
+
                 header('Location: ../index.php');
-            } else {
-                die("Connection failed: " . mysqli_connect_error());
+                die();
+
+                mysqli_close($con);
+
+            } catch (mysqli_sql_exception $e) {
+                // echo "Duplicate entry for key 'email'";
+
+                $GLOBALS["exception"] = "Email already exists!";
             }
-            mysqli_close($con);
+            
         }
         else {
-            echo "Passwords do not match";
+            // echo "Passwords do not match";
+
+            $GLOBALS["exception"] = "Passwords don't match!";
         }
     }
 ?>
@@ -84,6 +103,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../style.css">
+	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
     <!-- <link rel="script" href="../index.js"> -->
 </head>
 
@@ -98,24 +118,31 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <?php
-                    if (isset($_COOKIE['username'])) {
-                        echo '<div class="nav-item"><a href="account.php">Logged</a></div>';
-                    }
-                    else
-                        echo '<div class="nav-item"><a href="signup.php">Sign Up</a></div>';
-                ?>
+                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
             </div>
 
         </nav>
 
         <div class="inner-panel">
             <div class="left">
-
+                <?php
+                    if (isset($GLOBALS['exception'])) {
+                        $exception = $GLOBALS['exception'];
+                    
+                        echo "<div class='exception-overlay'>
+                            <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
+                            $exception
+                        </div>";
+                    }
+                ?>
+            
             </div>
+
             <div class="right">
+                
+                    
                 <div class="form-overlay" id="signup-overlay">
-                    <form action="#" method="post">
+                    <form action="#" method="post" onsubmit="return checkRepeatPass('pass-input', 'cpass-input')">
                         <p>First Name</p>
                         <input type="text" name="fname" id="fname-input" required>
 
@@ -126,10 +153,10 @@
                         <input type="email" name="reg-email" id="email-input" required>
 
                         <p>Password</p>
-                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
 
                         <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
                         
                         
                         <div class="signup-submit">

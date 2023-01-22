@@ -16,9 +16,10 @@ function editOverlay(overlayId) {
 	update_overlay.style.display = "flex";
 }
 
-function checkRepeatPass() {
-	let box = document.getElementById("cpass-input");
-	let password = document.getElementById("pass-input").value;
+function checkRepeatPass(inputID, checkID) {
+	let password = document.getElementById(inputID).value;
+	
+	let box = document.getElementById(checkID);
     let repeatPassword = document.getElementById("cpass-input").value;
 
     if (password != repeatPassword) {
@@ -26,8 +27,6 @@ function checkRepeatPass() {
         return false;
     }
 	else {
-		box.style.border = "none";
-		box.style.borderBottom = "1px solid #757575";
 		box.style.backgroundColor = "rgba(255, 255, 255, 0)";
 	}
 
