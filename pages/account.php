@@ -138,29 +138,8 @@
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
 				<?php
-                    if (isset($_COOKIE['user_fname'])) {
-                        $user_fname = $_COOKIE['user_fname'];
-                        $user_power = $_COOKIE['user_power'];
-                        
-                        switch ($user_power) {
-                            case "User":
-                                echo "<i class='user-icon user fa-solid fa-user'></i>";
-                                break;
-                            case "Helper":
-                                echo "<i class='user-icon helper fa-solid fa-shield-halved'></i>";
-                                break;
-                            case "Admin":
-                                echo "<i class='user-icon admin fa-solid fa-crown'></i>";
-                                break;
-                        }
-
-                        echo "<div class='nav-item'><a href='pages/account.php'>$user_fname</a></div>";
-                    }
-                    else {
-						header('Location: ../index.php');
-                        die();
-					}
-                ?>
+					echo "<div class='nav-item'><a href='account.php'>$user_fname</a></div>";
+				?>
             </div>
 
         </nav>

@@ -373,25 +373,6 @@
     text-align: left;
 }
 
-.user-icon {
-    margin-left: 20px;   
-    
-    font-size: 1.5rem;
-}
-
-.user {
-    color: rgb(109, 96, 74);
-    text-shadow: 0 0 30px rgb(183, 153, 65);
-}
-.helper {
-    color: rgb(52, 184, 38);
-    text-shadow: 0 0 20px rgb(189, 239, 62);
-}
-.admin {
-    color: rgb(192,138,20);
-    text-shadow: 0 0 20px rgb(226, 208, 42);
-}
-
 /* Habitat Map CSS Code */
 
 @media screen and (min-width: 1303px) {
