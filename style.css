@@ -5,6 +5,11 @@
     /* color: red; */
 }
 
+.border {
+    border: 1px solid red;
+
+}
+
 .panel {
     width: 100%;
     height: 100vh;
@@ -378,4 +383,115 @@
 .edit-btn:hover {
     box-shadow: 0 0 15px rgba(51, 220, 14, 0.6);
     background-color: rgb(33, 194, 19);
+}
+
+.ticket-card {
+    width: 70%;
+    height: 40vh;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-content {
+    margin-right: .2rem;
+    width: 55%;
+    height: 35vh;
+    border-radius: 2rem;
+    background-color: #76745ac0;
+
+}
+
+.ticket-code {
+    width: 10%;
+    height: 35vh;
+    border-radius: 2rem;
+    background-color: #76745ab9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.ticket-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+
+    color: white;
+}
+
+.ticket-code img {
+    border-radius: 1rem;
+    opacity: 50%;
+    display: block;
+    height: 90%;
+}
+
+.ticket-form input {
+    padding:10px;
+    border-radius: 20px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    /* width: 150%; */
+}
+
+.ticket-text {
+    height: 100%;
+    color: whitesmoke;
+
+    text-shadow: 3px 3px 3px black;
+}
+
+#ticket-amount {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#ticket-amount div {
+    display: flex;
+}
+
+#ticket-amount input {
+    width: 4rem;
+    margin: 0 1rem;
+}
+
+.ticket-text p {
+    font-size: 1.5rem;
+
+}
+
+#submit {
+    font-weight: bold;
+    background-color: limegreen;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    padding: .5rem 2rem;
+    border: none;
+    border-radius: 20px;
+
+    color: white ;
+    text-shadow: 3px 3px 3px black;
+    font-size: 1.4rem;
+}
+
+#submit:active {
+    background-color: rgb(30, 126, 30);
+
+}
+
+.email-form {
+    display: flex;
+    align-items: center;
+}
+
+.email-form p {
+    margin-right: 1rem;
 }
