@@ -126,14 +126,12 @@
         <div class="inner-panel">
             <div class="left">
                 <?php
-                    if (isset($GLOBALS['exception'])) {
-                        $exception = $GLOBALS['exception'];
-                    
-                        echo "<div class='exception-overlay'>
-                            <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
-                            $exception
-                        </div>";
+                    if (isset($_COOKIE['user_fname'])) {
+                        header('Location: ../pages/account.php');
+                        die();
                     }
+                    else
+                        echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
                 ?>
             
             </div>
