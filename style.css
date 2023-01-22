@@ -175,6 +175,10 @@
     display: none;
 }
 
+#register-new-overlay {
+    display: none;
+}
+
 .form-overlay {
     box-sizing: unset;
     color: aliceblue;
@@ -201,7 +205,7 @@
     color: white;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
-    display: block;
+    display: flex;
     width: 300px;
     border: none;
     border-bottom: 1px solid #757575;
@@ -314,6 +318,30 @@
     text-shadow: 0px 0px 15px red;
 }
 
+.success-icon {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+    
+    color: rgb(38, 198, 27);
+    text-shadow: 0px 0px 20px gold;
+}
+
+.fullname-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.fullname-field input {
+    max-width: 140px;
+}
+
+#power-field input {
+    display: inline;
+
+    max-width: 50px;
+    text-align: left;
+}
 
 /* Habitat Map CSS Code */
 

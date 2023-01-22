@@ -142,7 +142,7 @@
                 
                     
                 <div class="form-overlay" id="signup-overlay">
-                    <form action="#" method="post" onsubmit="return checkRepeatPass()">
+                    <form action="#" method="post" onsubmit="return checkRepeatPass('pass-input', 'cpass-input')">
                         <p>First Name</p>
                         <input type="text" name="fname" id="fname-input" required>
 
@@ -153,10 +153,10 @@
                         <input type="email" name="reg-email" id="email-input" required>
 
                         <p>Password</p>
-                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
 
                         <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
+                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
                         
                         
                         <div class="signup-submit">

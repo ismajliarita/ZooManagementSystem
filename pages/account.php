@@ -31,21 +31,16 @@
 			$newpass = $_POST['pass-new-pass'];
 			$cpass = $_POST['pass-new-cpass'];
 
-			if ($newpass === $cpass) {
-				$sql_changepass = "UPDATE users SET pass = '$newpass' WHERE id = $user_id";
-				if (mysqli_query($con, $sql_changepass)) {
-					echo "yay";
-				}
-				else {
-					echo "nay";
-				}
+			$sql_changepass = "UPDATE users SET pass = '$newpass' WHERE id = $user_id";
+			if (mysqli_query($con, $sql_changepass)) {
+				echo "yay";
 			}
-			else{
-				echo "new pass no match";
+			else {
+				echo "nay";
 			}
 		}
 		else {
-			echo "wrong pass";
+			$GLOBALS["exception"] = "Password incorrect!";
 		}
 	}
 
@@ -55,18 +50,18 @@
 			$newemail = $_POST['email-new'];
 
 			$sql_changeemail = "UPDATE users SET email = '$newemail' WHERE id = $user_id";
-			if (mysqli_query($con, $sql_changeemail)) {
+			try {
+				mysqli_query($con, $sql_changeemail);
 				setcookie("user_email", $newemail, time() + 600, "/");
 
 				header('Location: '.$_SERVER['PHP_SELF']);
 				die();
-			}
-			else {
-				echo "nay";
+			} catch (mysqli_sql_exception $e) {
+				$GLOBALS["exception"] = "Email already exsists!";
 			}
 		}
 		else{
-			echo "wrong pass";
+			$GLOBALS["exception"] = "Password incorrect!";
 		}
 	}
 
@@ -89,7 +84,26 @@
 			}
 		}
 		else{
-			echo "wrong pass";
+			$GLOBALS["exception"] = "Password incorrect!";
+		}
+	}
+
+	// REGISTER ADMIN ACCOUNT
+	if(isset($_POST['reg-fname'])) {
+		$reg_fname = $_POST['reg-fname'];
+		$reg_lname = $_POST['reg-lname'];
+		$reg_email = $_POST['reg-email'];
+		$reg_pass = $_POST['reg-pass'];
+		$reg_cpass = $_POST['reg-cpass'];
+		$reg_power = $_POST['reg-power'];
+
+		$sql_reg = "INSERT INTO users (fname, lname, email, pass, power) VALUES ('$reg_fname', '$reg_lname', '$reg_email', '$reg_pass', '$reg_power')";
+		try {
+			mysqli_query($con, $sql_reg);
+			
+			$GLOBALS["success"] = "$reg_power account created!";
+		} catch (mysqli_sql_exception $e) {
+			$GLOBALS["exception"] = "Email already exsists!";
 		}
 	}
 ?>
@@ -131,6 +145,7 @@
         </nav>
 
         <div class="inner-panel">
+
             <div class="left">
                 <div class="form-overlay" id="account-overlay">
 					<div class='account-details'>
@@ -156,9 +171,17 @@
 						</div>
 					</div>
 
-					<div class="signup-submit">
-						<a href="logout.php"><button type="button" class="signup-button">Log out</button></a>
-					</div>
+					<?php
+						$user_power = $_COOKIE['user_power'];
+
+						if ($user_power === "Admin") {
+							echo <<<"EOD"
+								<button type='button' class='signup-button' onclick='editOverlay("register-new-overlay")'>Register Account</button>
+							EOD;
+						}
+					?>
+				
+					<a href="logout.php"><button type="button" class="signup-button">Log out</button></a>
                 </div>
             </div>
 
@@ -198,21 +221,77 @@
 
 				<!-- CHANGE PASS OVERLAY -->
 				<div class="form-overlay" name="update-overlay" id="update-pass-overlay">
-					<form action="#" method="post">
+					<form action="#" method="post" onsubmit="return checkRepeatPass('pass-input', 'cpass-input')">
 						<p>Current Password</p>
 						<input type="password" name="pass-old-pass" id="email-input" required>
 
 						<p>New Password</p>
-						<input type="password" name="pass-new-pass" id="pass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="pass-new-pass" id="pass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
 
 						<p>Confirm New Password</p>
-						<input type="password" name="pass-new-cpass" id="cpass-input" oninput="checkRepeatPass()" required>
+						<input type="password" name="pass-new-cpass" id="cpass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
 						
 						<div class="signup-submit">
 							<button type="submit" class="signup-button">Save</button>
 						</div>
 					</form>
 				</div>
+
+				<!-- REGISTER NEW ACCOUNT -->
+				<div class="form-overlay" name="update-overlay" id="register-new-overlay">
+					<form action="#" method="post" oninput="return checkRepeatPass('reg-pass-input', 'reg-cpass-input')">
+						<div class="fullname-field">
+							<div>
+								<p>First Name</p>
+								<input type="text" name="reg-fname" id="fname-input" required>
+							</div>
+
+							<div>
+								<p>Last Name</p>
+								<input type="text" name="reg-lname" id="lname-input" required>
+							</div>
+						</div>
+
+                        <p>Email</p>
+                        <input type="email" name="reg-email" id="email-input" required>
+
+                        <p>Password</p>
+                        <input type="password" name="reg-pass" id="reg-pass-input" oninput="checkRepeatPass('reg-pass-input', 'reg-cpass-input')" required>
+
+                        <p>Confirm Password</p>
+                        <input type="password" name="reg-cpass" id="reg-cpass-input" oninput="checkRepeatPass('reg-pass-input', 'reg-cpass-input')" required>
+                        
+						<p>Power</p>
+						<div class="fullname-field" id="power-field">
+							<div><input type="radio" name="reg-power" value="Admin" required>Admin</div>
+							<div><input type="radio" name="reg-power" value="Helper" required>Helper</div>
+						</div>
+                        
+                        <div class="signup-submit">
+                            <button type="submit" class="signup-button">Create</button>
+                        </div>
+					</form>
+				</div>
+				
+				<?php
+                    if (isset($GLOBALS['exception'])) {
+                        $exception = $GLOBALS['exception'];
+                    
+                        echo "<div class='exception-overlay' name='update-overlay'>
+                            <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
+                            $exception
+							</div>";
+						}
+						
+						if (isset($GLOBALS['success'])) {
+							$success = $GLOBALS['success'];
+							
+							echo "<div class='exception-overlay' name='update-overlay'>
+							<i class='success-icon fa-regular fa-circle-check'></i>
+                            $success
+                        </div>";
+                    }
+                ?>
 			</div>
         </div>
     </div>
@@ -222,3 +301,4 @@
 <script src="../index.js"></script>
 
 </html>
+
