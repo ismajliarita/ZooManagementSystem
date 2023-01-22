@@ -304,6 +304,17 @@
     width: 40%;
     height: 20vh;
     background-color: #282c289c;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 500;
+    padding: 1rem;
+    font-size: 1.35rem;
+    text-align: center;
+}
+
 .ticket-card {
     width: 70%;
     height: 40vh;
@@ -538,7 +549,6 @@
     width: 50%;
     margin-top: 3rem;
     /* justify-self: center; */
-}
 }
 
 .ticket-content {
