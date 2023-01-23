@@ -622,9 +622,9 @@
 
 }
 
-#submit {
+#submit-btn {
     font-weight: bold;
-    background-color: limegreen;
+    background-color: rgb(37, 159, 37);
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
     padding: .5rem 2rem;
     border: none;
@@ -633,11 +633,15 @@
     color: white ;
     text-shadow: 3px 3px 3px black;
     font-size: 1.4rem;
+
+    transition: 0.4s;
 }
 
-#submit:active {
-    background-color: rgb(30, 126, 30);
+#submit-btn:hover {
+    cursor: pointer;
 
+    background-color: limegreen;
+    box-shadow:0 0 15px 5px rgba(150, 236, 22, 0.6);
 }
 
 .email-form {
