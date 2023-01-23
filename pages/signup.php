@@ -118,13 +118,6 @@
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
                 <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="signup.php">Sign Up</a></div>
-            </div>
-
-        </nav>
-
-        <div class="inner-panel">
-            <div class="left">
                 <?php
                     if (isset($_COOKIE['user_fname'])) {
                         header('Location: ../pages/account.php');
@@ -133,6 +126,12 @@
                     else
                         echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
                 ?>
+            </div>
+
+        </nav>
+
+        <div class="inner-panel">
+            <div class="left">
             
             </div>
 
