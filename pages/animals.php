@@ -15,18 +15,19 @@ if (isset($_COOKIE['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/3d4aa6afaa.js" crossorigin="anonymous"></script>
 
     <title>Document</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body style="background-color: burlywood;">
+<body style="background-image:url('./../media/animals.jpg');">
     <div class="animals_panel">
         <nav class="nav">
 
             <img src="../media/logo.png" id="logo" />
 
-            <div class="nav-items">
+            <div id="animal-nav" class="nav-items">
                 <div class="nav-item"><a href="#">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="#">Tickets</a></div>
@@ -94,12 +95,23 @@ if (isset($_COOKIE['user_id'])) {
             </form>
             <div class="admin-results">
                 <?php
-                function displayAdminAnimal($name, $type, $age)
+                function displayAdminAnimal($habitat, $name, $type, $age)
                 {
+                    if ($habitat == 'Forest') {
+                        $icon = '<i class="fa-solid fa-tree"></i>';
+                    } else if ($habitat == 'Jungle') {
+                        $icon = '<i class="fa-solid fa-leaf"></i>';
+                    } else if ($habitat == 'Ocean') {
+                        $icon = '<i class="fa-solid fa-water"></i>';
+                    } else if ($habitat == 'Arctic') {
+                        $icon = '<i class="fa-sharp fa-solid fa-igloo"></i>';
+                    } else if ($habitat == 'Desert') {
+                        $icon = '<i class="fa-solid fa-umbrella-beach"></i>';
+                    }
                     echo <<<"EOD"
                     <div class="admin-animal">
                         <div class="admin-animal-left">
-                            <p class="admin-habitat-icon"><i class="fa-solid fa-water"></i></p>
+                            <p class="admin-habitat-icon $habitat">$icon</p>
                             <div>Name: <button type="button" class="btn btn-outline-info" disabled>$name</button></div>
                             <p>Type: $type</p>
                             <p>Age: $age</p>
@@ -134,27 +146,28 @@ if (isset($_COOKIE['user_id'])) {
                 if (mysqli_num_rows($result) > 0) {
                     // output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
-                        displayAdminAnimal($row['name'], $row['type'], $row['age']);
+                        displayAdminAnimal($row['habitat'], $row['name'], $row['type'], $row['age']);
                     }
                 } else {
                     echo "0 results";
                 }
-                
+
                 mysqli_close($con);
 
                 ?>
 
 
-                
-            </div>
-            <div class="pagenation">
 
             </div>
+            <div id="pagenation" class="pagenation" aria-label="breadcrumb">
+                
+            </div>
         </div>
+        <button class="di" style="display:block;height: 5px;width:100%;opacity:0" disabled>hahaha</div>
 
 
     </div>
-
+    <script src="./../animal-pagenation.js"></script>
 
 </body>
 

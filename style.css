@@ -531,18 +531,23 @@
     
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     /* justify-content: center; */
 }
 
 /*ANIMALS PAGE CSS.*/
 .animals-inner-panel{
+    /* border-radius: 10px; */
+    width: 80%;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 50px;
 }
 .search-bar{
+    border-bottom: 1px solid rgb(100, 99, 99);
+    box-shadow: 5px 0px 8px #747974;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -561,7 +566,7 @@
     flex-direction: column;
 }
 .admin-animal{
-    width: 70%;
+    width: 90%;
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
@@ -595,7 +600,57 @@
     border: 2px solid rgb(62, 109, 212);
     padding: 0.6rem;
 }
-.admin-habitat-icon>i {
+.Arctic{
+    background-color: rgb(167, 198, 224);
+    border: 2px solid rgb(61, 77, 110);
+}
+.Forest{
+    background-color: rgb(110, 212, 51);
+    border: 2px solid rgb(37, 161, 75);
+}
+.Jungle{
+    background-color: rgb(23, 102, 40);
+    border: 2px solid rgb(10, 53, 47);
+}
+.Ocean{
+    
+}
+.Desert{
+    background-color: rgb(145, 167, 66);
+    border: 2px solid rgb(84, 100, 13);
+}
+.Ocean>i {
     
     color: rgb(13, 68, 87);
+}
+.Forest>i {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    color: rgb(71, 173, 40);
+}
+.Jungle>i {
+    
+    color: rgb(45, 75, 11);
+}
+.Arctic>i {
+    
+    color: rgb(4, 83, 109);
+}
+.Desert>i {
+    
+    color: rgb(155, 187, 39);
+}
+.pagenation{
+    margin-top: 2rem;
+    margin-bottom: 0 !important;
+    
+}
+.pagenation>*{
+    margin-bottom: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+html{
+    scroll-behavior: smooth;
 }
