@@ -275,6 +275,9 @@
 }
 
 .edit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin: 0.5rem 10px;
     cursor: pointer;
     border: 0;
@@ -287,10 +290,18 @@
     color: white;
     background-color: rgb(18, 137, 53);
 }
+.red-btn {
+    box-shadow: 0 0 10px rgba(184, 18, 18, 0.2);
+    background-color: rgb(202, 39, 17);
+}
 
 .edit-btn:hover {
     box-shadow: 0 0 15px rgba(51, 220, 14, 0.6);
     background-color: rgb(33, 194, 19);
+}
+.red-btn:hover{
+    box-shadow: 0 0 15px rgba(255, 45, 45, 0.589);
+    background-color: rgb(255, 35, 35);
 }
 
 .exception-overlay {
@@ -527,6 +538,7 @@
 /*ANIMALS PAGE CSS.*/
 .animals-inner-panel{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 50px;
 }
@@ -541,4 +553,49 @@
 .search-bar>*{
     margin-left: 20px;
     margin-right: 20px;
+}
+.admin-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.admin-animal{
+    width: 70%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid aliceblue;
+    border-radius: 10px;
+    padding: 2rem 2rem;
+    background-color: white;
+}
+.admin-animal-left{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-animal-left>*{
+    margin-left: 1.5rem;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.admin-animal-left button{
+    margin-left: 0.5rem;
+    font-weight: bold;
+}
+.admin-habitat-icon {
+    font-size: 1.7rem;
+    background-color: rgb(130, 191, 241);
+    border-radius: 50%;
+    border: 2px solid rgb(62, 109, 212);
+    padding: 0.6rem;
+}
+.admin-habitat-icon>i {
+    
+    color: rgb(13, 68, 87);
 }
