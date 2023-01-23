@@ -132,7 +132,16 @@
 
         <div class="inner-panel">
             <div class="left">
-            
+                <?php
+                    if (isset($GLOBALS['exception'])) {
+                        $exception = $GLOBALS['exception'];
+                    
+                        echo "<div class='exception-overlay'>
+                            <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
+                            $exception
+                        </div>";
+                    }
+                ?>
             </div>
 
             <div class="right">
