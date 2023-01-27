@@ -126,7 +126,7 @@
 
 
                 ?>
-<!--                 
+            <!--                 
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 
-                 -->
+             -->
 
 
 
@@ -168,7 +168,7 @@
 
             </div>
             <div class="pagenation">
-
+                    
             </div>
         </div>
 
