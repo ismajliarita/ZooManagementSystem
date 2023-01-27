@@ -18,17 +18,19 @@ function editOverlay(overlayId) {
 
 function checkRepeatPass(inputID, checkID) {
 	let password = document.getElementById(inputID).value;
-	
-	let box = document.getElementById(checkID);
-    let repeatPassword = document.getElementById("cpass-input").value;
 
-    if (password != repeatPassword) {
-        box.style.backgroundColor = "rgba(255, 99, 71, 0.3)";
-        return false;
-    }
+	let box = document.getElementById(checkID);
+	let repeatPassword = document.getElementById("cpass-input").value;
+
+	if (password != repeatPassword) {
+		box.style.backgroundColor = "rgba(255, 99, 71, 0.3)";
+		return false;
+	}
 	else {
 		box.style.backgroundColor = "rgba(255, 255, 255, 0)";
 	}
 
-    return true;
+	return true;
 }
+
+

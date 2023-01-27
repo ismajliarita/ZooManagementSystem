@@ -648,3 +648,73 @@
 .email-form p {
     margin-right: 1rem;
 }
+
+.result-container {
+    margin-top: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+#results {
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.animal {
+    background-color: rgba(255, 140, 0, 0.493) ;
+    border-radius: 2rem;
+    color: antiquewhite;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem;
+
+    padding: 1rem 2rem;
+}
+
+.animal-info {
+    color: white;
+    margin-top: 2rem;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#animal-name {
+    background-color: #76745a5b;
+    border: none;
+    padding: .5rem;
+    border-radius: 30px;
+
+    color: wheat;
+    padding-left: 1rem;
+    margin-right: 1rem;
+}
+
+#search-btn {
+    background-color: goldenrod;
+    padding: .2rem 2rem;
+
+    border-radius: 20px;
+    border: 2px solid rgb(218, 157, 4);
+
+    font-size: 1.5rem;
+    color: aliceblue;
+    text-shadow: 3px 3px 3px black;
+
+    
+}
