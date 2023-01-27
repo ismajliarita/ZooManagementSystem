@@ -135,8 +135,8 @@
             <div class="nav-items">
                 <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="#">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
+                <div class="nav-item"><a href="../pages/about.php">About</a></div>
 				<?php
                     if (isset($_COOKIE['user_fname'])) {
                         $user_fname = $_COOKIE['user_fname'];
@@ -294,6 +294,7 @@
 					</form>
 				</div>
 				
+				<!-- ATTENTION CATCHER OVERLAY -->
 				<?php
                     if (isset($GLOBALS['exception'])) {
                         $exception = $GLOBALS['exception'];
@@ -304,13 +305,13 @@
 							</div>";
 						}
 						
-						if (isset($GLOBALS['success'])) {
-							$success = $GLOBALS['success'];
-							
-							echo "<div class='exception-overlay' name='update-overlay'>
+					if (isset($GLOBALS['success'])) {
+						$success = $GLOBALS['success'];
+						
+						echo "<div class='exception-overlay' name='update-overlay'>
 							<i class='success-icon fa-regular fa-circle-check'></i>
-                            $success
-                        </div>";
+							$success
+						</div>";
                     }
                 ?>
 			</div>

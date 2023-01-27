@@ -28,8 +28,8 @@
             <div class="nav-items">
                 <div class="nav-item"><a href="#">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="./pages/ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="pages/ticket.php">Tickets</a></div>
+                <div class="nav-item"><a href="pages/about.php">About</a></div>
                 <?php
                     if (isset($_COOKIE['user_fname'])) {
                         $user_fname = $_COOKIE['user_fname'];
