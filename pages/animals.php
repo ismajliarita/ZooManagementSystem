@@ -95,7 +95,7 @@ if (isset($_COOKIE['user_id'])) {
             </form>
             <div class="admin-results">
                 <?php
-                function displayAdminAnimal($habitat, $name, $type, $age)
+                function displayAdminAnimal($id, $habitat, $name, $type, $age)
                 {
                     if ($habitat == 'Forest') {
                         $icon = '<i class="fa-solid fa-tree"></i>';
@@ -110,6 +110,7 @@ if (isset($_COOKIE['user_id'])) {
                     }
                     echo <<<"EOD"
                     <div class="admin-animal">
+                        <p style="display: none">$id</p>
                         <div class="admin-animal-left">
                             <p class="admin-habitat-icon $habitat">$icon</p>
                             <div>Name: <button type="button" class="btn btn-outline-info" disabled>$name</button></div>
@@ -119,7 +120,7 @@ if (isset($_COOKIE['user_id'])) {
                         <div class="admin-animal-right">
                         <button class='edit-btn'> <i class='fa-solid fa-pen'></i> </button>
                         
-                        <button class='edit-btn red-btn'> <i class="fa-solid fa-trash"></i> </button>
+                        <button class='edit-btn red-btn deleteAnimal'> <i class="fa-solid fa-trash"></i> </button>
                         </div>
 
                     </div>
@@ -146,7 +147,7 @@ if (isset($_COOKIE['user_id'])) {
                 if (mysqli_num_rows($result) > 0) {
                     // output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
-                        displayAdminAnimal($row['habitat'], $row['name'], $row['type'], $row['age']);
+                        displayAdminAnimal($row['id'], $row['habitat'], $row['name'], $row['type'], $row['age']);
                     }
                 } else {
                     echo "0 results";
@@ -160,14 +161,16 @@ if (isset($_COOKIE['user_id'])) {
 
             </div>
             <div id="pagenation" class="pagenation" aria-label="breadcrumb">
-                
+
             </div>
         </div>
-        <button class="di" style="display:block;height: 5px;width:100%;opacity:0" disabled>hahaha</div>
+        <button class="di" style="display:block;height: 5px;width:100%;opacity:0" disabled>hahaha
+    </div>
 
 
     </div>
     <script src="./../animal-pagenation.js"></script>
+    <script src="../admin-animal.js"></script>
 
 </body>
 
