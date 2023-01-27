@@ -65,8 +65,68 @@
             
             
             <div class="results">
+                <?php 
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    
+                    // Create connection
+                    $conn = mysqli_connect($servername, $username, $password, 'zoo');
+                    
+                    // Check connection
+                    if (!$conn) {
+                      die("Connection failed: " . mysqli_connect_error());
+                    }
+                    // echo "Connected successfully";
 
+                    $sql = "SELECT * FROM animals";
+                    $result = mysqli_query($conn, $sql);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)){
+                            addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
+                        }
+                    }
+
+
+                    function addCard($animalName, $habitat, $animalType, $animalAge, $description){
+                        echo <<<"EOD"
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <div class="overtext">
+                                            <p><strong>$animalName</strong></p>    
+
+                                            <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
+                                        </div>
+                                        <img class="flipcard-image" src="../media/flipcard_sample.png">
+                                        
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <div class="flipback-header">
+                                            <div class="name">
+                                                <div style="font-size: 1.5rem; margin-bottom: -5px;"><strong>$animalName</strong></div>
+                                                <div class="type-kitty">$animalType</div>
+                                            </div>
+                                            <div class="age">
+                                                <div class="age-nr"><strong>$animalAge</strong></div> 
+                                                <div class="yrs">years old</div>
+                                            </div>
+                                        </div>
+                                        <div class="flipback-rest">
+                                            <p>From the $habitat</p>
+                                            <p>$description</p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        EOD;
+                    }
                 
+
+
+                ?>
+<!--                 
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -75,7 +135,7 @@
                                 <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
                             </div>
                             <img class="flipcard-image" src="../media/flipcard_sample.png">
-                            
+                            sdfbhwrgtnsafdsvads
                         </div>
                         <div class="flip-card-back">
                             <div class="flipback-header">
@@ -99,7 +159,13 @@
                     </div>
                 </div>
                 
-                
+                 -->
+
+
+
+
+
+
             </div>
             <div class="pagenation">
 
