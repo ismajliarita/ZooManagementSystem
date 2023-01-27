@@ -193,6 +193,8 @@
     font-size: 1.35rem;
 
     overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .form-overlay::-webkit-scrollbar {
@@ -539,18 +541,20 @@
 
 .ticket-card {
     width: 70%;
-    height: 40vh;
+    height: auto;
     
     display: flex;
     flex-direction: row;
 
     align-items: center;
     justify-content: center;
+
+    margin: 20px;
 }
 
 .ticket-content {
     margin-right: .2rem;
-    width: 55%;
+    /* width: 55%; */
     height: auto;
     border-radius: 2rem;
     background-color: #76745ac0;

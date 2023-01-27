@@ -18,9 +18,20 @@
             $user_id = $result['id'];
 
             $sql_book = "INSERT INTO tickets (user_id, adults, children) VALUES ('$user_id', '$ticket_adults', '$ticket_childs')";
-            mysqli_query($con, $sql_book);
+            try {
+                mysqli_query($con, $sql_book);
 
-            $GLOBALS['success'] = 'Ticket booked successfully!';
+                $GLOBALS['success'] = 'Ticket booked successfully!';
+            } catch (mysqli_sql_exception $e) {
+                // Duplicate entry for id
+                $sql_del = "DELETE FROM tickets WHERE user_id = '$user_id'";
+                mysqli_query($con, $sql_del);
+
+                mysqli_query($con, $sql_book);
+
+                $GLOBALS['success'] = 'New ticket saved successfully!';
+            }
+
         }
     }
 ?>
@@ -110,16 +121,18 @@
                                 }
 
                                 echo "<div class='email-form'>
-                                    <p>Email :</p><input type='email' name='ticket-email' id='ticket-email' readonly value='$email' >
+                                    <p>Email: <input type='email' name='ticket-email' id='ticket-email' readonly value='$email' ></p>
                                 </div>";
                             ?>
 
                             <div id="ticket-amount">
                                 <div>
-                                    <p>Adults : </p>
+                                    <p>Adults : 
                                     <input type="number" name="ticket-adults" id="ticket-adults" value="1" min="1" required>
-                                    <p>Children : </p>
+                                    </p>
+                                    <p>Children : 
                                     <input type="number" name="ticket-childs" id="ticket-childs" value="0" min="0" required>
+                                    </p>
                                 </div>
 
                                 <button type="submit" id="submit-btn">Submit</button>
@@ -133,6 +146,26 @@
                     <img src="../media/barcode.png" />
                 </div>
             </div>
+
+            <?php
+                if (isset($_COOKIE['user_id'])) {
+                    $user_id = $_COOKIE['user_id'];
+
+                    $sql_get = "SELECT * FROM tickets WHERE user_id = '$user_id'";
+
+                    $result = mysqli_fetch_assoc(mysqli_query($con, $sql_get));
+
+                    if($result) {
+                        $adults = $result['adults'];
+                        $childs = $result['children'];
+                        
+                        echo "<div class='exception-overlay'>
+                            <i class='success-icon fa-solid fa-ticket'></i>
+                            Your current ticket: $adults Adult, $childs Children.
+                        </div>";
+                    }
+                }
+            ?>
         </div>
     </div>
 
