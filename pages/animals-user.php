@@ -167,15 +167,18 @@
 
 
             </div>
-            <div class="pagenation">
-                    
+            <br><br>
+            <div class="pagenation" id="pagenation" aria-label="breadcrumb">
+                
             </div>
+                
+            <br>
         </div>
 
 
     </div>
 
-
+<script src="./animals-user.js"></script>
 
 </body>
 
