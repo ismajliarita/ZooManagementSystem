@@ -87,6 +87,11 @@
                         echo '<div class="nav-item"><a href="../pages/signup.php">Sign Up</a></div>';
                 ?>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
         </nav>
 
@@ -168,7 +173,8 @@
             ?>
         </div>
     </div>
-
+    <script src="../index.js"></script>
+    
 </body>
 
 </html>

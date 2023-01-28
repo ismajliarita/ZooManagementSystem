@@ -127,6 +127,11 @@
                         echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
                 ?>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
         </nav>
 

@@ -53,25 +53,34 @@
                         echo '<div class="nav-item"><a href="pages/signup.php">Log In</a></div>';
                 ?>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
         </nav>
 
         <div class="inner-panel">
-            <div class="left">
+            <div id="index-left" class="left">
                 <div class="main-content">
                     <h1>Welcome to The ZOO</h1>
-                    <pre>See the world's wildest animals <br> at The ZOO!</pre>
+                    <p style="color: gold;">See the world's wildest animals <br> at The ZOO!</p]>
                     <div class="buttons">
                         <input type="button" id="animals-button" value="Check Animals">
                         <input type="button" id="ticket-button" value="Book a Visit">
                     </div>
                 </div>
             </div>
-            <div class="right"></div>
+            <div id="index-right" class="right"></div>
         </div>
 
 
     </div>
+    
+
+<script src="index.js"></script>
+
 
 </body>
 

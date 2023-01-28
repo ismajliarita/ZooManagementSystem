@@ -16,11 +16,16 @@
             <img src="../media/logo.png" id="logo" />
 
             <div class="nav-items">
-                <div class="nav-item"><a href="./pages/index.php">Home</a></div>
+                <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="#">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
-                <div class="nav-item"><a href="./pages/signup.html">Sign Up</a></div>
+                <div class="nav-item"><a href="./ticket.php">Tickets</a></div>
+                <div class="nav-item"><a href="./about.php">About</a></div>
+                <div class="nav-item"><a href="./signup.html">Sign Up</a></div>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
             
         </nav>
@@ -40,5 +45,7 @@
             </div>
         </div>
     </div>
+
+    <script src="../index.js"></script>
 </body>
 </html>

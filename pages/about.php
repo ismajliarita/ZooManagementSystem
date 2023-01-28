@@ -25,8 +25,8 @@
             <div class="nav-items">
                 <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="./ticket.php">Tickets</a></div>
+                <div class="nav-item"><a href="./about.php">About</a></div>
                 <?php
                     if (isset($_COOKIE['user_fname'])) {
                         $user_fname = $_COOKIE['user_fname'];
@@ -50,6 +50,11 @@
                         echo '<div class="nav-item"><a href="../pages/signup.php">Sign Up</a></div>';
                 ?>
             </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
         </nav>
 
@@ -67,7 +72,7 @@
 
 
     </div>
-
+    <script src="../index.js"></script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@ if (isset($_COOKIE['user_fname']))
 
     <link rel="stylesheet" href="../style.css">
     <script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
-    <script src="../index.js"></script>
+    <!-- <script src="../index.js"></script> -->
 </head>
 
 <body>
@@ -28,10 +28,10 @@ if (isset($_COOKIE['user_fname']))
             <img src="../media/logo.png" id="logo" />
 
             <div class="nav-items">
-                <div class="nav-item"><a href="#">Home</a></div>
+                <div class="nav-item"><a href="../index.php">Home</a></div>
                 <div class="nav-item"><a href="#">Animals</a></div>
                 <div class="nav-item"><a href="./ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="#">About</a></div>
+                <div class="nav-item"><a href="./about.php">About</a></div>
                 <?php
                 if (isset($_COOKIE['user_fname'])) {
                     $user_fname = $_COOKIE['user_fname'];
@@ -54,7 +54,11 @@ if (isset($_COOKIE['user_fname']))
                     echo '<div class="nav-item"><a href="./signup.php">Sign Up</a></div>';
                 ?>
             </div>
-
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </nav>
 
         <div class="inner-panel" style="overflow-y: scroll; display: flex; justify-content: center">
@@ -79,67 +83,8 @@ if (isset($_COOKIE['user_fname']))
 
 
     </div>
-    <script>
-        // let animals = []
-        let resultDiv = document.getElementById("results");
 
-
-
-        function animalFact() {
-            let slogan = document.getElementById('sloggan');
-            let input = document.getElementById('animal-name')
-            console.log(input.value)
-            fetch(`https://api.api-ninjas.com/v1/animals?name=${input.value}`, {
-                method: 'GET', // or 'PUT'
-                headers: {
-                    'X-Api-Key': 'Pur9eqmmJr015qIRkmq2sg==3E5SKV3pvhXJANTU',
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // animals = data;
-                    console.log('Success:', data);
-                    // slogan.innerHTML = data;
-                    resultDiv.innerHTML = ''
-                    for(let i = 0; i < data.length; i++){
-                        createCard(data[i])
-                    }
-
-                    // data.map(
-                    //     createCard()
-                    // )
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        }
-
-        console.log("outside" + data);
-
-
-
-        function createCard(animal) {
-
-            // Add the HTML code as a child of the result div
-            resultDiv.innerHTML +=
-                `<div class="animal" >
-                        <h1 class="animal-name" style="margin-top: 1rem;">${animal.name}</h1>
-                        <p class="animal-info">
-<p>Slogan: ${animal.characteristics.slogan}</p>
-<p>Top Speed: ${animal.characteristics.top_speed}</p>
-<p>Origin: ${animal.characteristics.origin}</p>
-<p>Name of Young: ${animal.characteristics.name_of_young}</p>
-<p>Habitat: ${animal.characteristics.habitat}</p>
-<p>Weight: ${animal.characteristics.weight}</p>
-<p>Kingdom: ${animal.taxonomy.Kingdom}</p></p>
-                    </div>`;
-        }
-
-        // createCard();
-
-
-    </script>
-
+    <script src="../index.js"></script>
 </body>
 
 </html>
