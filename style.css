@@ -27,6 +27,7 @@
 
 .nav {
     position: absolute;
+    z-index: 99;
 
     background-color: #76745a54;
     width: 100%;
@@ -459,7 +460,7 @@
     .image:hover{
         transform: scale(1.1);
     }
-    .jungle{
+    .jungle-map{
         align-self: flex-end;
     }
     #waterHabitat, #iceHabitat{
@@ -509,7 +510,7 @@
     .image:hover{
         transform: scale(1.1);
     }
-    .jungle{
+    .jungle-map{
         align-self: flex-end;
     }
     #waterHabitat, #iceHabitat{
@@ -559,7 +560,7 @@
     .image:hover{
         transform: scale(1.1);
     }
-    .jungle{
+    .jungle-map{
         align-self: flex-end;
     }
     #waterHabitat, #iceHabitat{
@@ -770,4 +771,205 @@
     text-shadow: 3px 3px 3px black;
 
     
+}
+
+/* ANIMAL VIEW PAGE */
+.animal-main {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2rem;
+
+    height: auto;
+    min-height: 80vh;
+    /* max-height: 80vh; */
+    width: 65%;
+    margin-top: 7rem;
+
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+    z-index: 9;
+    
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.animal-main::-webkit-scrollbar {
+    width: 10px;
+}
+.animal-main::-webkit-scrollbar-thumb {
+    border-radius: 60px;
+}
+
+.animal-info-container {
+    width: 60%;
+    text-align: left;
+    padding-bottom: 1.6rem;
+}
+
+.animal-info-container div {
+    margin-bottom: 0.6rem;
+}
+
+.animal-info-container h1 {
+    margin-bottom: 1.2rem;
+}
+
+.animal-info-container h4 {
+    display: inline;
+    margin-left: 0.2rem;
+}
+
+.animal-img-container {
+    width: 40%;
+    overflow: visible;
+    height: 280px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.animal-img {
+    overflow: hidden;
+
+    width: fit-content;
+    height: inherit;
+}
+
+.animal-img-container img {
+    height: inherit;
+    max-width: inherit;
+    object-fit: contain;
+}
+
+.animal-desc-container {
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+    padding: 2rem 2rem 0 0;
+}
+
+@media only screen and (max-width: 450px) {
+    .animal-main {
+        width: 100%;
+    }
+
+    .animal-info-container {
+        width: 100%;
+    }
+
+    .animal-img-container {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 750px) {
+    .animal-main {
+        width: 100%;
+    }
+}
+
+/* Handling Habitat Dynamic Changes */
+/* FOREST */
+.forest::-webkit-scrollbar-thumb {
+    background: rgba(14, 55, 0, 0.666);
+}
+
+.forest::-webkit-scrollbar-thumb:hover {
+    background: rgba(17, 85, 12, 0.666);
+} 
+
+.forest #forest {
+    color:rgb(17, 163, 61);
+}
+.forest .animal-img {
+    box-shadow: 0 0 20px 0 rgb(8, 41, 0);
+}
+.forest h1 {
+    text-shadow: 0 0 25px rgb(59, 215, 20);
+}
+
+/* OCEAN */
+.ocean::-webkit-scrollbar-thumb {
+    background: rgba(0, 17, 55, 0.666);
+}
+
+.ocean::-webkit-scrollbar-thumb:hover {
+    background: rgba(7, 41, 93, 0.666);
+} 
+
+.ocean #ocean {
+    color:rgb(20, 98, 215);
+}
+.ocean .animal-img {
+    box-shadow: 0 0 20px 0 rgb(0, 25, 41);
+}
+.ocean h1 {
+    text-shadow: 0 0 25px rgb(26, 146, 244);
+}
+
+/* JUNGLE */
+.jungle::-webkit-scrollbar-thumb {
+    background: rgba(50, 61, 0, 0.666);
+}
+
+.jungle::-webkit-scrollbar-thumb:hover {
+    background: rgba(119, 149, 8, 0.666);
+} 
+
+.jungle #jungle {
+    color:rgb(152, 166, 0);
+}
+.jungle .animal-img {
+    box-shadow: 0 0 20px 0 rgb(35, 41, 0);
+}
+.jungle h1 {
+    text-shadow: 0 0 25px rgb(191, 229, 23);
+}
+
+/* DESERT */
+.desert::-webkit-scrollbar-thumb {
+    background: rgba(61, 52, 0, 0.666);
+}
+
+.desert::-webkit-scrollbar-thumb:hover {
+    background: rgba(149, 137, 8, 0.666);
+} 
+
+.desert #desert {
+    color:rgb(166, 144, 0);
+}
+.desert .animal-img {
+    box-shadow: 0 0 20px 0 rgb(49, 45, 0);
+}
+.desert h1 {
+    text-shadow: 0 0 25px rgb(255, 229, 29);
+}
+
+/* ARCTIC */
+.arctic::-webkit-scrollbar-thumb {
+    background: rgba(92, 113, 113, 0.666);
+}
+
+.arctic::-webkit-scrollbar-thumb:hover {
+    background: rgba(177, 255, 255, 0.666);
+} 
+
+.arctic #arctic {
+    color:rgb(9, 185, 192);
+}
+.arctic .animal-img {
+    box-shadow: 0 0 20px 0 rgb(102, 126, 129);
+}
+.arctic h1 {
+    text-shadow: 0 0 25px rgb(123, 240, 255);
 }

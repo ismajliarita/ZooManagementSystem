@@ -28,7 +28,7 @@
             <div class="habitatMap_innerPannel">
                 <div class="imgTop">
                     <img src="../media/a-waterAreaNoBckg.png" alt="" class="image" id="waterHabitat">
-                    <div class="jungle">
+                    <div class="jungle-map">
                         <img src="../media/a-jungleAreaNoBckg.png" alt="" class="image" id="jungleHabitat">
                     </div>
                     <img src="../media/a-iceAreaNoBckg.png" alt="" class="image" id="iceHabitat">
