@@ -68,8 +68,8 @@ if (isset($_COOKIE['user_fname']))
                     
 
 
-                    <!-- Resi;t Div Close Below here -->
-                </div>
+                    
+                </div> <!-- Resi;t Div Close Below here -->
 
 
 
@@ -101,7 +101,7 @@ if (isset($_COOKIE['user_fname']))
                     console.log('Success:', data);
                     // slogan.innerHTML = data;
                     resultDiv.innerHTML = ''
-                    for(let i = 0; i < 4; i++){
+                    for(let i = 0; i < data.length; i++){
                         createCard(data[i])
                     }
 
