@@ -4,6 +4,7 @@
 --
 -- Host: 127.0.0.1
 -- Generation Time: Jan 22, 2023 at 09:36 PM
+-- Generation Time: Jan 23, 2023 at 06:08 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -20,6 +21,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `zoo`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `animals`
+--
+
+CREATE TABLE `animals` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `type` varchar(30) NOT NULL,
+  `age` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `habitat` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `animals`
+--
+
+INSERT INTO `animals` (`id`, `name`, `type`, `age`, `description`, `habitat`) VALUES
+(1, 'mufasa', 'lion', 20, 'This is mufasa. The real king of the jungle. He was thought to be dead. However, the legend says his spirit is still present in one lion of a generation. This lion is thought to have the spirit of mufasa. Yes yes, the real spirit of mufasa!!!!', 'Jungle'),
+(2, 'edon', 'snake', 19, 'This is edon. He is a real snake hehe hehe.', 'Forest'),
+(3, 'Ylber', 'Monkey', 30, 'asdjhfsdjkfh ksjdfhkj sdahfjksdfh ', 'Desert');
 
 -- --------------------------------------------------------
 
@@ -59,6 +84,12 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `pass`, `power`) VALUES
 --
 
 --
+-- Indexes for table `animals`
+--
+ALTER TABLE `animals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -68,6 +99,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `animals`
+--
+ALTER TABLE `animals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

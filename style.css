@@ -16,7 +16,7 @@
     background-image: url('./media/tiger.jpg');
     background-position: center;
     background-size: cover;
-    
+
     display: flex;
     flex-direction: column;
     
@@ -281,22 +281,22 @@
     font-weight: 600;
     width: 200px;
     padding: 10px 0;
-    box-shadow: 0 0 20px rgba(226,176,42, 0.2);
+    box-shadow: 0 0 20px rgba(226, 176, 42, 0.2);
     transition: 0.4s;
     color: white;
-    background-color: rgb(192,138,20);
+    background-color: rgb(192, 138, 20);
 }
 
 .signup-button:hover {
     color: white;
-    box-shadow: 0 0 20px rgba(226,176,42, 0.6);
-    background-color: rgba(226,176,42, 1);
+    box-shadow: 0 0 20px rgba(226, 176, 42, 0.6);
+    background-color: rgba(226, 176, 42, 1);
 }
 
 #login-link {
     font-size: 0.9rem;
-    color: rgb(226,176,42);
-    
+    color: rgb(226, 176, 42);
+
     transition: all 0.1s ease-in-out;
 }
 
@@ -316,6 +316,7 @@
 #changepass-container {
     margin-top: 20px;
 }
+
 #changepass-link {
     font-size: 0.9rem;
     color: rgb(213, 59, 7);
@@ -323,6 +324,7 @@
 
     transition: all 0.2s ease-in-out;
 }
+
 #changepass-link:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -331,6 +333,9 @@
 }
 
 .edit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     margin: 0.5rem 10px;
     cursor: pointer;
     border: 0;
@@ -344,9 +349,19 @@
     background-color: rgb(18, 137, 53);
 }
 
+.red-btn {
+    box-shadow: 0 0 10px rgba(184, 18, 18, 0.2);
+    background-color: rgb(202, 39, 17);
+}
+
 .edit-btn:hover {
     box-shadow: 0 0 15px rgba(51, 220, 14, 0.6);
     background-color: rgb(33, 194, 19);
+}
+
+.red-btn:hover {
+    box-shadow: 0 0 15px rgba(255, 45, 45, 0.589);
+    background-color: rgb(255, 35, 35);
 }
 
 .exception-overlay {
@@ -369,15 +384,15 @@
 .exception-icon {
     margin-right: 0.5rem;
     font-size: 1.5rem;
-    
-    color: rgb(226,176,42);
+
+    color: rgb(226, 176, 42);
     text-shadow: 0px 0px 15px red;
 }
 
 .success-icon {
     margin-right: 0.5rem;
     font-size: 1.5rem;
-    
+
     color: rgb(38, 198, 27);
     text-shadow: 0px 0px 20px gold;
 }
@@ -421,15 +436,16 @@
 /* Habitat Map CSS Code */
 
 @media screen and (min-width: 1303px) {
-    .imgTop{
+    .imgTop {
         flex-wrap: wrap;
         margin-top: 70px;
         width: 100%;
         display: flex;
-        justify-content: space-evenly;   
+        justify-content: space-evenly;
         height: 350px;
     }
-    .imgBot{
+
+    .imgBot {
         flex-wrap: wrap;
         width: 100%;
         display: flex;
@@ -437,34 +453,43 @@
         position: relative;
         bottom: 40px;
     }
-    .habitatMap_innerPannel{
+
+    .habitatMap_innerPannel {
         display: flex;
         flex-wrap: wrap;
         width: 70%;
         align-items: center;
         height: 92vh;
     }
-    .habitatMap{
+
+    .habitatMap {
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
     .panelHabitatMap {
         width: 100%;
     }
-    .image{
+
+    .image {
         width: 300px;
         transition: all .2s ease-in-out;
     }
-    .image:hover{
+
+    .image:hover {
         transform: scale(1.1);
     }
-    .jungle{
+
+    .jungle {
         align-self: flex-end;
     }
-    #waterHabitat, #iceHabitat{
+
+    #waterHabitat,
+    #iceHabitat {
         align-self: flex-start;
     }
+
     .row:after {
         content: "";
         display: table;
@@ -473,14 +498,15 @@
 }
 
 @media only screen and (min-width: 855px) and (max-width: 1303px) {
-    .imgTop{
+    .imgTop {
         flex-wrap: wrap;
         margin-top: 70px;
         width: 100%;
         display: flex;
-        justify-content: space-evenly;   
+        justify-content: space-evenly;
     }
-    .imgBot{
+
+    .imgBot {
         flex-wrap: wrap;
         width: 100%;
         display: flex;
@@ -488,49 +514,59 @@
         position: relative;
         /* bottom: 40px; */
     }
-    .habitatMap_innerPannel{
+
+    .habitatMap_innerPannel {
         display: flex;
         flex-wrap: wrap;
         width: 70%;
-        align-items: center;                      
+        align-items: center;
     }
-    .habitatMap{
+
+    .habitatMap {
         display: flex;
         justify-content: center;
     }
+
     .panelHabitatMap {
         width: 100%;
         height: fit-content;
     }
-    .image{
+
+    .image {
         width: 300px;
         transition: all .2s ease-in-out;
     }
-    .image:hover{
+
+    .image:hover {
         transform: scale(1.1);
     }
-    .jungle{
+
+    .jungle {
         align-self: flex-end;
     }
-    #waterHabitat, #iceHabitat{
+
+    #waterHabitat,
+    #iceHabitat {
         align-self: flex-start;
     }
+
     .row:after {
         content: "";
         display: table;
         clear: both;
     }
- }
+}
 
- @media screen and (max-width: 854px) {
-    .imgTop{
+@media screen and (max-width: 854px) {
+    .imgTop {
         flex-wrap: wrap;
         margin-top: 70px;
         width: 100%;
         display: flex;
-        justify-content: space-evenly;   
+        justify-content: space-evenly;
     }
-    .imgBot{
+
+    .imgBot {
         flex-wrap: wrap;
         width: 100%;
         display: flex;
@@ -538,33 +574,42 @@
         position: relative;
         /* bottom: 40px; */
     }
-    .habitatMap_innerPannel{
+
+    .habitatMap_innerPannel {
         display: flex;
         flex-wrap: wrap;
         width: 70%;
-        align-items: center;                      
+        align-items: center;
     }
-    .habitatMap{
+
+    .habitatMap {
         display: flex;
         justify-content: center;
     }
+
     .panelHabitatMap {
         width: 100%;
         height: fit-content;
     }
-    .image{
+
+    .image {
         width: 300px;
         transition: all .2s ease-in-out;
     }
-    .image:hover{
+
+    .image:hover {
         transform: scale(1.1);
     }
-    .jungle{
+
+    .jungle {
         align-self: flex-end;
     }
-    #waterHabitat, #iceHabitat{
+
+    #waterHabitat,
+    #iceHabitat {
         align-self: flex-start;
     }
+
     .row:after {
         content: "";
         display: table;
@@ -851,5 +896,226 @@
         width: 90%;
         font-size: 1rem;
     }
+.main {
+    /* color:  red; */
+    background-color: rgba(255, 255, 255, .15);
+
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+    padding: 2rem;
+
+    width: 50%;
+    margin-top: 3rem;
+    /* justify-self: center; */
+}
+
+
+
+.animals_panel {
+    width: 100%;
+    /* height: 100vh; */
+    background-position: center;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+/*ANIMALS PAGE CSS.*/
+.animals-inner-panel {
+    /* border-radius: 10px; */
+    width: 80%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 4.5rem;
+}
+
+.search-bar {
+    border-bottom: 1px solid rgb(100, 99, 99);
+    box-shadow: 5px 0px 8px #747974;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+}
+
+.search-bar>* {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.admin-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.admin-animal {
+    width: 90%;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid aliceblue;
+    border-radius: 10px;
+    padding: 2rem 2rem;
+    background-color: white;
+}
+
+.admin-animal-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-animal-left>* {
+    margin-left: 1.5rem;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.admin-animal-left button {
+    margin-left: 0.5rem;
+    font-weight: bold;
+}
+
+.admin-habitat-icon {
+    font-size: 1.7rem;
+    background-color: rgb(130, 191, 241);
+    border-radius: 50%;
+    border: 2px solid rgb(62, 109, 212);
+    padding: 0.6rem;
+}
+
+.Arctic {
+    background-color: rgb(167, 198, 224);
+    border: 2px solid rgb(61, 77, 110);
+}
+
+.Forest {
+    background-color: rgb(110, 212, 51);
+    border: 2px solid rgb(37, 161, 75);
+}
+
+.Jungle {
+    background-color: rgb(23, 102, 40);
+    border: 2px solid rgb(10, 53, 47);
+}
+
+.Ocean {}
+
+.Desert {
+    background-color: rgb(145, 167, 66);
+    border: 2px solid rgb(84, 100, 13);
+}
+
+.Ocean>i {
+
+    color: rgb(13, 68, 87);
+}
+
+.Forest>i {
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+    color: rgb(71, 173, 40);
+}
+
+.Jungle>i {
+
+    color: rgb(45, 75, 11);
+}
+
+.Arctic>i {
+
+    color: rgb(4, 83, 109);
+}
+
+.Desert>i {
+
+    color: rgb(155, 187, 39);
+}
+
+.pagenation {
+    margin-top: 2rem;
+    margin-bottom: 0 !important;
+
+}
+
+.pagenation>* {
+    margin-bottom: 0 !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.animals_panel {}
+
+/*ADD ANIMAL CSS*/
+.addAnimalFixed {
+    position: fixed;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(23, 150, 34);
+    padding: 4rem;
+    border-radius: 10px;
+    color: white;
+    max-height: 90vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: 0 0 50px rgb(7, 7, 7);
+}
+
+.addAnimalFixed>form>h3 {
+    position: relative;
+    bottom: 20px;
+}
+
+.addAnimalFixed>form>* {
+    padding: 3px 5px;
+}
+
+.addAnimalFixed::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.addAnimalFixed {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.closebtn {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000;
+}
+
+.animal-photos {
+    width: 5rem;
 
 }
