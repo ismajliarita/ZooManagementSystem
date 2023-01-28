@@ -86,17 +86,40 @@
                             addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
                         }
                     }
+                    // <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
+                    // <i class="fa-solid fa-igloo"></i>
+
 
 
                     function addCard($animalName, $habitat, $animalType, $animalAge, $description){
+                        switch($habitat){
+                            case "Forest":
+                                $icon = '<i class="fa-solid fa-tree"></i>';
+                                break;
+                            case "Jungle":
+                                $icon = '<i class="fa-solid fa-leaf"></i>';
+                                break;
+                            case "Arctic":
+                                $icon = '<i class="fa-solid fa-igloo"></i>';
+                                break;
+                            case "Desert":
+                                $icon = '<i class="fa-solid fa-cactus"></i>';
+                                break;
+                            case "Ocean":
+                                $icon = '<i class="fa-solid fa-water"></i>';
+                                break;
+                            default:
+                                $icon = '<i class="fa-regular fa-location-question"></i>';
+                            
+                        }
                         echo <<<"EOD"
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
                                         <div class="overtext">
                                             <p><strong>$animalName</strong></p>    
-
-                                            <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
+                                            <p class="habitat-icon">$icon</p>
+                                            
                                         </div>
                                         <img class="flipcard-image" src="../media/flipcard_sample.png">
                                         
