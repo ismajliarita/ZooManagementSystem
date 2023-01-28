@@ -34,7 +34,8 @@
     height: 8vh;
     
     filter: drop-shadow(0px 10px 3px rgba(54, 54, 54, 0.452));
-    
+
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -911,6 +912,7 @@
 
 
 
+/*ANIMALS PAGE CSS.*/
 .animals_panel {
     width: 100%;
     /* height: 100vh; */
@@ -928,6 +930,10 @@
     /* border-radius: 10px; */
     width: 80%;
     background-color: #ffffff;
+
+}
+
+.animals-inner-panel{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -943,6 +949,7 @@
     width: 100%;
     background-color: white;
     padding: 10px;
+    box-shadow: 0px 0px 15px rgb(94,46,33);
 }
 
 .search-bar>* {
@@ -1180,6 +1187,91 @@ html {
     overflow: visible;
     height: 280px;
 
+}
+/* ANIMALS PAGE 2 -- ARITA */
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+    margin-top: 2rem;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+
+.flip-card-back {
+    background-color: rgb(116,103,89);
+    color: white;
+    transform: rotateY(180deg);
+    /* padding: 20px; */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.flipback-rest{
+    padding: 20px;
+}
+
+.animals-main-panel{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.results{
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.flipcard-image{
+    width: 100%;
+    height: 100%;
+}
+
+.flipback-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(87, 77, 67);
+    align-items: center;
+}
+
+.age{
+    width: 30%;
     display: flex;
     justify-content: center;
 }
@@ -1318,4 +1410,35 @@ html {
 }
 .arctic h1 {
     text-shadow: 0 0 25px rgb(123, 240, 255);
+}
+.age-nr{
+    font-size: 2rem;
+}
+
+.yrs{
+    font-size: 0.7rem;
+    align-items: center;
+    display: inherit;
+    margin-left: 5px;
+}
+
+.overtext{
+    position: absolute;
+    z-index: 999;
+    background-image: linear-gradient(transparent, black);
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    bottom: 0px;
+    padding: 0 1.5rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-kitty{
+    font-size: 0.7rem;
+    float: left;
+    margin-bottom: -50px;
 }
