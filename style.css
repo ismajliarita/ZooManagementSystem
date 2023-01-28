@@ -705,17 +705,17 @@
 .result-container {
     margin-top: 20vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
 
     flex-direction: column;
 }
 
 #results {
     display: flex;
-    flex-wrap: wrap;
-
-    align-items: center;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    /* align-items: center; */
     justify-content: center;
 }
 
@@ -723,6 +723,8 @@
     background-color: rgba(255, 140, 0, 0.493) ;
     border-radius: 2rem;
     color: antiquewhite;
+
+    max-width: 90%;
 
     display: flex;
     flex-direction: column;
@@ -745,6 +747,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    flex-wrap: wrap;
 }
 
 #animal-name {

@@ -57,7 +57,7 @@ if (isset($_COOKIE['user_fname']))
 
         </nav>
 
-        <div class="inner-panel" style="display: flex; align-items: center; justify-content: center;">
+        <div class="inner-panel" style="overflow-y: scroll; display: flex; justify-content: center">
             <div class="result-container">
                 <p class="main-content">Enter an animal name to get facts about it.</p>
                 <div class="search-bar">
@@ -124,14 +124,14 @@ if (isset($_COOKIE['user_fname']))
             resultDiv.innerHTML +=
                 `<div class="animal" >
                         <h1 class="animal-name" style="margin-top: 1rem;">${animal.name}</h1>
-                        <pre class="animal-info">
-Slogan: ${animal.characteristics.slogan}
-Top Speed: ${animal.characteristics.top_speed}
-Origin: ${animal.characteristics.origin}
-Name of Young: ${animal.characteristics.name_of_young}
-Habitat: ${animal.characteristics.habitat}
-Weight: ${animal.characteristics.weight}
-Kingdom: ${animal.taxonomy.Kingdom}</pre>
+                        <p class="animal-info">
+<p>Slogan: ${animal.characteristics.slogan}</p>
+<p>Top Speed: ${animal.characteristics.top_speed}</p>
+<p>Origin: ${animal.characteristics.origin}</p>
+<p>Name of Young: ${animal.characteristics.name_of_young}</p>
+<p>Habitat: ${animal.characteristics.habitat}</p>
+<p>Weight: ${animal.characteristics.weight}</p>
+<p>Kingdom: ${animal.taxonomy.Kingdom}</p></p>
                     </div>`;
         }
 
