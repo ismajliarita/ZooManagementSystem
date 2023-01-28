@@ -124,7 +124,7 @@
                         die();
                     }
                     else
-                        echo '<div class="nav-item"><a href="#">Sign Up</a></div>';
+                        echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
                 ?>
             </div>
 
@@ -170,7 +170,6 @@
                         </div>
                     </form>
 
-                    <a onclick="goLogin()" id="login-link">Already a user? Log in instead</a>
                 </div>
 
                 <div class="form-overlay" id="login-overlay">
@@ -185,6 +184,8 @@
                             <button type="submit" class="signup-button">Log in</button>
                         </div>
                     </form>
+
+                    <a onclick="goLogin()" id="login-link">Don't have an account? Sign up now</a>
                 </div>
             </div>
         </div>

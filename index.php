@@ -50,7 +50,7 @@
                         echo "<div class='nav-item'><a href='pages/account.php'>$user_fname</a></div>";
                     }
                     else
-                        echo '<div class="nav-item"><a href="pages/signup.php">Sign Up</a></div>';
+                        echo '<div class="nav-item"><a href="pages/signup.php">Log In</a></div>';
                 ?>
             </div>
 
