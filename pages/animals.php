@@ -22,6 +22,112 @@ if (isset($_COOKIE['user_id'])) {
 </head>
 
 <body style="background-image:url('./../media/animals.jpg');">
+
+    <div class="addAnimalFixed" id="addAnimalForm" style="display: none;z-index: 10;">
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+            <h3 style="text-align: center;">Add Animal Form</h3>
+            <span class="closebtn" onclick="this.parentElement.parentElement.style.display = 'none';">&times;</span>
+            <input type="text" id="add-animal-name" name="addName" placeholder="Animal Name" required>
+            <input list="types" id="add-animal-type" name="addType" placeholder="Type of animal" required>
+
+            <datalist id="types">
+                <?php
+                echo ' hahahahah';
+                $con = mysqli_connect("localhost", "root", "", "zoo");
+                if (!$con) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                echo 'haha';
+                $sql = 'SELECT type FROM animals GROUP by type;';
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    // output data of each row
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $type = $row['type'];
+                        echo <<<"EOD"
+                                    <option value="$type">
+                                EOD;
+                    }
+                } else {
+                    echo "0 results";
+                }
+    
+                mysqli_close($con);
+                ?>
+            </datalist>
+            <br>
+            <h5 style="margin-top: 10px; padding-bottom: 0px" >Habitat:</h5>
+            <input style="padding-top: 0px" type="radio" id="ocean" name="addHabitat" value="Ocean" required>
+            <label style="padding-top: 0px" for="ocean">Ocean</label><br>
+            <input type="radio" id="jungle" name="addHabitat" value="Jungle">
+            <label for="jungle">Jungle</label><br>
+            <input type="radio" id="arctic" name="addHabitat" value="Arctic">
+            <label for="arctic">Arctic</label><br>
+            <input type="radio" id="forest" name="addHabitat" value="Forest">
+            <label for="forest">Forest</label><br>
+            <input type="radio" id="desert" name="addHabitat" value="Desert">
+            <label for="desert">Desert</label><br>
+            <label for="add-animal-age">Age:</label>
+            <input type="number" style="width: 5rem;" id="add-animal-age" name="addAge" min=0 required>
+            <textarea id="add-animal-desc" name="addDescription" rows="4" cols="50" placeholder="Enter description here..." required></textarea>
+            
+            <input type="file" id="photos" name="photos[]" multiple /><br>
+            <div class="animal-photos">
+
+            </div>
+            <input type="submit" class="btn btn-primary" style="padding: 10px 20px;" value="Submit" name="upload">
+        </form>
+        <script src="dynamicPhotos.js"></script>
+    </div>
+    <?php
+    if (isset($_POST['upload'])) {
+
+        $con = new mysqli("localhost", "root", "", "zoo");
+        if ($con->connect_error) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $name = $_POST['addName'];
+        $type = $_POST['addType'];
+        $age = $_POST['addAge'];
+        $description = $_POST['addDescription'];
+        $habitat = $_POST['addHabitat'];
+        $sql = "INSERT INTO animals (`name`, `type`, `age`, `description`, `habitat`) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $con->prepare($sql);
+
+        // Bind the values to the statement
+        $stmt->bind_param("ssiss", $name, $type, $age, $description, $habitat);
+
+        // Execute the statement
+        $stmt->execute();
+        // if ($con->query($sql) === TRUE) {
+        //     $sql2 = "INSERT INTO `images` (`url`, `animal_id`) VALUES ('dsfsdf', $lastId);";
+        // }
+
+        $lastId = $con->insert_id;
+        $stmt->close();
+
+
+
+        foreach ($_FILES['photos']['name'] as $id => $val) {
+            // Get files upload path
+            $fileName = $_FILES['photos']['name'][$id];
+            $file_tmp = $_FILES['photos']['tmp_name'][$id];
+
+            $path = "./../images/" . $fileName;
+            move_uploaded_file($file_tmp, $path);
+
+
+            $stmt2 = $con->prepare("INSERT INTO images (`url`, `animal_id`) VALUES (?, ?)");
+            $stmt2->bind_param("si", $path, $lastId);
+            $stmt2->execute();
+        }
+        $con->close();
+    }
+
+
+    ?>
+    <script src="../addAnimal.js"></script>
     <div class="animals_panel">
         <nav class="nav">
 
@@ -91,7 +197,8 @@ if (isset($_COOKIE['user_id'])) {
                         <option value="Vanilla"> -->
                     </datalist>
                 </div>
-                <input class="btn btn-success" type="submit" value="Submit">
+                <input class="btn btn-success" type="submit" value="Search">
+                <button type="button" id="add-button" class="btn btn-primary" onclick="addAnimal()">Add Animal</button>
             </form>
             <div class="admin-results">
                 <?php
