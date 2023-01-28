@@ -39,6 +39,7 @@ const navItems = document.querySelector(".nav-items");
 hamburger.addEventListener("click", () => {
 	hamburger.classList.toggle("active");
 	navItems.classList.toggle("active");
+	console.log("click")
 })
 
 document.querySelectorAll(".nav-item").forEach(n => n.addEventListener("click", () => {
@@ -51,58 +52,58 @@ document.querySelectorAll(".nav-item").forEach(n => n.addEventListener("click", 
 
 
 
-        function animalFact() {
-            let slogan = document.getElementById('sloggan');
-            let input = document.getElementById('animal-name')
-			let resultDiv = document.getElementById("results");
+function animalFact() {
+	let slogan = document.getElementById('sloggan');
+	let input = document.getElementById('animal-name')
+	let resultDiv = document.getElementById("results");
 
-            console.log(input.value)
-            fetch(`https://api.api-ninjas.com/v1/animals?name=${input.value}`, {
-                method: 'GET', // or 'PUT'
-                headers: {
-                    'X-Api-Key': 'Pur9eqmmJr015qIRkmq2sg==3E5SKV3pvhXJANTU',
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // animals = data;
-                    console.log('Success:', data);
-                    // slogan.innerHTML = data;
-                    resultDiv.innerHTML = ''
-                    for(let i = 0; i < data.length; i++){
-                        createCard(data[i])
-                    }
+	console.log(input.value)
+	fetch(`https://api.api-ninjas.com/v1/animals?name=${input.value}`, {
+		method: 'GET', // or 'PUT'
+		headers: {
+			'X-Api-Key': 'Pur9eqmmJr015qIRkmq2sg==3E5SKV3pvhXJANTU',
+		}
+	})
+		.then(response => response.json())
+		.then(data => {
+			// animals = data;
+			console.log('Success:', data);
+			// slogan.innerHTML = data;
+			resultDiv.innerHTML = ''
+			for(let i = 0; i < data.length; i++){
+				createCard(data[i])
+			}
 
-                    // data.map(
-                    //     createCard()
-                    // )
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        }
+			// data.map(
+			//     createCard()
+			// )
+		})
+		.catch((error) => {
+			console.error('Error:', error);
+		});
+}
 
-        console.log("outside" + data);
+console.log("outside" + data);
 
 
 
-        function createCard(animal) {
+function createCard(animal) {
 
-            // Add the HTML code as a child of the result div
-			let resultDiv = document.getElementById("results");
+	// Add the HTML code as a child of the result div
+	let resultDiv = document.getElementById("results");
 
-            resultDiv.innerHTML +=
-                `<div class="animal" >
-                        <h1 class="animal-name" style="margin-top: 1rem;">${animal.name}</h1>
-                        <p class="animal-info">
-<p>Slogan: ${animal.characteristics.slogan}</p>
-<p>Top Speed: ${animal.characteristics.top_speed}</p>
-<p>Origin: ${animal.characteristics.origin}</p>
-<p>Name of Young: ${animal.characteristics.name_of_young}</p>
-<p>Habitat: ${animal.characteristics.habitat}</p>
-<p>Weight: ${animal.characteristics.weight}</p>
-<p>Kingdom: ${animal.taxonomy.Kingdom}</p></p>
-                    </div>`;
-        }
+	resultDiv.innerHTML +=
+		`<div class="animal" >
+			<h1 class="animal-name" style="margin-top: 1rem;">${animal.name}</h1>
+			<p class="animal-info">
+			<p>Slogan: ${animal.characteristics.slogan}</p>
+			<p>Top Speed: ${animal.characteristics.top_speed}</p>
+			<p>Origin: ${animal.characteristics.origin}</p>
+			<p>Name of Young: ${animal.characteristics.name_of_young}</p>
+			<p>Habitat: ${animal.characteristics.habitat}</p>
+			<p>Weight: ${animal.characteristics.weight}</p>
+			<p>Kingdom: ${animal.taxonomy.Kingdom}</p></p>
+		</div>`;
+	}
 
         // createCard();

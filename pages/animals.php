@@ -68,7 +68,7 @@ if (isset($_COOKIE['user_id'])) {
             <input type="radio" id="desert" name="addHabitat" value="Desert">
             <label for="desert">Desert</label><br>
             <label for="add-animal-age">Age:</label>
-            <input type="number" style="width: 5rem;" id="add-animal-age" name="addAge" min=0 required>
+            <input type="number" style="width: 5rem;" id="add-animal-age" name="addAge" min=0 required><br>
             <textarea id="add-animal-desc" name="addDescription" rows="4" cols="50" placeholder="Enter description here..." required></textarea>
             
             <input type="file" id="photos" name="photos[]" multiple /><br>
