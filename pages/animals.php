@@ -20,11 +20,24 @@ if (isset($_COOKIE['user_id'])) {
 </head>
 
 <body style="background-image:url('./../media/animals.jpg');">
+<div id="overlay"></div>
+<div class="sidebar hidden">
+    <span id="collapse-button"><i class="fa-solid fa-filter"></i></span>
+  <div class="sidebar-header">
+    <h3>Filter</h3>
+  </div>
+  <div class="sidebar-content">
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id="">
+  </div>
+</div>    
 
-    <div class="addAnimalFixed" id="addAnimalForm" style="display: none;z-index: 10;">
-        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+    <div class="addAnimalFixed" id="addAnimalForm">
+        <form method="POST" action="./addAnimal.php" enctype="multipart/form-data" autocomplete="off">
             <h3 style="text-align: center;">Add Animal Form</h3>
-            <span class="closebtn" onclick="this.parentElement.parentElement.style.display = 'none';">&times;</span>
+            <span class="closebtn" id="add-closebtn" onclick="this.parentElement.parentElement.style.display = 'none';this.parentElement.parentElement.parentElement.firstElementChild.style.display = 'none';">&times;</span>
             <input type="text" id="add-animal-name" name="addName" placeholder="Animal Name" required>
             <input list="types" id="add-animal-type" name="addType" placeholder="Type of animal" required>
 
@@ -49,12 +62,12 @@ if (isset($_COOKIE['user_id'])) {
                 } else {
                     echo "0 results";
                 }
-    
+
                 mysqli_close($con);
                 ?>
             </datalist>
             <br>
-            <h5 style="margin-top: 10px; padding-bottom: 0px" >Habitat:</h5>
+            <h5 style="margin-top: 10px; padding-bottom: 0px">Habitat:</h5>
             <input style="padding-top: 0px" type="radio" id="ocean" name="addHabitat" value="Ocean" required>
             <label style="padding-top: 0px" for="ocean">Ocean</label><br>
             <input type="radio" id="jungle" name="addHabitat" value="Jungle">
@@ -68,64 +81,71 @@ if (isset($_COOKIE['user_id'])) {
             <label for="add-animal-age">Age:</label>
             <input type="number" style="width: 5rem;" id="add-animal-age" name="addAge" min=0 required><br>
             <textarea id="add-animal-desc" name="addDescription" rows="4" cols="50" placeholder="Enter description here..." required></textarea>
-            
+
             <input type="file" id="photos" name="photos[]" multiple /><br>
             <div class="animal-photos">
 
             </div>
             <input type="submit" class="btn btn-primary" style="padding: 10px 20px;" value="Submit" name="upload">
         </form>
-        <script src="dynamicPhotos.js"></script>
     </div>
-    <?php
-    if (isset($_POST['upload'])) {
+    <div class="editForm" id="editFormFixed">
+        <form method="POST" action="./editAnimal.php" enctype="multipart/form-data" autocomplete="off">
+            <input type="number" value="" name="id" id="editID" style="display: none;">
+            <span class="closebtn" id="edit-closebtn" onclick="this.parentElement.parentElement.style.display = 'none';this.parentElement.parentElement.parentElement.firstElementChild.style.display = 'none'">&times;</span>
+            <h3 style="text-align: center;">Edit Animal Form</h3>
+            <input type="text" id="edit-animal-name" name="addName" placeholder="Animal Name" required>
+            <input list="edit-types" id="edit-animal-type" name="addType" placeholder="Type of animal" required>
 
-        $con = new mysqli("localhost", "root", "", "zoo");
-        if ($con->connect_error) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
+            <datalist id="edit-types">
+                <?php
+                echo ' hahahahah';
+                $con = mysqli_connect("localhost", "root", "", "zoo");
+                if (!$con) {
+                    die("Connection failed: " . mysqli_connect_error());
+                }
+                echo 'haha';
+                $sql = 'SELECT type FROM animals GROUP by type;';
+                $result = mysqli_query($con, $sql);
+                if (mysqli_num_rows($result) > 0) {
+                    // output data of each row
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $type = $row['type'];
+                        echo "<option value='$type'>";
+                    }
+                } else {
+                    echo "0 results";
+                }
 
-        $name = $_POST['addName'];
-        $type = $_POST['addType'];
-        $age = $_POST['addAge'];
-        $description = $_POST['addDescription'];
-        $habitat = $_POST['addHabitat'];
-        $sql = "INSERT INTO animals (`name`, `type`, `age`, `description`, `habitat`) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($sql);
+                mysqli_close($con);
+                ?>
+            </datalist>
+            <br>
+            <h5 style="margin-top: 10px; padding-bottom: 0px">Habitat:</h5>
+            <input style="padding-top: 0px" type="radio" id="edit-ocean" name="addHabitat" value="Ocean" required>
+            <label style="padding-top: 0px" for="edit-ocean">Ocean</label><br>
+            <input type="radio" id="edit-jungle" name="addHabitat" value="Jungle">
+            <label for="edit-jungle">Jungle</label><br>
+            <input type="radio" id="edit-arctic" name="addHabitat" value="Arctic">
+            <label for="edit-arctic">Arctic</label><br>
+            <input type="radio" id="edit-forest" name="addHabitat" value="Forest">
+            <label for="edit-forest">Forest</label><br>
+            <input type="radio" id="edit-desert" name="addHabitat" value="Desert">
+            <label for="edit-desert">Desert</label><br>
+            <label for="edit-animal-age">Age:</label>
+            <input type="number" style="width: 5rem;" id="edit-animal-age" name="addAge" min=0 required><br>
+            <textarea id="edit-animal-desc" name="addDescription" rows="4" cols="50" placeholder="Enter description here..." required></textarea>
 
-        // Bind the values to the statement
-        $stmt->bind_param("ssiss", $name, $type, $age, $description, $habitat);
+            <input type="file" id="edit-photos" name="photos[]" multiple /><br>
+            <div class="animal-photos">
 
-        // Execute the statement
-        $stmt->execute();
-        // if ($con->query($sql) === TRUE) {
-        //     $sql2 = "INSERT INTO `images` (`url`, `animal_id`) VALUES ('dsfsdf', $lastId);";
-        // }
+            </div>
+            <input type="submit" class="btn btn-light" style="padding: 10px 20px;margin-top: 1rem" value="Submit" name="upload">
 
-        $lastId = $con->insert_id;
-        $stmt->close();
+        </form>
+    </div>
 
-
-
-        foreach ($_FILES['photos']['name'] as $id => $val) {
-            // Get files upload path
-            $fileName = $_FILES['photos']['name'][$id];
-            $file_tmp = $_FILES['photos']['tmp_name'][$id];
-
-            $path = "./../images/" . $fileName;
-            move_uploaded_file($file_tmp, $path);
-
-
-            $stmt2 = $con->prepare("INSERT INTO images (`url`, `animal_id`) VALUES (?, ?)");
-            $stmt2->bind_param("si", $path, $lastId);
-            $stmt2->execute();
-        }
-        $con->close();
-    }
-
-
-    ?>
-    <script src="../addAnimal.js"></script>
+    
     <div class="animals_panel">
     <nav class="nav">
 
@@ -201,7 +221,7 @@ if (isset($_COOKIE['user_id'])) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $type = $row['type'];
                                 echo <<<"EOD"
-                                    <option value="$type">
+                                <option value="$type">
                                 EOD;
                             }
                         } else {
@@ -212,7 +232,7 @@ if (isset($_COOKIE['user_id'])) {
                         ?>
                         <!-- <option value="Chocolate">
                         <option value="Coconut">
-                        <option value="Mint">
+                            <option value="Mint">
                         <option value="Strawberry">
                         <option value="Vanilla"> -->
                     </datalist>
@@ -237,20 +257,21 @@ if (isset($_COOKIE['user_id'])) {
                     }
                     echo <<<"EOD"
                     <div class="admin-animal">
-                        <p style="display: none">$id</p>
-                        <div class="admin-animal-left">
-                            <p class="admin-habitat-icon $habitat">$icon</p>
-                            <div>Name: <button type="button" class="btn btn-outline-info" disabled>$name</button></div>
-                            <p>Type: $type</p>
+                    <p style="display: none">$id</p>
+                    <div class="admin-animal-left">
+                    <button type='button' class='viewAnimal btn btn-outline-primary'>View Animal</button>
+                    <p class="admin-habitat-icon $habitat">$icon</p>
+                    <div>Name: <button type="button" class="btn btn-outline-info" disabled>$name</button></div>
+                    <p>Type: $type</p>
                             <p>Age: $age</p>
                         </div>
                         <div class="admin-animal-right">
-                        <button class='edit-btn'> <i class='fa-solid fa-pen'></i> </button>
+                        <button class='edit-btn editAnimal'> <i class='fa-solid fa-pen'></i> </button>
                         
                         <button class='edit-btn red-btn deleteAnimal'> <i class="fa-solid fa-trash"></i> </button>
                         </div>
 
-                    </div>
+                        </div>
                     EOD;
                 }
                 $con = mysqli_connect("localhost", "root", "", "zoo");
@@ -298,6 +319,7 @@ if (isset($_COOKIE['user_id'])) {
     </div>
     <script src="../animal-pagenation.js"></script>
     <script src="../admin-animal.js"></script>
+    <script src="../addAnimal.js"></script>
 
 </body>
 

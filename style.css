@@ -1014,6 +1014,9 @@
     padding: 2rem 2rem;
     background-color: white;
 }
+/* .admin-animal:hover{
+    background-color: #bbb;
+} */
 
 .admin-animal-left {
     display: flex;
@@ -1107,8 +1110,46 @@ html {
 }
 
 /*ADD ANIMAL CSS*/
-.addAnimalFixed {
+.editForm{
+    display: none;
+    z-index: 10;
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(204, 170, 18);
+    padding: 4rem;
+    border-radius: 10px;
+    color: white;
+    max-height: 90vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: 0 0 50px rgb(7, 7, 7);
+}
+
+.editForm>form>h3 {
+    position: relative;
+    bottom: 20px;
+}
+
+.editForm>form>* {
+    padding: 3px 5px;
+}
+
+.editForm {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    
+    scrollbar-width: thin !important;
+    scrollbar-color: #eaff31 #adab09 !important;
+
+}
+
+.addAnimalFixed {
+    display: none;
+    z-index: 10;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -1132,18 +1173,40 @@ html {
     padding: 3px 5px;
 }
 
-.addAnimalFixed::-webkit-scrollbar {
-    display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
 .addAnimalFixed {
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+    
+    scrollbar-width: thin !important;
+    scrollbar-color: #0fbe1e #108620 !important;
+
 }
 
+.addAnimalFixed::-webkit-scrollbar {
+    /* display: none; */
+}
+
+#overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 5;
+    display: none;
+}
+
+#overlay {
+    background: rgba(49,49,49,0.8);
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.editAnimal{
+
+}
 .closebtn {
     position: absolute;
     top: 0px;
@@ -1156,7 +1219,7 @@ html {
 .closebtn:hover {
     color: #000;
 }
-
+.editForm
 .animal-photos {
     width: 5rem;
 }
@@ -1515,3 +1578,44 @@ html {
     float: left;
     margin-bottom: -50px;
 }
+
+
+.sidebar {
+    width: 100px;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 50%;
+    transform: translate(0%, -50%);
+    left: 0px;
+    /* left: -200px; */
+    /* transition: 0.5s ease-in-out; */
+    transition: left 0.5s ease-in-out;
+  }
+  .hidden{
+    left: -100px;
+    transition: left 0.5s ease-in-out;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  #collapse-button {
+    background-color: transparent;
+    color: rgb(91, 91, 177);
+    border: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+    z-index: 4;
+    position: absolute;
+    right: -3rem;
+    top: 0;
+  }
+  
