@@ -109,7 +109,7 @@
             </form>
             
             
-            <div class="results">
+            <div class="results_wishlist">
                 <?php 
                     $servername = "localhost";
                     $username = "root";
@@ -158,8 +158,8 @@
                         }
 
                         echo <<<"EOD"
-                        
-                        <a id="linkNr$id" class="card-container" href="viewAnimal.php?id=$id" style="align-items:center; margin-top: 0;"> 
+                        <div class="card-container" style="display: flex; align-items: center; margin-top: 2rem;">
+                            <a id="linkNr$id" class="photolinks" href="viewAnimal.php?id=$id">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
@@ -188,6 +188,12 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="heartDiv">
+                            <span class="heart">
+                                <i class="fa-regular fa-heart"></i>
+                            </span>
+                        </div>
+                        </div>
                         EOD;
                     }
                     

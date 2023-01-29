@@ -1,4 +1,4 @@
-var animals = document.getElementsByClassName('photolinks');
+var animals = document.getElementsByClassName('card-container');
 
 if(animals.length > 2){
     let bread = document.getElementById('pagenation');

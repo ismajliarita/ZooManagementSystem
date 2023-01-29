@@ -958,9 +958,10 @@
     background-position: center;
     background-size: cover;
 
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     align-items: center;
+    margin
     /* justify-content: center; */
 }
 
@@ -1167,7 +1168,6 @@ html {
     width: 300px;
     height: 300px;
     perspective: 1000px;
-    margin-top: 2rem;
 }
 
 .flip-card-inner {
@@ -1514,4 +1514,38 @@ html {
     font-size: 0.7rem;
     float: left;
     margin-bottom: -50px;
+}
+
+
+/* Arita code in VIEW ANIMAL */
+.nameInViewAnimal{
+    display: inline-block;
+}
+
+.heart{
+    cursor: pointer;
+    -webkit-appearance: none;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    margin-left: 10px;
+    color: white;
+    -webkit-transition: ease-in-out 0.2s;
+}
+
+.heart:hover{
+    font-size: 35px;
+    
+    transition: ease-in-out 0.2s;
+}
+
+/* Arita Code in Wishlisst */
+.results_wishlist{
+    width: 100%;
+    display: contents;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+    margin: auto;
 }

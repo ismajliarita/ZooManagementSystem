@@ -89,11 +89,19 @@
 			$desc = $GLOBALS['animal']['description'];
 
 			$format = strtolower($habitat);
-
+			
+			$theHeart = '<i class="fa-regular fa-heart"></i>';
+			// <i class="fa-solid fa-heart"></i>         filled heart
+			// <i class="fa-regular fa-heart"></i>   not filled heart
         	echo <<<"EOD"
 				<div class='animal-main $format'>
 					<div class="animal-info-container">
-						<h1>$name</h1>
+						<div class="nameAndHeart">
+							<h1 class="nameInViewAnimal">$name</h1>
+							<span class="heart">
+								<i class="fa-regular fa-heart"></i>
+							</span>
+						</div>
 						<div> Age: <h4>$age</h4> </div>
 						<div> Habitat: <h4 id="$format">$habitat</h4></div>
 						<div> Family: <h4>$type</h4> </div>

@@ -104,6 +104,36 @@ function createCard(animal) {
 			<p>Weight: ${animal.characteristics.weight}</p>
 			<p>Kingdom: ${animal.taxonomy.Kingdom}</p></p>
 		</div>`;
+}
+
+    // createCard();
+
+// Arita's Part in View Animal
+function toggleWishlist(e){
+	var heartBtn = e.currentTarget;
+
+	console.log(heartBtn.innerHTML);
+	// let clicked = String(heartBtn.innerHTML);
+
+	var i = heartBtn.firstElementChild;
+	if(i.classList.contains('fa-regular')){
+		i.classList.remove('fa-regular');
+		i.classList.add('fa-solid');
+	}
+	else{
+		i.classList.add('fa-regular');
+		i.classList.remove('fa-solid');
 	}
 
-        // createCard();
+	// if (clicked == '<i class="fa-regular fa-heart"></i>'){
+	// 	heartBtn = '<i class="fa-solid fa-heart"></i>';
+	// }else if(heartBtn.innerHTML === '<i class="fa-solid fa-heart"></i>'){
+	// 	heartBtn = '<i class="fa-regular fa-heart"></i>';
+	// }
+	
+}
+
+const hearts = document.getElementsByClassName('heart');
+for(let i = 0; i < hearts.length; i++){
+	hearts[i].addEventListener('click', toggleWishlist);
+}
