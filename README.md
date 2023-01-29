@@ -10,7 +10,7 @@ This project is being made in the framework of the project handout we have been 
 Icons:
     Ocean: <i class="fa-solid fa-water"></i>
     Arctic: <i class="fa-solid fa-igloo"></i>
-    Desert: <i class="fa-solid fa-cactus"></i>
+    Desert: <i class="fa-solid fa-sun-plant-wilt"></i>
     Forest: <i class="fa-solid fa-tree"></i>
     Jungle: <i class="fa-solid fa-leaf"></i>
     Location Questionmark: <i class="fa-regular fa-location-question"></i>

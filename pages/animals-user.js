@@ -23,7 +23,7 @@ if(animals.length > 2){
         li.classList.add('pagebox-item');
 
         let a = document.createElement('a');
-        a.setAttribute('href', '#animal-nav');
+        a.setAttribute('href', '#topofpage');
         a.classList.add('clickables');
 
         if(left == animals.length){

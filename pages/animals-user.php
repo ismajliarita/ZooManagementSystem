@@ -13,7 +13,7 @@
 </head>
 
 <body style="background-color: burlywood;">
-    <div class="animals_panel">
+    <div class="animals_panel" id="topofpage">
         <nav class="nav">
 
             <img src="../media/logo.png" id="logo" />
@@ -40,7 +40,7 @@
                 <input type="text" name="name" id="name" placeholder="Animal name...">
                 <div style="display: flex; align-items: center;">
                     <p style="margin-bottom: 0; margin-right: 0.5rem;">Animal Habitat:</p>
-                    <select name="maps" id="maps">
+                    <select name="map" id="map">
                         <option value=""></option>
                         <option value="ocean">Ocean</option>
                         <option value="jungle">Jungle</option>
@@ -53,11 +53,34 @@
                     <input list="types" id="type" name="type" placeholder="Type of animal">
 
                     <datalist id="types">
-                        <option value="Chocolate">
-                        <option value="Coconut">
-                        <option value="Mint">
-                        <option value="Strawberry">
-                        <option value="Vanilla">
+                        <?php
+                            $servername = "localhost";
+                            $username = "root";
+                            $password = "";
+                            
+                            // Create connection
+                            $conn = mysqli_connect($servername, $username, $password, 'zoo');
+                            
+                            // Check connection
+                            if (!$conn) {
+                              die("Connection failed: " . mysqli_connect_error());
+                            }
+                        
+                            $sql = "SELECT type FROM animals GROUP BY type";
+
+                            $result = mysqli_query($conn, $sql);
+
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $type = $row['type'];
+                                    echo "<option value='$type'>";                                    
+                                }
+                            }else{
+                                echo " ";
+                            }
+
+                            mysqli_close($conn);
+                        ?>
                     </datalist>
                 </div>
                 <input class="btn btn-success" type="submit" value="Submit">
@@ -79,13 +102,13 @@
                     }
                     // echo "Connected successfully";
 
-                    $sql = "SELECT * FROM animals";
-                    $result = mysqli_query($conn, $sql);
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)){
-                            addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
-                        }
-                    }
+                    // $sql = "SELECT * FROM animals";
+                    // $result = mysqli_query($conn, $sql);
+                    // if(mysqli_num_rows($result) > 0){
+                    //     while($row = mysqli_fetch_assoc($result)){
+                    //         addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
+                    //     }
+                    // }
                     // <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
                     // <i class="fa-solid fa-igloo"></i>
 
@@ -103,7 +126,7 @@
                                 $icon = '<i class="fa-solid fa-igloo"></i>';
                                 break;
                             case "Desert":
-                                $icon = '<i class="fa-solid fa-cactus"></i>';
+                                $icon = '<i class="fa-solid fa-sun-plant-wilt"></i>';
                                 break;
                             case "Ocean":
                                 $icon = '<i class="fa-solid fa-water"></i>';
@@ -121,8 +144,7 @@
                                             <p class="habitat-icon">$icon</p>
                                             
                                         </div>
-                                        <img class="flipcard-image" src="../media/flipcard_sample.png">
-                                        
+                                        <img class="flipcard-image" src="../media/flipcard_sample.png">  
                                     </div>
                                     <div class="flip-card-back">
                                         <div class="flipback-header">
@@ -145,9 +167,34 @@
                             </div>
                         EOD;
                     }
-                
+                    
+                    $sql = 'SELECT * FROM animals ';
+                    if(isset($_GET['name'])) {
+                        $name = $_GET['name'];
+                        $sql = $sql . "WHERE name LIKE '%$name%'";
+                        if($_GET['map'] != ''){
+                            $map = $_GET['map'];
+                            $sql = $sql . "AND habitat = '$map' ";
+                        }
+                        if($_GET['type'] != ''){
+                            $type = $_GET['type'];
+                            $sql = $sql . "AND type = '$type' ";
+                        }
 
+                    }
 
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+
+                            addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
+                        }
+                    }else{
+                        echo "0 results";
+                    }
+
+                    mysqli_close($conn);
                 ?>
             <!--                 
                 <div class="flip-card">
@@ -184,21 +231,13 @@
                 
              -->
 
-
-
-
-
-
             </div>
             <br><br>
             <div class="pagenation" id="pagenation" aria-label="breadcrumb">
                 
             </div>
-                
             <br>
         </div>
-
-
     </div>
 
 <script src="./animals-user.js"></script>
