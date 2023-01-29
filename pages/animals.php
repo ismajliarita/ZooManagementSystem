@@ -331,6 +331,7 @@ else {
     <script src="../animal-pagenation.js"></script>
     <script src="../admin-animal.js"></script>
     <script src="../addAnimal.js"></script>
+    <script src="../index.js"></script>
 
 </body>
 
