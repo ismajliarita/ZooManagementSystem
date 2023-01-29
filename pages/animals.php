@@ -24,7 +24,7 @@ if (isset($_COOKIE['user_id'])) {
 <body style="background-image:url('./../media/animals.jpg');">
     <div id="overlay"></div>
     <div class="addAnimalFixed" id="addAnimalForm">
-        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form method="POST" action="./addAnimal.php" enctype="multipart/form-data" autocomplete="off">
             <h3 style="text-align: center;">Add Animal Form</h3>
             <span class="closebtn" id="add-closebtn" onclick="this.parentElement.parentElement.style.display = 'none';this.parentElement.parentElement.parentElement.firstElementChild.style.display = 'none';">&times;</span>
             <input type="text" id="add-animal-name" name="addName" placeholder="Animal Name" required>
@@ -99,9 +99,7 @@ if (isset($_COOKIE['user_id'])) {
                     // output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
                         $type = $row['type'];
-                        echo <<<"EOD"
-                                    <option value="$type">
-                                EOD;
+                        echo "<option value='$type'>";
                     }
                 } else {
                     echo "0 results";
@@ -135,54 +133,7 @@ if (isset($_COOKIE['user_id'])) {
         </form>
     </div>
 
-    <?php
-    if (isset($_POST['upload'])) {
-
-        $con = new mysqli("localhost", "root", "", "zoo");
-        if ($con->connect_error) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
-
-        $name = $_POST['addName'];
-        $type = $_POST['addType'];
-        $age = $_POST['addAge'];
-        $description = $_POST['addDescription'];
-        $habitat = $_POST['addHabitat'];
-        $sql = "INSERT INTO animals (`name`, `type`, `age`, `description`, `habitat`) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $con->prepare($sql);
-
-        // Bind the values to the statement
-        $stmt->bind_param("ssiss", $name, $type, $age, $description, $habitat);
-
-        // Execute the statement
-        $stmt->execute();
-        // if ($con->query($sql) === TRUE) {
-        //     $sql2 = "INSERT INTO `images` (`url`, `animal_id`)edit- VALUES ('dsfsdf', $lastId);";
-        // }
-
-        $lastId = $con->insert_id;
-        $stmt->close();
-
-
-
-        foreach ($_FILES['photos']['name'] as $id => $val) {
-            // Get files upload path
-            $fileName = $_FILES['photos']['name'][$id];
-            $file_tmp = $_FILES['photos']['tmp_name'][$id];
-
-            $path = "./../images/" . $fileName;
-            move_uploaded_file($file_tmp, $path);
-
-
-            $stmt2 = $con->prepare("INSERT INTO images (`url`, `animal_id`) VALUES (?, ?)");
-            $stmt2->bind_param("si", $path, $lastId);
-            $stmt2->execute();
-        }
-        $con->close();
-    }
-
-
-    ?>
+    
     <div class="animals_panel">
         <nav class="nav">
 
