@@ -69,7 +69,7 @@ if (isset($_COOKIE['user_fname']))
         <div class="inner-panel" style="overflow-y: scroll; display: flex; justify-content: center">
             <div class="result-container">
                 <p class="main-content">Enter an animal name to get facts about it.</p>
-                <div class="search-bar">
+                <div class="search-fact-bar">
                     <input type="text" placeholder="Enter Animal" id="animal-name">
                     <button onclick="animalFact()" id="search-btn">Submit</button>
                 </div>
