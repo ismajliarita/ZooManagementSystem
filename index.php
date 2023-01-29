@@ -68,8 +68,8 @@
                     <h1>Welcome to The ZOO</h1>
                     <p style="color: gold;">See the world's wildest animals <br> at The ZOO!</p]>
                     <div class="buttons">
-                        <input type="button" id="animals-button" value="Check Animals">
-                        <input type="button" id="ticket-button" value="Book a Visit">
+                        <input type="button" id="animals-button" onclick="window.location.href='pages/animals-user.php'" value="Check Animals">
+                        <input type="button" id="ticket-button" onclick="window.location.href='pages/ticket.php'" action="pages/ticket.php" value="Book a Visit">
                     </div>
                 </div>
             </div>
