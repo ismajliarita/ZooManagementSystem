@@ -1,4 +1,4 @@
-var animals = document.getElementsByClassName('flip-card');
+var animals = document.getElementsByClassName('photolinks');
 
 if(animals.length > 2){
     let bread = document.getElementById('pagenation');
