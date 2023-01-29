@@ -22,6 +22,7 @@ echo <<<"EOD"
         <li>$age</li>
         <li>$description</li>
         <li>$habitat</li>
+        <li>$id</li>
     </ul>
 EOD;
 

@@ -186,6 +186,8 @@ function displayAttributes(stmt, target){
     document.getElementById('edit-animal-type').value = elements[1].innerHTML;
     document.getElementById('edit-animal-age').value = elements[2].innerHTML;
     document.getElementById('edit-animal-desc').value = elements[3].innerHTML;
+    document.getElementById('editID').value = elements[5].innerHTML;
+    console.log(document.getElementById('editID').value);
     let uppercase = elements[4].innerHTML;
     let lowercase = uppercase.toLowerCase();
     let selector = 'edit-' + lowercase;
@@ -197,3 +199,12 @@ var editButtons = document.getElementsByClassName('editAnimal');
 for (let i = 0; i < editButtons.length; i++) {
     editButtons[i].addEventListener('click', editAnimal);
 }
+
+
+const sidebar = document.querySelector(".sidebar");
+const collapseButton = document.querySelector("#collapse-button");
+
+collapseButton.addEventListener("click", function() {
+    sidebar.classList.toggle('hidden');
+
+});

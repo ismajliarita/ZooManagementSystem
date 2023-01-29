@@ -1505,3 +1505,44 @@ html {
     float: left;
     margin-bottom: -50px;
 }
+
+
+.sidebar {
+    width: 100px;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 50%;
+    transform: translate(0%, -50%);
+    left: 0px;
+    /* left: -200px; */
+    /* transition: 0.5s ease-in-out; */
+    transition: left 0.5s ease-in-out;
+  }
+  .hidden{
+    left: -100px;
+    transition: left 0.5s ease-in-out;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  #collapse-button {
+    background-color: transparent;
+    color: rgb(91, 91, 177);
+    border: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+    z-index: 4;
+    position: absolute;
+    right: -3rem;
+    top: 0;
+  }
+  

@@ -5,9 +5,11 @@ if (!$con) {
 }
 
 $id = $_GET['id'];
-$sql = "DELETE FROM animals WHERE id=$id";
+$sql = "DELETE FROM images WHERE animal_id=$id";
+mysqli_query($con, $sql);
+$sql2 = "DELETE FROM animals WHERE id=$id";
 
-if(mysqli_query($con, $sql) === TRUE){
+if(mysqli_query($con, $sql2) == TRUE){
     echo 'Finished';
 }
 else{

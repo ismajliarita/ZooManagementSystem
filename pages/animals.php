@@ -22,7 +22,20 @@ if (isset($_COOKIE['user_id'])) {
 </head>
 
 <body style="background-image:url('./../media/animals.jpg');">
-    <div id="overlay"></div>
+<div id="overlay"></div>
+<div class="sidebar hidden">
+    <span id="collapse-button"><i class="fa-solid fa-filter"></i></span>
+  <div class="sidebar-header">
+    <h3>Filter</h3>
+  </div>
+  <div class="sidebar-content">
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id=""><br>
+    <input type="checkbox" id="">
+  </div>
+</div>    
+
     <div class="addAnimalFixed" id="addAnimalForm">
         <form method="POST" action="./addAnimal.php" enctype="multipart/form-data" autocomplete="off">
             <h3 style="text-align: center;">Add Animal Form</h3>
@@ -79,7 +92,8 @@ if (isset($_COOKIE['user_id'])) {
         </form>
     </div>
     <div class="editForm" id="editFormFixed">
-        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+        <form method="POST" action="./editAnimal.php" enctype="multipart/form-data" autocomplete="off">
+            <input type="number" value="" name="id" id="editID" style="display: none;">
             <span class="closebtn" id="edit-closebtn" onclick="this.parentElement.parentElement.style.display = 'none';this.parentElement.parentElement.parentElement.firstElementChild.style.display = 'none'">&times;</span>
             <h3 style="text-align: center;">Edit Animal Form</h3>
             <input type="text" id="edit-animal-name" name="addName" placeholder="Animal Name" required>
