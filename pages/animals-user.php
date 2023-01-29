@@ -13,7 +13,7 @@
 </head>
 
 <body id="animals-user-body" style="background-color: burlywood;">
-    <div class="animals_panel">
+    <div class="animals_panel" id="topOfPage">
     <nav class="nav">
 
         <img src="../media/logo.png" id="logo" />
@@ -136,7 +136,7 @@
 
 
 
-                    function addCard($animalName, $habitat, $animalType, $animalAge, $description){
+                    function addCard($id, $animalName, $habitat, $animalType, $animalAge, $description){
                         switch($habitat){
                             case "Forest":
                                 $icon = '<i class="fa-solid fa-tree"></i>';
@@ -155,38 +155,40 @@
                                 break;
                             default:
                                 $icon = '<i class="fa-regular fa-location-question"></i>';
-                            
                         }
+
                         echo <<<"EOD"
-                            <div class="flip-card">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="overtext">
-                                            <p><strong>$animalName</strong></p>    
-                                            <p class="habitat-icon">$icon</p>
+                            <a href="viewAnimal.php?id=$id">    
+                                <div class="flip-card">
+                                    <div class="flip-card-inner">
+                                        <div class="flip-card-front">
+                                            <div class="overtext">
+                                                <p><strong>$animalName</strong></p>    
+                                                <p class="habitat-icon">$icon</p>
+                                                
+                                            </div>
+                                            <img class="flipcard-image" src="../media/flipcard_sample.png">  
+                                        </div>
+                                        <div class="flip-card-back">
+                                            <div class="flipback-header">
+                                                <div class="name">
+                                                    <div style="font-size: 1.5rem; margin-bottom: -5px;"><strong>$animalName</strong></div>
+                                                    <div class="type-kitty">$animalType</div>
+                                                </div>
+                                                <div class="age">
+                                                    <div class="age-nr"><strong>$animalAge</strong></div> 
+                                                    <div class="yrs">years old</div>
+                                                </div>
+                                            </div>
+                                            <div class="flipback-rest">
+                                                <p>From the $habitat</p>
+                                                <p>$description</p>
+                                            </div>
                                             
                                         </div>
-                                        <img class="flipcard-image" src="../media/flipcard_sample.png">  
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <div class="flipback-header">
-                                            <div class="name">
-                                                <div style="font-size: 1.5rem; margin-bottom: -5px;"><strong>$animalName</strong></div>
-                                                <div class="type-kitty">$animalType</div>
-                                            </div>
-                                            <div class="age">
-                                                <div class="age-nr"><strong>$animalAge</strong></div> 
-                                                <div class="yrs">years old</div>
-                                            </div>
-                                        </div>
-                                        <div class="flipback-rest">
-                                            <p>From the $habitat</p>
-                                            <p>$description</p>
-                                        </div>
-                                        
                                     </div>
                                 </div>
-                            </div>
+                            </a>    
                         EOD;
                     }
                     
@@ -210,7 +212,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
 
-                            addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
+                            addCard($row['id'], $row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
                         }
                     }else{
                         echo "0 results";
