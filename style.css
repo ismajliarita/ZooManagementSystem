@@ -1284,6 +1284,39 @@ html {
     float: left;
     margin-bottom: -50px;
 }
+/* 
+.age-nr{
+    font-size: 2rem;
+}
+
+.yrs{
+    font-size: 0.7rem;
+    align-items: center;
+    display: inherit;
+    margin-left: 5px;
+}
+
+.overtext{
+    position: absolute;
+    z-index: 999;
+    background-image: linear-gradient(transparent, black);
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    bottom: 0px;
+    padding: 0 1.5rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-kitty{
+    font-size: 0.7rem;
+    float: left;
+    margin-bottom: -50px;
+} */
+
 
 
 /* ANIMAL VIEW PAGE */
@@ -1313,7 +1346,7 @@ html {
     overflow-y: scroll;
     overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: thin;  /* Firefox */
 }
 
 .animal-main::-webkit-scrollbar {
@@ -1344,14 +1377,18 @@ html {
 
 .animal-img-container {
     width: 40%;
-    overflow: visible;
+    /* overflow: hidden; */
     height: 280px;
 }
 
 .animal-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     overflow: hidden;
 
-    width: fit-content;
+    width: 280px;
     height: inherit;
 }
 
@@ -1359,6 +1396,41 @@ html {
     height: inherit;
     max-width: inherit;
     object-fit: contain;
+}
+
+.slide-img {
+    display: none;
+}
+
+.animal-img > #sliders {
+    display: flex;
+    width: 280px;
+    position: absolute;
+    justify-content: space-between;
+}
+
+.prev, .next {
+    cursor: pointer;
+    /* position: absolute; */
+    /* left: 0;
+    top: 25%; */
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    text-shadow:0 0 10px #000;
+}
+
+.next {
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.3);
 }
 
 .animal-desc-container {
@@ -1396,7 +1468,11 @@ html {
 
 .forest::-webkit-scrollbar-thumb:hover {
     background: rgba(17, 85, 12, 0.666);
-} 
+}
+
+.forest {
+    scrollbar-color: #0a460a #132413; /* Firefox */
+}
 
 .forest #forest {
     color:rgb(17, 163, 61);
@@ -1416,7 +1492,9 @@ html {
 .ocean::-webkit-scrollbar-thumb:hover {
     background: rgba(7, 41, 93, 0.666);
 } 
-
+.ocean {
+    scrollbar-color: #082d63 #000028; /* Firefox */
+}
 .ocean #ocean {
     color:rgb(20, 98, 215);
 }
@@ -1435,7 +1513,9 @@ html {
 .jungle::-webkit-scrollbar-thumb:hover {
     background: rgba(119, 149, 8, 0.666);
 } 
-
+.jungle {
+    scrollbar-color: #5a650d #212413; /* Firefox */
+}
 .jungle #jungle {
     color:rgb(152, 166, 0);
 }
@@ -1454,7 +1534,9 @@ html {
 .desert::-webkit-scrollbar-thumb:hover {
     background: rgba(149, 137, 8, 0.666);
 } 
-
+.desert {
+    scrollbar-color: #706913 #403e02; /* Firefox */
+}
 .desert #desert {
     color:rgb(166, 144, 0);
 }
@@ -1473,7 +1555,9 @@ html {
 .arctic::-webkit-scrollbar-thumb:hover {
     background: rgba(177, 255, 255, 0.666);
 } 
-
+.arctic {
+    scrollbar-color: #8dc3cb #566c6b; /* Firefox */
+}
 .arctic #arctic {
     color:rgb(9, 185, 192);
 }
@@ -1482,36 +1566,4 @@ html {
 }
 .arctic h1 {
     text-shadow: 0 0 25px rgb(123, 240, 255);
-}
-
-.age-nr{
-    font-size: 2rem;
-}
-
-.yrs{
-    font-size: 0.7rem;
-    align-items: center;
-    display: inherit;
-    margin-left: 5px;
-}
-
-.overtext{
-    position: absolute;
-    z-index: 999;
-    background-image: linear-gradient(transparent, black);
-    width: 100%;
-    color: white;
-    font-size: 1.3rem;
-    bottom: 0px;
-    padding: 0 1.5rem;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.type-kitty{
-    font-size: 0.7rem;
-    float: left;
-    margin-bottom: -50px;
 }
