@@ -101,10 +101,14 @@ function concatenate(arr1, arr2) {
 
 function addAnimal() {
     document.getElementById('addAnimalForm').style.display = 'block';
-    document.getElementsByTagName('body')[0]
-
+    document.getElementById('overlay').style.display = 'block';
 
 }
+document.getElementById('overlay').addEventListener('click', () => {
+    document.getElementById('addAnimalForm').style.display = 'none';
+    document.getElementById('editFormFixed').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+})
 
 var fotot = document.getElementById("photos");
 
@@ -144,17 +148,52 @@ function handleMultiples() {
     addPhoto();
 }
 document.getElementById('photos').addEventListener('change', handleMultiples)
-    // Add an event listener for when a file is selected
-    // input.addEventListener("change", function () {
-    //     // Get the first file from the input
-    //     var file = input.files[0];
+// Add an event listener for when a file is selected
+// input.addEventListener("change", function () {
+//     // Get the first file from the input
+//     var file = input.files[0];
 
-    //     // Check if the file is an image
-    //     if (file.type.match(/image.*/)) {
-    //         // Read the file as a data URL
-    //         reader.readAsDataURL(file);
-    //     } else {
-    //         // Display an error message
-    //         console.log("File is not an image.");
-    //     }
-    // }, false);
+//     // Check if the file is an image
+//     if (file.type.match(/image.*/)) {
+//         // Read the file as a data URL
+//         reader.readAsDataURL(file);
+//     } else {
+//         // Display an error message
+//         console.log("File is not an image.");
+//     }
+// }, false);
+function editAnimal(e) {
+    var animalId = e.currentTarget.parentElement.parentElement.firstElementChild.innerHTML;
+    console.log(animalId);
+    document.getElementById('editFormFixed').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+    let url = 'getAnimalEdit.php?id='+animalId;
+    loadDoc(url, displayAttributes, animalId);
+}
+function loadDoc(url, cFunction, target) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () { cFunction(this, target); }
+    xhttp.open("GET", url);
+    xhttp.send();
+}
+
+function displayAttributes(stmt, target){
+    var response = stmt.responseText;
+    var element = document.createElement('div');
+    element.innerHTML = response;
+    var elements = element.firstElementChild.children;
+    document.getElementById('edit-animal-name').value = elements[0].innerHTML;
+    document.getElementById('edit-animal-type').value = elements[1].innerHTML;
+    document.getElementById('edit-animal-age').value = elements[2].innerHTML;
+    document.getElementById('edit-animal-desc').value = elements[3].innerHTML;
+    let uppercase = elements[4].innerHTML;
+    let lowercase = uppercase.toLowerCase();
+    let selector = 'edit-' + lowercase;
+    console.log(selector);
+    document.getElementById(selector).checked = true;
+}
+
+var editButtons = document.getElementsByClassName('editAnimal');
+for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener('click', editAnimal);
+}

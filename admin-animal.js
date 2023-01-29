@@ -29,3 +29,19 @@ function deleted(xhttp, target) {
 function myFunction2(xhttp) {
   // action goes here
 }
+
+console.log('Edon');
+var viewButtons = document.getElementsByClassName('viewAnimal');
+for(let i = 0; i < viewButtons.length; i++){
+    viewButtons[i].addEventListener('click',viewAnimal);
+}
+
+function viewAnimal(e){
+    console.log(idnum);
+    var idholder = e.currentTarget.parentElement.parentElement.firstElementChild.innerHTML;
+    var idnum = parseInt(idholder);
+    window.location.href = "viewAnimal.php?id="+idnum;
+}
+
+
+
