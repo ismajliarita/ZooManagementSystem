@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" type="image/png" href="../media/logo.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
     <title>Habitat Map</title>
 </head>
 <body style="

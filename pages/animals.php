@@ -1,6 +1,17 @@
 <?php
 if (isset($_COOKIE['user_id'])) {
     session_start();
+
+    $user_power = $_COOKIE['user_power'];
+
+    if($user_power === 'User') {
+        header('Location: animals-user.php');
+        die();
+    }
+}  
+else {
+    header('Location: animals-user.php');
+    die();
 }
 ?>
 

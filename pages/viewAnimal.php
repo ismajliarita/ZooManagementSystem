@@ -2,6 +2,11 @@
     if (isset($_COOKIE['user_fname']))
         session_start();
 
+	if (!isset($_GET['id'])) {
+		header('Location: animals-user.php');
+		die();
+	}
+
 	$con = mysqli_connect("localhost", "root", "", "zoo");
 	if (!$con) {
 		die("Connection failed: " . mysqli_connect_error());
