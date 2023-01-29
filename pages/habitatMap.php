@@ -57,15 +57,25 @@
         <div class="habitatMap">
             <div class="habitatMap_innerPannel">
                 <div class="imgTop">
-                    <img src="../media/a-waterAreaNoBckg.png" alt="" class="image" id="waterHabitat">
+                    <a href="./animals-user.php?name=&map=ocean&type=">
+                        <img src="../media/a-waterAreaNoBckg.png" alt="" class="image" id="waterHabitat">
+                    </a>
                     <div class="jungle-map">
-                        <img src="../media/a-jungleAreaNoBckg.png" alt="" class="image" id="jungleHabitat">
+                        <a href="./animals-user.php?name=&map=jungle&type=">
+                            <img src="../media/a-jungleAreaNoBckg.png" alt="" class="image" id="jungleHabitat">
+                        </a>
                     </div>
-                    <img src="../media/a-iceAreaNoBckg.png" alt="" class="image" id="iceHabitat">
+                    <a href="./animals-user.php?name=&map=arctic&type=">
+                        <img src="../media/a-iceAreaNoBckg.png" alt="" class="image" id="iceHabitat">
+                    </a>
                 </div>
                 <div class="imgBot">
-                    <img src="../media/a-forestNoBkg.png" alt="" class="image" id="forestHabitat">
-                    <img src="../media/a-desertNoBckg.png" alt="" class="image" id="desertHabitat">
+                    <a href="./animals-user.php?name=&map=forest&type=">
+                        <img src="../media/a-forestNoBkg.png" alt="" class="image" id="forestHabitat">
+                    </a>
+                    <a href="./animals-user.php?name=&map=desert&type=">
+                        <img src="../media/a-desertNoBckg.png" alt="" class="image" id="desertHabitat">
+                    </a>
                 </div>
             </div>
         </div>
