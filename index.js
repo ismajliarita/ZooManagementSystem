@@ -81,9 +81,9 @@ function animalFact() {
 		.catch((error) => {
 			console.error('Error:', error);
 		});
+		console.log("outside" + data);
 }
 
-console.log("outside" + data);
 
 
 

@@ -109,93 +109,107 @@
 </head>
 
 <body>
-    <div class="panel" style="background-image: url('../media/anda.jpg');">
-        <nav class="nav">
+<div class="panel" style="background-image: url('../media/anda.jpg');">
+    <nav class="nav">
 
-            <img src="../media/logo.png" id="logo" />
+        <img src="../media/logo.png" id="logo" />
 
-            <div class="nav-items">
-                <div class="nav-item"><a href="../index.php">Home</a></div>
-                <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="../pages/about.php">About</a></div>
-                <?php
-                    if (isset($_COOKIE['user_fname'])) {
-                        header('Location: ../pages/account.php');
-                        die();
-                    }
-                    else
-                        echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
-                ?>
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-        </nav>
-
-        <div class="inner-panel">
-            <div class="left">
-                <?php
-                    if (isset($GLOBALS['exception'])) {
-                        $exception = $GLOBALS['exception'];
+        <div class="nav-items">
+            <div class="nav-item"><a href="../index.php">Home</a></div>
+            <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
+            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
+            <div class="nav-item"><a href="../pages/about.php">About</a></div>
+            <?php
+                if (isset($_COOKIE['user_fname'])) {
+                    $user_fname = $_COOKIE['user_fname'];
+                    $user_power = $_COOKIE['user_power'];
                     
-                        echo "<div class='exception-overlay'>
-                            <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
-                            $exception
-                        </div>";
+                    switch ($user_power) {
+                        case "User":
+                            echo "<i class='user-icon user fa-solid fa-user'></i>";
+                            break;
+                        case "Helper":
+                            echo "<i class='user-icon helper fa-solid fa-shield-halved'></i>";
+                            break;
+                        case "Admin":
+                            echo "<i class='user-icon admin fa-solid fa-crown'></i>";
+                            break;
                     }
-                ?>
-            </div>
 
-            <div class="right">
+                    echo "<div class='nav-item'><a href='../pages/account.php'>$user_fname</a></div>";
+                }
+                else
+                    echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
+            ?>
+        </div>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+    </nav>
+
+    <div class="inner-panel">
+        <div class="left">
+            <?php
+                if (isset($GLOBALS['exception'])) {
+                    $exception = $GLOBALS['exception'];
                 
+                    echo "<div class='exception-overlay'>
+                        <i class='exception-icon fa-solid fa-triangle-exclamation'></i>
+                        $exception
+                    </div>";
+                }
+            ?>
+        </div>
+
+        <div class="right">
+            <div class="form-overlay" id="signup-overlay">
+                <form action="#" method="post" onsubmit="return checkRepeatPass('pass-input', 'cpass-input')">
+                    <p>First Name</p>
+                    <input type="text" name="fname" id="fname-input" required>
+
+                    <p>Last Name</p>
+                    <input type="text" name="lname" id="lname-input" required>
+
+                    <p>Email</p>
+                    <input type="email" name="reg-email" id="email-input" required>
+
+                    <p>Password</p>
+                    <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
+
+                    <p>Confirm Password</p>
+                    <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
                     
-                <div class="form-overlay" id="signup-overlay">
-                    <form action="#" method="post" onsubmit="return checkRepeatPass('pass-input', 'cpass-input')">
-                        <p>First Name</p>
-                        <input type="text" name="fname" id="fname-input" required>
+                    
+                    <div class="signup-submit">
+                        <button type="submit" class="signup-button">Sign up</button>
+                    </div>
+                </form>
 
-                        <p>Last Name</p>
-                        <input type="text" name="lname" id="lname-input" required>
+            </div>
 
-                        <p>Email</p>
-                        <input type="email" name="reg-email" id="email-input" required>
+            <div class="form-overlay" id="login-overlay">
+                <form action="#" method="get">
+                    <p>Email</p>
+                    <input type="email" name="email" id="email" required>
 
-                        <p>Password</p>
-                        <input type="password" name="reg-pass" id="pass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
+                    <p>Password</p>
+                    <input type="password" name="pass" id="pass" required>
+                    
+                    <div class="signup-submit">
+                        <button type="submit" class="signup-button">Log in</button>
+                    </div>
+                </form>
 
-                        <p>Confirm Password</p>
-                        <input type="password" name="reg-cpass" id="cpass-input" oninput="checkRepeatPass('pass-input', 'cpass-input')" required>
-                        
-                        
-                        <div class="signup-submit">
-                            <button type="submit" class="signup-button">Sign up</button>
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="form-overlay" id="login-overlay">
-                    <form action="#" method="get">
-                        <p>Email</p>
-                        <input type="email" name="email" id="email" required>
-
-                        <p>Password</p>
-                        <input type="password" name="pass" id="pass" required>
-                        
-                        <div class="signup-submit">
-                            <button type="submit" class="signup-button">Log in</button>
-                        </div>
-                    </form>
-
-                    <a onclick="goLogin()" id="login-link">Don't have an account? Sign up now</a>
-                </div>
+                <a onclick="goLogin()" id="login-link">Don't have an account? Sign up now</a>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 

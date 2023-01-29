@@ -28,7 +28,8 @@
 
             <div class="nav-items">
                 <div class="nav-item"><a href="#">Home</a></div>
-                <div class="nav-item"><a href="#">Animals</a></div>
+                <div class="nav-item"><a href="pages/habitatMap.php">Habitats</a></div>
+                <div class="nav-item"><a href="pages/animals-user.php">Animals</a></div>
                 <div class="nav-item"><a href="pages/ticket.php">Tickets</a></div>
                 <div class="nav-item"><a href="pages/about.php">About</a></div>
                 <?php

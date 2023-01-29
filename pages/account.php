@@ -128,48 +128,50 @@
 
 <body>
     <div class="panel" style="background-image: url('../media/zoo_zebra.png');">
-        <nav class="nav">
+	<nav class="nav">
 
-            <img src="../media/logo.png" id="logo" />
+		<img src="../media/logo.png" id="logo" />
 
-            <div class="nav-items">
-                <div class="nav-item"><a href="../index.php">Home</a></div>
-                <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="../pages/about.php">About</a></div>
-				<?php
-                    if (isset($_COOKIE['user_fname'])) {
-                        $user_fname = $_COOKIE['user_fname'];
-                        $user_power = $_COOKIE['user_power'];
-                        
-                        switch ($user_power) {
-                            case "User":
-                                echo "<i class='user-icon user fa-solid fa-user'></i>";
-                                break;
-                            case "Helper":
-                                echo "<i class='user-icon helper fa-solid fa-shield-halved'></i>";
-                                break;
-                            case "Admin":
-                                echo "<i class='user-icon admin fa-solid fa-crown'></i>";
-                                break;
-                        }
-
-                        echo "<div class='nav-item'><a href='pages/account.php'>$user_fname</a></div>";
-                    }
-                    else {
-						header('Location: ../index.php');
-                        die();
+		<div class="nav-items">
+			<div class="nav-item"><a href="../index.php">Home</a></div>
+			<div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
+			<div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+			<div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
+			<div class="nav-item"><a href="../pages/about.php">About</a></div>
+			<?php
+				if (isset($_COOKIE['user_fname'])) {
+					$user_fname = $_COOKIE['user_fname'];
+					$user_power = $_COOKIE['user_power'];
+					
+					switch ($user_power) {
+						case "User":
+							echo "<i class='user-icon user fa-solid fa-user'></i>";
+							break;
+						case "Helper":
+							echo "<i class='user-icon helper fa-solid fa-shield-halved'></i>";
+							break;
+						case "Admin":
+							echo "<i class='user-icon admin fa-solid fa-crown'></i>";
+							break;
 					}
-                ?>
-            </div>
-			<div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+
+					echo "<div class='nav-item'><a href='../pages/account.php'>$user_fname</a></div>";
+				}
+				else
+					header('Location: ../index.php');
+			?>
+		</div>
+
+		<div class="hamburger">
+			<span class="bar"></span>
+			<span class="bar"></span>
+			<span class="bar"></span>
+		</div>
+
+	</nav>
         </nav>
 
-        <div class="inner-panel">
+        <div class="inner-panel" id="account-panel">
 
             <div class="left">
                 <div class="form-overlay" id="account-overlay">

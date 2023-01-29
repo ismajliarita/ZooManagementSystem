@@ -24,20 +24,21 @@ if (isset($_COOKIE['user_fname']))
 
 <body>
     <div class="panel" style="background-image: url('../media/Safari.png');">
-        <nav class="nav">
+    <nav class="nav">
 
-            <img src="../media/logo.png" id="logo" />
+        <img src="../media/logo.png" id="logo" />
 
-            <div class="nav-items">
-                <div class="nav-item"><a href="../index.php">Home</a></div>
-                <div class="nav-item"><a href="#">Animals</a></div>
-                <div class="nav-item"><a href="./ticket.php">Tickets</a></div>
-                <div class="nav-item"><a href="./about.php">About</a></div>
-                <?php
+        <div class="nav-items">
+            <div class="nav-item"><a href="../index.php">Home</a></div>
+            <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
+            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
+            <div class="nav-item"><a href="../pages/about.php">About</a></div>
+            <?php
                 if (isset($_COOKIE['user_fname'])) {
                     $user_fname = $_COOKIE['user_fname'];
                     $user_power = $_COOKIE['user_power'];
-
+                    
                     switch ($user_power) {
                         case "User":
                             echo "<i class='user-icon user fa-solid fa-user'></i>";
@@ -50,17 +51,20 @@ if (isset($_COOKIE['user_fname']))
                             break;
                     }
 
-                    echo "<div class='nav-item'><a href='./account.php'>$user_fname</a></div>";
-                } else
-                    echo '<div class="nav-item"><a href="./signup.php">Sign Up</a></div>';
-                ?>
-            </div>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
+                    echo "<div class='nav-item'><a href='../pages/account.php'>$user_fname</a></div>";
+                }
+                else
+                    echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
+            ?>
+        </div>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+    </nav>
 
         <div class="inner-panel" style="overflow-y: scroll; display: flex; justify-content: center">
             <div class="result-container">
