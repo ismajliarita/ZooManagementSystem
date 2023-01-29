@@ -1184,10 +1184,6 @@ html {
 
 }
 
-.addAnimalFixed::-webkit-scrollbar {
-    /* display: none; */
-}
-
 #overlay {
     width: 100vw;
     height: 100vh;
@@ -1202,10 +1198,6 @@ html {
 
 #overlay {
     background: rgba(49,49,49,0.8);
-}
-/* Hide scrollbar for IE, Edge and Firefox */
-.editAnimal{
-
 }
 .closebtn {
     position: absolute;
@@ -1223,6 +1215,46 @@ html {
 .animal-photos {
     width: 5rem;
 }
+
+.sidebar {
+    width: 100px;
+    background-color: #f1f1f1;
+    position: fixed;
+    top: 50%;
+    transform: translate(0%, -50%);
+    left: 0px;
+    /* left: -200px; */
+    /* transition: 0.5s ease-in-out; */
+    transition: left 0.5s ease-in-out;
+  }
+  .hidden{
+    left: -100px;
+    transition: left 0.5s ease-in-out;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .sidebar-content {
+    padding: 20px;
+  }
+  
+  #collapse-button {
+    background-color: transparent;
+    color: rgb(91, 91, 177);
+    border: none;
+    cursor: pointer;
+    font-size: 2.5rem;
+    z-index: 4;
+    position: absolute;
+    right: -3rem;
+    top: 0;
+  }
+  
 
 /* ANIMALS PAGE 2 -- ARITA */
 .flip-card {
@@ -1347,6 +1379,39 @@ html {
     float: left;
     margin-bottom: -50px;
 }
+/* 
+.age-nr{
+    font-size: 2rem;
+}
+
+.yrs{
+    font-size: 0.7rem;
+    align-items: center;
+    display: inherit;
+    margin-left: 5px;
+}
+
+.overtext{
+    position: absolute;
+    z-index: 999;
+    background-image: linear-gradient(transparent, black);
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    bottom: 0px;
+    padding: 0 1.5rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-kitty{
+    font-size: 0.7rem;
+    float: left;
+    margin-bottom: -50px;
+} */
+
 
 
 /* ANIMAL VIEW PAGE */
@@ -1376,7 +1441,7 @@ html {
     overflow-y: scroll;
     overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: thin;  /* Firefox */
 }
 
 .animal-main::-webkit-scrollbar {
@@ -1407,14 +1472,18 @@ html {
 
 .animal-img-container {
     width: 40%;
-    overflow: visible;
+    /* overflow: hidden; */
     height: 280px;
 }
 
 .animal-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     overflow: hidden;
 
-    width: fit-content;
+    width: 280px;
     height: inherit;
 }
 
@@ -1422,6 +1491,41 @@ html {
     height: inherit;
     max-width: inherit;
     object-fit: contain;
+}
+
+.slide-img {
+    display: none;
+}
+
+.animal-img > #sliders {
+    display: flex;
+    width: 280px;
+    position: absolute;
+    justify-content: space-between;
+}
+
+.prev, .next {
+    cursor: pointer;
+    /* position: absolute; */
+    /* left: 0;
+    top: 25%; */
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    text-shadow:0 0 10px #000;
+}
+
+.next {
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.3);
 }
 
 .animal-desc-container {
@@ -1459,7 +1563,11 @@ html {
 
 .forest::-webkit-scrollbar-thumb:hover {
     background: rgba(17, 85, 12, 0.666);
-} 
+}
+
+.forest {
+    scrollbar-color: #0a460a #132413; /* Firefox */
+}
 
 .forest #forest {
     color:rgb(17, 163, 61);
@@ -1479,7 +1587,9 @@ html {
 .ocean::-webkit-scrollbar-thumb:hover {
     background: rgba(7, 41, 93, 0.666);
 } 
-
+.ocean {
+    scrollbar-color: #082d63 #000028; /* Firefox */
+}
 .ocean #ocean {
     color:rgb(20, 98, 215);
 }
@@ -1498,7 +1608,9 @@ html {
 .jungle::-webkit-scrollbar-thumb:hover {
     background: rgba(119, 149, 8, 0.666);
 } 
-
+.jungle {
+    scrollbar-color: #5a650d #212413; /* Firefox */
+}
 .jungle #jungle {
     color:rgb(152, 166, 0);
 }
@@ -1517,7 +1629,9 @@ html {
 .desert::-webkit-scrollbar-thumb:hover {
     background: rgba(149, 137, 8, 0.666);
 } 
-
+.desert {
+    scrollbar-color: #706913 #403e02; /* Firefox */
+}
 .desert #desert {
     color:rgb(166, 144, 0);
 }
@@ -1536,7 +1650,9 @@ html {
 .arctic::-webkit-scrollbar-thumb:hover {
     background: rgba(177, 255, 255, 0.666);
 } 
-
+.arctic {
+    scrollbar-color: #8dc3cb #566c6b; /* Firefox */
+}
 .arctic #arctic {
     color:rgb(9, 185, 192);
 }
@@ -1547,75 +1663,3 @@ html {
     text-shadow: 0 0 25px rgb(123, 240, 255);
 }
 
-.age-nr{
-    font-size: 2rem;
-}
-
-.yrs{
-    font-size: 0.7rem;
-    align-items: center;
-    display: inherit;
-    margin-left: 5px;
-}
-
-.overtext{
-    position: absolute;
-    z-index: 999;
-    background-image: linear-gradient(transparent, black);
-    width: 100%;
-    color: white;
-    font-size: 1.3rem;
-    bottom: 0px;
-    padding: 0 1.5rem;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.type-kitty{
-    font-size: 0.7rem;
-    float: left;
-    margin-bottom: -50px;
-}
-
-
-.sidebar {
-    width: 100px;
-    background-color: #f1f1f1;
-    position: fixed;
-    top: 50%;
-    transform: translate(0%, -50%);
-    left: 0px;
-    /* left: -200px; */
-    /* transition: 0.5s ease-in-out; */
-    transition: left 0.5s ease-in-out;
-  }
-  .hidden{
-    left: -100px;
-    transition: left 0.5s ease-in-out;
-  }
-  
-  .sidebar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .sidebar-content {
-    padding: 20px;
-  }
-  
-  #collapse-button {
-    background-color: transparent;
-    color: rgb(91, 91, 177);
-    border: none;
-    cursor: pointer;
-    font-size: 2.5rem;
-    z-index: 4;
-    position: absolute;
-    right: -3rem;
-    top: 0;
-  }
-  

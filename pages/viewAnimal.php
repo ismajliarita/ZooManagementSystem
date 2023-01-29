@@ -9,7 +9,8 @@
 
 	$animal_id = $_GET['id'];
 
-	$sql_get = "SELECT * FROM animals WHERE id = '$animal_id'";
+	$sql_get = "SELECT * FROM animals WHERE id = $animal_id";
+
 	$result = mysqli_fetch_assoc(mysqli_query($con, $sql_get));
 
 	$GLOBALS['animal'] = $result;
@@ -101,7 +102,30 @@
 					
 					<div class="animal-img-container">
 						<div class="animal-img">
-							<img src="../media/grizzy-test.png"/>
+			EOD;
+			
+			$sql_images = "SELECT url FROM images WHERE animal_id = $animal_id";
+			$images = mysqli_query($con, $sql_images);
+
+			$row_count = 0;
+			while ($row = mysqli_fetch_assoc($images)) {
+				$row_count++;
+				$url = $row['url'];
+
+				echo <<<"EOD"
+						<img class="slide-img" src="$url"/>
+				EOD;
+			}
+			
+			if ($row_count === 0) {
+						echo "<img class='slide-img' src='../media/flipcard_sample.png'/>";
+			}
+
+			echo <<<"EOD"
+							<div id="sliders">
+								<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+								<a class="next" onclick="plusSlides(1)">&#10095;</a>
+							</div>
 						</div>
 					</div>
 					
@@ -109,12 +133,42 @@
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, rerum fugiat sunt molestias iure atque aut itaque alias, minus labore voluptatibus ipsa sequi ipsam. Maiores alias fugiat natus accusantium. Explicabo? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus soluta iste voluptatum vitae eveniet ut ipsam fugiat tempora magnam reprehenderit. Culpa ratione id veniam dolores. Aut eum molestiae magnam incidunt. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, rerum fugiat sunt molestias iure atque aut itaque alias, minus labore voluptatibus ipsa sequi ipsam. Maiores alias fugiat natus accusantium. Explicabo? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus soluta iste voluptatum vitae eveniet ut ipsam fugiat tempora magnam reprehenderit. Culpa ratione id veniam dolores. Aut eum molestiae magnam incidunt
 					</div>
 				</div>
-			EOD
+			EOD;
 		?>
         
     </div>
 
 <script src="../index.js"></script>
+<script>
+
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+	let i;
+	let slides = document.getElementsByClassName("slide-img");
+
+	if (n > slides.length) {slideIndex = 1}
+
+	if (n < 1) {slideIndex = slides.length}
+
+	for (i = 0; i < slides.length; i++) {
+		slides[i].style.display = "none";
+	}
+	slides[slideIndex-1].style.display = "flex";
+}
+
+</script>
 </body>
 
 </html>
