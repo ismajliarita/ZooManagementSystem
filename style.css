@@ -1482,3 +1482,35 @@ html {
 .arctic h1 {
     text-shadow: 0 0 25px rgb(123, 240, 255);
 }
+
+.age-nr{
+    font-size: 2rem;
+}
+
+.yrs{
+    font-size: 0.7rem;
+    align-items: center;
+    display: inherit;
+    margin-left: 5px;
+}
+
+.overtext{
+    position: absolute;
+    z-index: 999;
+    background-image: linear-gradient(transparent, black);
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    bottom: 0px;
+    padding: 0 1.5rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-kitty{
+    font-size: 0.7rem;
+    float: left;
+    margin-bottom: -50px;
+}
