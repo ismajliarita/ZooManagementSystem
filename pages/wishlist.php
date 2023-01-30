@@ -1,3 +1,8 @@
+<?php
+if(!isset($_COOKIE['user_id'])){
+    header("location:./signup.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,8 +113,10 @@
                 <input class="btn btn-success" type="submit" value="Submit">
             </form>
             
-            
+            <h1 style="margin-top:20px;">Wishlist for animals you want to visit</h1>
+
             <div class="results_wishlist">
+
                 <?php 
                     $servername = "localhost";
                     $username = "root";
@@ -190,24 +197,25 @@
                         </a>
                         <div class="heartDiv">
                             <span class="heart">
-                                <i class="fa-regular fa-heart"></i>
+                                <i class="fa-solid fa-heart"></i>
                             </span>
                         </div>
                         </div>
                         EOD;
                     }
-                    
-                    $sql = 'SELECT * FROM animals ';
+
+                    $user_id = $_COOKIE['user_id'];
+                    $sql = "SELECT a.* FROM animals a JOIN wishlist w ON a.id = w.animal_id WHERE w.user_id = $user_id";
                     if(isset($_GET['name'])) {
                         $name = $_GET['name'];
-                        $sql = $sql . "WHERE name LIKE '%$name%'";
+                        $sql = $sql . "AND a.name LIKE '%$name%'";
                         if($_GET['map'] != ''){
                             $map = $_GET['map'];
-                            $sql = $sql . "AND habitat = '$map' ";
+                            $sql = $sql . "AND a.habitat = '$map' ";
                         }
                         if($_GET['type'] != ''){
                             $type = $_GET['type'];
-                            $sql = $sql . "AND type = '$type' ";
+                            $sql = $sql . "AND a.type = '$type' ";
                         }
 
                     }

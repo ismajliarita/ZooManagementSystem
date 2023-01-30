@@ -47,8 +47,8 @@ document.querySelectorAll(".nav-item").forEach(n => n.addEventListener("click", 
 	navItems.classList.remove("active")
 }))
 
-        // let animals = []
-        // let resultDiv;
+// let animals = []
+// let resultDiv;
 
 
 
@@ -70,7 +70,7 @@ function animalFact() {
 			console.log('Success:', data);
 			// slogan.innerHTML = data;
 			resultDiv.innerHTML = ''
-			for(let i = 0; i < data.length; i++){
+			for (let i = 0; i < data.length; i++) {
 				createCard(data[i])
 			}
 
@@ -81,7 +81,7 @@ function animalFact() {
 		.catch((error) => {
 			console.error('Error:', error);
 		});
-		console.log("outside" + data);
+	console.log("outside" + data);
 }
 
 
@@ -106,34 +106,78 @@ function createCard(animal) {
 		</div>`;
 }
 
-    // createCard();
+// createCard();
 
 // Arita's Part in View Animal
-function toggleWishlist(e){
+function toggleWishlist(e) {
 	var heartBtn = e.currentTarget;
 
 	console.log(heartBtn.innerHTML);
 	// let clicked = String(heartBtn.innerHTML);
 
 	var i = heartBtn.firstElementChild;
-	if(i.classList.contains('fa-regular')){
-		i.classList.remove('fa-regular');
-		i.classList.add('fa-solid');
-	}
-	else{
-		i.classList.add('fa-regular');
-		i.classList.remove('fa-solid');
-	}
+	// if (i.classList.contains('fa-regular')) {
+	// 	i.classList.remove('fa-regular');
+	// 	i.classList.add('fa-solid');
+	// }
+	// else {
+	// 	i.classList.add('fa-regular');
+	// 	i.classList.remove('fa-solid');
+	// }
 
+	let animalID = document.getElementById('animalID').innerHTML;
+	let userID = document.getElementById('userID').innerHTML;
+	// console.log(animalID);
+	let url = './toggleWishlist.php?animal=' + animalID + '&user=' + userID;
+	console.log(url);
+	loadDoc(url, changeHeart, i);
 	// if (clicked == '<i class="fa-regular fa-heart"></i>'){
 	// 	heartBtn = '<i class="fa-solid fa-heart"></i>';
 	// }else if(heartBtn.innerHTML === '<i class="fa-solid fa-heart"></i>'){
 	// 	heartBtn = '<i class="fa-regular fa-heart"></i>';
 	// }
-	
+
+}
+function changeHeart(xhttp, i) {
+	console.log(xhttp.responseText);
+	// xhttp.responseText == 'Finished';
+	if (xhttp.responseText == 'Finished') {
+		// var heartBtn = e.currentTarget;
+		console.log('Arita')
+		// console.log(heartBtn.innerHTML);
+		// let clicked = String(heartBtn.innerHTML);
+
+		// var i = heartBtn.firstElementChild;
+		if (i.classList.contains('fa-regular')) {
+			i.classList.remove('fa-regular');
+			i.classList.add('fa-solid');
+		}
+		else {
+			i.classList.add('fa-regular');
+			i.classList.remove('fa-solid');
+		}
+	}
+	else{
+
+		alert(xhttp.responseText);
+	}
+}
+const hearts = document.getElementsByClassName('heart');
+for (let i = 0; i < hearts.length; i++) {
+	hearts[i].addEventListener('click', toggleWishlist);
 }
 
-const hearts = document.getElementsByClassName('heart');
-for(let i = 0; i < hearts.length; i++){
-	hearts[i].addEventListener('click', toggleWishlist);
+function loadDoc(url, cFunction, target) {
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function () { cFunction(this, target); }
+	xhttp.open("GET", url);
+	xhttp.send();
+}
+
+function deleted(xhttp, target) {
+	if (xhttp.responseText == 'Finished')
+		target.remove();
+	else {
+		alert('Please LogIn to add or remove to your favourites!');
+	}
 }

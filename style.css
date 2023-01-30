@@ -1546,6 +1546,9 @@ html {
     display: contents;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 2rem;
     margin: auto;
+}
+
+.card-container{
+    margin-top: 2rem !important;
 }
