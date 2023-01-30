@@ -174,8 +174,8 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `pass`, `power`) VALUES
 --
 
 CREATE TABLE `wishlist` (
-  `user_id` int(5) NOT NULL,
-  `animal_id` int(5) NOT NULL
+  `user_id` int(12) NOT NULL,
+  `animal_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
