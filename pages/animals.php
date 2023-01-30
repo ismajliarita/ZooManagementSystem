@@ -98,7 +98,7 @@
             <input type="number" style="width: 5rem;" id="add-animal-age" name="addAge" min=0 required><br>
             <textarea id="add-animal-desc" name="addDescription" rows="4" cols="50" placeholder="Enter description here..." required></textarea>
 
-            <input type="file" id="photos" name="photos[]" multiple /><br>
+            <input type="file" id="photos" name="photos[]" accept=".png,.jpg,.jpeg,.jfif" multiple /><br>
             <div class="animal-photos">
 
             </div>
