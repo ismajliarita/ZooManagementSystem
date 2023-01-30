@@ -1,6 +1,10 @@
 <?php
     session_start();
 
+    if(isset($_COOKIE['logged'])){
+        header('Location: ../pages/account.php');
+    }
+
     // if (isset($_COOKIE['username'])) {
 
     $con = mysqli_connect("localhost", "root", "", "zoo");

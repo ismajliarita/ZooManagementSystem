@@ -1,6 +1,8 @@
 <?php
-if(!isset($_COOKIE['user_id'])){
-    header("location:./signup.php");
+session_start();
+
+if(!isset($_COOKIE['logged'])){
+    header("location: ./signup.php");
 }
 
 $con = mysqli_connect("localhost", "root", "", "zoo");
@@ -40,13 +42,13 @@ if (!$con) {
         <div class="nav-items">
             <div class="nav-item"><a href="../index.php">Home</a></div>
             <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
             <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
             <div class="nav-item"><a href="../pages/about.php">About</a></div>
             <?php
-                if (isset($_COOKIE['user_fname'])) {
-                    $user_fname = $_COOKIE['user_fname'];
-                    $user_power = $_COOKIE['user_power'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_fname = $_SESSION['user_fname'];
+                    $user_power = $_SESSION['user_power'];
                     
                     switch ($user_power) {
                         case "User":
@@ -166,7 +168,8 @@ if (!$con) {
                             default:
                                 $icon = '<i class="fa-regular fa-location-question"></i>';
                         }
-                        $user_id = $_COOKIE['user_id'];
+
+                        $user_id = $_SESSION['user_id'];
 
                         echo <<<"EOD"
                         <div class="card-container" style="display: flex; align-items: center; margin-top: 2rem;">
@@ -208,13 +211,9 @@ if (!$con) {
                         </div>
                         </div>
                         EOD;
-
-                         
-                        
-
-
                     }
-                    $user_id = $_COOKIE['user_id'];
+
+                    $user_id = $_SESSION['user_id'];
 
                     $sql = "SELECT a.* FROM animals a JOIN wishlist w ON a.id = w.animal_id WHERE w.user_id = $user_id";
                     if(isset($_GET['name'])) {
