@@ -1,18 +1,18 @@
 <?php
-if (isset($_COOKIE['user_id'])) {
-    session_start();
+// if (isset($_COOKIE['user_id'])) {
+//     session_start();
 
-    $user_power = $_COOKIE['user_power'];
+//     $user_power = $_COOKIE['user_power'];
 
-    if($user_power === 'User') {
-        header('Location: animals-user.php');
-        die();
-    }
-}  
-else {
-    header('Location: animals-user.php');
-    die();
-}
+//     if($user_power === 'User') {
+//         header('Location: animals-user.php');
+//         die();
+//     }
+// }  
+// else {
+//     header('Location: animals-user.php');
+//     die();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -31,19 +31,24 @@ else {
 </head>
 
 <body style="background-image:url('./../media/animals.jpg');">
-<div id="overlay"></div>
-<div class="sidebar hidden">
-    <span id="collapse-button"><i class="fa-solid fa-filter"></i></span>
-  <div class="sidebar-header">
-    <h3>Filter</h3>
-  </div>
-  <div class="sidebar-content">
-    <input type="checkbox" id=""><br>
-    <input type="checkbox" id=""><br>
-    <input type="checkbox" id=""><br>
-    <input type="checkbox" id="">
-  </div>
-</div>    
+    <div id="overlay"></div>
+    <div class="sidebar hidden">
+        <span id="collapse-button"><i class="fa-solid fa-filter"></i></span>
+        <div class="sidebar-header">
+            <h3 style="text-align: center;">Sort Animal</h3>
+        </div>
+        <form class="sidebar-content" method="GET">
+            <input type="checkbox" class="filters" id="" name='clean'><button class='edit-btn cleanAnimal ' disabled><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-broom"></i></button><br>
+            <input type="checkbox" class="filters" id="" name="vet"><button class='edit-btn helpAnimal' disabled><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-suitcase-medical"></i></button><br>
+            <input type="checkbox" class="filters" id="" name="water"><button class='edit-btn waterAnimal' disabled><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-glass-water-droplet"></i></button><br>
+            <input type="checkbox" class="filters" id="" name="food"><button class='edit-btn feedAnimal' disabled><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-drumstick-bite"></i></button><br>
+            <button type="submit" class="btn btn-primary" name="sort">Sort</button>
+
+
+
+
+</form>
+    </div>
 
     <div class="addAnimalFixed" id="addAnimalForm">
         <form method="POST" action="./addAnimal.php" enctype="multipart/form-data" autocomplete="off">
@@ -156,23 +161,23 @@ else {
         </form>
     </div>
 
-    
+
     <div class="animals_panel">
-    <nav class="nav">
+        <nav class="nav">
 
-        <img src="../media/logo.png" id="logo" />
+            <img src="../media/logo.png" id="logo" />
 
-        <div class="nav-items">
-            <div class="nav-item"><a href="../index.php">Home</a></div>
-            <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
-            <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
-            <div class="nav-item"><a href="../pages/about.php">About</a></div>
-            <?php
+            <div class="nav-items">
+                <div class="nav-item"><a href="../index.php">Home</a></div>
+                <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
+                <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+                <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
+                <div class="nav-item"><a href="../pages/about.php">About</a></div>
+                <?php
                 if (isset($_COOKIE['user_fname'])) {
                     $user_fname = $_COOKIE['user_fname'];
                     $user_power = $_COOKIE['user_power'];
-                    
+
                     switch ($user_power) {
                         case "User":
                             echo "<i class='user-icon user fa-solid fa-user'></i>";
@@ -186,19 +191,18 @@ else {
                     }
 
                     echo "<div class='nav-item'><a href='../pages/account.php'>$user_fname</a></div>";
-                }
-                else
+                } else
                     echo '<div class="nav-item"><a href="../pages/signup.php">Log In</a></div>';
-            ?>
-        </div>
+                ?>
+            </div>
 
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
 
-    </nav>
+        </nav>
 
         <div class="animals-inner-panel">
             <form class="search-bar" action="" method="get" autocomplete="off">
@@ -253,7 +257,7 @@ else {
             </form>
             <div class="admin-results">
                 <?php
-                function displayAdminAnimal($id, $habitat, $name, $type, $age)
+                function displayAdminAnimal($id, $habitat, $name, $type, $age, $vet, $clean, $food, $water)
                 {
                     if ($habitat == 'Forest') {
                         $icon = '<i class="fa-solid fa-tree"></i>';
@@ -266,6 +270,43 @@ else {
                     } else if ($habitat == 'Desert') {
                         $icon = '<i class="fa-solid fa-umbrella-beach"></i>';
                     }
+                    $now = date('Y-m-d H:i:s', time());
+
+                    if ($food != '') {
+                        $actualFood = date('Y-m-d H:i:s', strtotime($food . ' + 6 hours'));
+                        if ($now < $actualFood) {
+                            $check4 = '';
+                        } else {
+
+                            $check4 = 'unchecked';
+                        }
+                    } else {
+
+                        $check4 = 'unchecked';
+                    }
+
+                    $now = date('Y-m-d H:i:s', time());
+                    // echo $water;
+                    if ($water != '') {
+                        $actualWater = date('Y-m-d H:i:s', strtotime($water . ' + 6 hours'));
+                        if ($now < $actualWater) {
+                            $check3 = '';
+                        } else {
+                            $check3 = 'unchecked';
+                        }
+                    } else {
+                        $check3 = 'unchecked';
+                    }
+                    if ($vet == 0) {
+                        $check2 = '';
+                    } else {
+                        $check2 = 'unchecked';
+                    }
+                    if ($clean == 0) {
+                        $check1 = '';
+                    } else {
+                        $check1 = 'unchecked';
+                    }
                     echo <<<"EOD"
                     <div class="admin-animal">
                     <p style="display: none">$id</p>
@@ -277,6 +318,10 @@ else {
                             <p>Age: $age</p>
                         </div>
                         <div class="admin-animal-right">
+                        <button class='edit-btn cleanAnimal helperBtn $check1'><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-broom"></i></i></button>
+                        <button class='edit-btn helpAnimal helperBtn $check2'><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-suitcase-medical"></i></button>
+                        <button class='edit-btn waterAnimal helperBtn $check3'><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-glass-water-droplet"></i></button>
+                        <button class='edit-btn feedAnimal helperBtn $check4'><input style='display: none;' type='checkbox' checked><i class="fa-solid fa-drumstick-bite"></i></button>
                         <button class='edit-btn editAnimal'> <i class='fa-solid fa-pen'></i> </button>
                         
                         <button class='edit-btn red-btn deleteAnimal'> <i class="fa-solid fa-trash"></i> </button>
@@ -302,11 +347,47 @@ else {
                         $sql = $sql . "AND type = '$type'";
                     }
                 }
+                $order = true;
+                if (isset($_GET['sort'])){
+                    if(isset($_GET['clean'])){
+                        if($order){
+                            $sql = $sql . " ORDER BY clean_time DESC";
+                            $order = false;
+                        } else {
+                            $sql = $sql . ", clean_time DESC";
+                        }
+                    }
+                    if(isset($_GET['vet'])){
+                        if($order){
+                            $sql = $sql . " ORDER BY vet_help DESC";
+                            $order = false;
+                        } else {
+                            $sql = $sql . ", vet_help DESC";
+                        }
+
+                    }
+                    if(isset($_GET['water'])){
+                        if($order){
+                            $sql = $sql . " ORDER BY water_time";
+                            $order = false;
+                        } else {
+                            $sql = $sql . ", water_time";
+                        }
+                    }
+                    if(isset($_GET['food'])){
+                        if($order){
+                            $sql = $sql . " ORDER BY food_time";
+                            $order = false;
+                        } else {
+                            $sql = $sql . ", food_time";
+                        }
+                    }
+                }
                 $result = mysqli_query($con, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     // output data of each row
                     while ($row = mysqli_fetch_assoc($result)) {
-                        displayAdminAnimal($row['id'], $row['habitat'], $row['name'], $row['type'], $row['age']);
+                        displayAdminAnimal($row['id'], $row['habitat'], $row['name'], $row['type'], $row['age'], $row['vet_help'], $row['clean_time'], $row['food_time'], $row['water_time']);
                     }
                 } else {
                     echo "0 results";

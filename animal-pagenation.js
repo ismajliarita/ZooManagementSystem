@@ -126,3 +126,15 @@ function viewAnimal(e){
 function animalFits(animal){
     
 }
+
+function sortAnimals(){
+    var clean = filters[0].checked;
+    var vet = filters[1].checked;
+    var water = filters[2].checked;
+    var food = filters[3].checked;
+    
+}
+const filters = document.getElementsByClassName('filters');
+for(let i = 0; i < filters.length; i++){
+    filters[i].addEventListener('click',sortAnimals);
+}
