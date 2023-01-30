@@ -8,14 +8,11 @@ if (!$conn) {
 $user_id = $_GET['user'];
 $animal_id = $_GET['animal'];
 
-
 $sql1 = "INSERT INTO wishlist(`user_id`, `animal_id`) VALUES ($user_id, $animal_id)";
 $sql2 = "DELETE FROM wishlist WHERE user_id = $user_id AND animal_id = $animal_id";
 $sql3 = "SELECT * FROM wishlist WHERE user_id = $user_id AND animal_id = $animal_id";
 
 $check = mysqli_query($conn, $sql3);
-
-// mysql_num_rows($check)==0
 
 if(mysqli_num_rows($check)>0){
     $delete = mysqli_query($conn, $sql2);
@@ -28,10 +25,6 @@ if(mysqli_num_rows($check)>0){
         echo 'Finished';
     }
 }
-
-
-
-
 
 mysqli_close($conn);
 

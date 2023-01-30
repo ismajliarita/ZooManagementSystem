@@ -40,7 +40,7 @@
 
     	echo <<<"EOD"
 			<div class='panel' style='background-image: url("../media/$format-bg.png");'>
-		EOD;
+		EOD;	
 	?>
 		<nav class="nav">
 
@@ -97,13 +97,7 @@
 
 				$format = strtolower($habitat);
 				
-				
-				
-				
-				
-				// <i class="fa-solid fa-heart"></i>         filled heart
-				// <i class="fa-regular fa-heart"></i>   not filled heart
-				$animalID1 = $GLOBALS['animalID'];
+				$animalID = $GLOBALS['animalID'];
 				if(isset($_COOKIE['user_id'])){
 					$userID = $_COOKIE['user_id'];
 				}
@@ -111,10 +105,8 @@
 					$userID = '';
 				}
 				
-				$sql = "SELECT * FROM wishlist WHERE user_id = $userID AND animal_id = $animalID1";
+				$sql = "SELECT * FROM wishlist WHERE user_id = $userID AND animal_id = $animalID";
 				$check = mysqli_query($conn, $sql);
-
-				// mysql_num_rows($check)==0
 
 				if(mysqli_num_rows($check)>0){
 					$theHeart = '<i class="fa-solid fa-heart"></i>';
@@ -128,7 +120,7 @@
 								<h1 class="nameInViewAnimal">$name</h1>
 								<span class="heart">
 									$theHeart
-									<div style="display: none;" id="animalID">$animalID1</div>
+									<div style="display: none;" id="animalID">$animalID</div>
 									<div style="display: none;" id="userID">$userID</div>
 								</span>
 							</div>

@@ -2,6 +2,20 @@
 if(!isset($_COOKIE['user_id'])){
     header("location:./signup.php");
 }
+
+$con = mysqli_connect("localhost", "root", "", "zoo");
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// $animal_id = $_GET['animalid'];
+// $GLOBALS['animalID'] = $animal_id;
+
+// $sql_get = "SELECT * FROM animals WHERE id = '$animal_id'";
+// $result = mysqli_fetch_assoc(mysqli_query($con, $sql_get));
+
+// $GLOBALS['animal'] = $result;
+// mysqli_close($con);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,19 +143,8 @@ if(!isset($_COOKIE['user_id'])){
                     if (!$conn) {
                       die("Connection failed: " . mysqli_connect_error());
                     }
-                    // echo "Connected successfully";
 
-                    // $sql = "SELECT * FROM animals";
-                    // $result = mysqli_query($conn, $sql);
-                    // if(mysqli_num_rows($result) > 0){
-                    //     while($row = mysqli_fetch_assoc($result)){
-                    //         addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
-                    //     }
-                    // }
-                    // <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
-                    // <i class="fa-solid fa-igloo"></i>
-
-
+                    
 
                     function addCard($id, $animalName, $habitat, $animalType, $animalAge, $description){
                         switch($habitat){
@@ -163,6 +166,7 @@ if(!isset($_COOKIE['user_id'])){
                             default:
                                 $icon = '<i class="fa-regular fa-location-question"></i>';
                         }
+                        $user_id = $_COOKIE['user_id'];
 
                         echo <<<"EOD"
                         <div class="card-container" style="display: flex; align-items: center; margin-top: 2rem;">
@@ -198,13 +202,20 @@ if(!isset($_COOKIE['user_id'])){
                         <div class="heartDiv">
                             <span class="heart">
                                 <i class="fa-solid fa-heart"></i>
+                                <div style="display: none;" id="animalID">$id</div>
+                                <div style="display: none;" id="userID">$user_id</div>
                             </span>
                         </div>
                         </div>
                         EOD;
-                    }
 
+                         
+                        
+
+
+                    }
                     $user_id = $_COOKIE['user_id'];
+
                     $sql = "SELECT a.* FROM animals a JOIN wishlist w ON a.id = w.animal_id WHERE w.user_id = $user_id";
                     if(isset($_GET['name'])) {
                         $name = $_GET['name'];
