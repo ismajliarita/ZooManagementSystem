@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2023 at 08:36 PM
+-- Generation Time: Jan 30, 2023 at 09:24 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -33,51 +33,59 @@ CREATE TABLE `animals` (
   `type` varchar(30) NOT NULL,
   `age` int(11) NOT NULL,
   `description` text NOT NULL,
-  `habitat` varchar(20) NOT NULL
+  `habitat` varchar(20) NOT NULL,
+  `vet_help` int(11) NOT NULL,
+  `food_time` varchar(25) NOT NULL,
+  `water_time` varchar(25) NOT NULL,
+  `clean_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `animals`
 --
 
-INSERT INTO `animals` (`id`, `name`, `type`, `age`, `description`, `habitat`) VALUES
-(9, 'Tom', 'Cat', 67, 'Tom hate Jerry', 'Ocean'),
-(10, 'Delfi', 'Delfin', 45, 'Delfin delfi', 'Ocean'),
-(11, 'Foki', 'Foka', 78, 'Foka nifar foki si malazez', 'Arctic'),
-(12, 'Pumi', 'Puma', 76, 'Puma eshte pumi ', 'Jungle'),
-(13, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(14, 'Edon', 'drenushe', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(15, 'Uran', 'panda', 20, 'haha bro t shtina me kesh a hahah', 'Jungle'),
-(16, 'Florian', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Ocean'),
-(17, 'Shimpanze', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert'),
-(18, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Forest'),
-(19, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(20, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(21, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Jungle'),
-(22, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Ocean'),
-(23, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert'),
-(24, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Forest'),
-(25, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(26, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(27, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Jungle'),
-(28, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Ocean'),
-(29, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert'),
-(30, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Forest'),
-(31, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic'),
-(32, 'Edon', 'Kali', 19, 'asdfsdfsadf sdf sadf asdf ', 'Forest'),
-(34, 'Edon', 'Kali', 19, 'asdfsdfsadf sdf sadf asdf ', 'Forest'),
-(35, 'Edon', 'Njeri', 20, 'asdf sdfs dfsadf ', 'Arctic'),
-(36, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle'),
-(37, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle'),
-(38, 'Edon', 'Njeri', 19, 'sdfp', 'Arctic'),
-(39, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle'),
-(40, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle'),
-(41, 'Ylber', 'Njeri', 19, 'sdfasdf sdf sd', 'Desert'),
-(42, 'Arita', 'Mbinjeri', 19, 'popojojo', 'Forest'),
-(43, 'sdfs', 'Lion', 34, 'sdfsdfa sdf sdf sd fsd fsf d', 'Jungle'),
-(44, 'Edon', 'Lion', 19, 'sadfasdf', 'Jungle'),
-(45, 'Edon', '', 19, 'sdsafs f sd s', 'Arctic'),
-(46, 'sdf', 'Lion', 9, 'sdfa sd fs', 'Arctic');
+INSERT INTO `animals` (`id`, `name`, `type`, `age`, `description`, `habitat`, `vet_help`, `food_time`, `water_time`, `clean_time`) VALUES
+(17, 'Shimpanze', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert', 1, '2023-01-30 20:09:51', '2023-01-30 21:20:08', 0),
+(18, 'Leart', 'Tiger', 21, 'haha bro t shtina me kesh a ahaha haha hahah  haah', 'Arctic', 0, '2023-01-30 20:14:51', '', 1),
+(19, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 1, '2023-01-30 20:14:47', '', 1),
+(20, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 0, '2023-01-30 20:14:53', '', 0),
+(21, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Jungle', 0, '', '', 0),
+(22, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Ocean', 0, '2023-01-30 20:16:09', '2023-01-30 20:16:33', 0),
+(23, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert', 0, '', '', 0),
+(24, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Forest', 0, '', '', 0),
+(25, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 0, '', '', 0),
+(26, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 0, '', '', 0),
+(27, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Jungle', 0, '', '', 0),
+(28, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Ocean', 0, '2023-01-30 20:21:05', '2023-01-30 20:16:38', 0),
+(29, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert', 0, '', '', 0),
+(30, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Forest', 0, '', '', 0),
+(31, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 0, '', '', 0),
+(35, 'Edon', 'Njeri', 20, 'asdf sdfs dfsadf ', 'Arctic', 0, '', '', 0),
+(37, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle', 0, '', '', 0),
+(38, 'Edon', 'Njeri', 19, 'sdfp', 'Arctic', 0, '', '', 0),
+(39, 'Tringa', 'Zebra', 19, 'Tringa flet andaj han mut', 'Jungle', 0, '', '', 0),
+(43, 'sdfs', 'Lion', 34, 'sdfsdfa sdf sdf sd fsd fsf d', 'Jungle', 0, '', '', 0),
+(44, 'Edon', 'Lion', 19, 'sadfasdf', 'Jungle', 0, '', '', 0),
+(46, 'sdf', 'Lion', 9, 'sdfa sd fs', 'Arctic', 0, '', '', 0),
+(47, 'Edon', 'Kali', 19, 'sdfsdfsdaf sdf sdf s', 'Arctic', 0, '', '', 0),
+(48, 'Gent', 'Penguin', 19, 'Me fjale nuk munesh me pershkru dicka qe nuk pershkruhet', 'Arctic', 0, '', '', 0),
+(49, 'Lola', 'Dog', 2, 'Lola is aritas dog', 'Forest', 0, '', '', 0),
+(50, 'Lola', 'Dog', 2, 'Lola is aritas dog', 'Forest', 0, '', '', 0),
+(51, 'Lola', 'Dog', 2, 'Lola is aritas dog', 'Forest', 0, '', '', 0),
+(52, 'e', 'e', 4, 'fsdf', 'Forest', 0, '', '', 0),
+(53, 'ssd', 'dsf', 2, 'sdfsd', 'Ocean', 0, '', '', 0),
+(54, 'Edon', 'Rama', 7, 'Edon Ramadani', 'Ocean', 0, '', '', 0),
+(55, 'Edon', 'Rama', 4, 'ajdjsfsh', 'Ocean', 0, '', '', 0),
+(56, 'Edon', 'Lion', 9, 'sdjfskdjf dfshdk ', 'Forest', 0, '', '', 0),
+(57, 'Edon', 'Lion', 9, 'sdjfskdjf dfshdk ', 'Forest', 0, '', '', 0),
+(58, 'sd ', 'sdf ', 9, 'dsdd', 'Ocean', 1, '2023-01-30 20:16:46', '2023-01-30 20:16:47', 0),
+(60, 'Pluto', 'Dog', 9, 'Plutoooooooooo', 'Arctic', 0, '', '', 0),
+(61, 'Edon', 'Dog', 9, 'heu', 'Jungle', 0, '', '', 0),
+(62, 'Ylber', 'Njeri', 19, 'Cimeri Edonit', 'Ocean', 0, '', '', 0),
+(63, 'Arbnor', 'Njeri', 19, 'Nje cimer ', 'Arctic', 0, '', '', 0),
+(64, 'E', 'd', 3, 'dfsdfa', 'Ocean', 0, '', '', 0),
+(65, 'Edon', 'Njeri', 19, 'Edon Ramadani nga gjilani', 'Arctic', 0, '', '', 0),
+(66, 'Edon', 'rama', 6, 'sdf asflajsd lfkasdj lfas', 'Jungle', 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -90,6 +98,16 @@ CREATE TABLE `images` (
   `url` varchar(200) NOT NULL,
   `animal_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `url`, `animal_id`) VALUES
+(29, './../images/detyra16.PNG', 65),
+(30, './../images/Diqka loqke a.png', 65),
+(31, './../images/detyra16.PNG', 66),
+(32, './../images/Diqka loqke a.png', 66);
 
 -- --------------------------------------------------------
 
@@ -156,13 +174,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
