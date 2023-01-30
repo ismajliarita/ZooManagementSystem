@@ -1,7 +1,5 @@
 <?php
-    if (isset($_COOKIE['user_id'])){
-        session_start();
-    }
+    session_start();
 
     // if (isset($_COOKIE['username'])) {
 
@@ -27,11 +25,16 @@
             $user_email = $result['email'];
             $user_power = $result['power'];
             
-            setcookie("user_id", $user_id, time() + 600, "/");
-            setcookie("user_fname", $user_fname, time() + 600, "/");
-            setcookie("user_lname", $user_lname, time() + 600, "/");
-            setcookie("user_email", $user_email, time() + 600, "/");
-            setcookie("user_power", $user_power, time() + 600, "/");
+            setcookie("logged", $user_id, time() + 900, "/");
+            // setcookie("user_fname", $user_fname, time() + 600, "/");
+            // setcookie("user_lname", $user_lname, time() + 600, "/");
+            // setcookie("user_email", $user_email, time() + 600, "/");
+            // setcookie("user_power", $user_power, time() + 600, "/");
+            $_SESSION['user_id'] = $user_id;
+            $_SESSION['user_fname'] = $user_fname;
+            $_SESSION['user_lname'] = $user_lname;
+            $_SESSION['user_email'] = $user_email;
+            $_SESSION['user_power'] = $user_power;
             
             header('Location: ../index.php');
             die();
@@ -61,13 +64,21 @@
     
                 $result = mysqli_fetch_assoc(mysqli_query($con, $sql_id));
 
+                session_start();
+
                 $id = $result['id'];
                 $power = $result['power'];
-                setcookie("user_id", $id, time() + 600, "/");
-                setcookie("user_fname", $fname, time() + 600, "/");
-                setcookie("user_lname", $lname, time() + 600, "/");
-                setcookie("user_email", $email, time() + 600, "/");
-                setcookie("user_power", $power, time() + 600, "/");
+                // setcookie("user_id", $id, time() + 600, "/");
+                // setcookie("user_fname", $fname, time() + 600, "/");
+                // setcookie("user_lname", $lname, time() + 600, "/");
+                // setcookie("user_email", $email, time() + 600, "/");
+                // setcookie("user_power", $power, time() + 600, "/");
+
+                $_SESSION['user_id'] = $user_id;
+                $_SESSION['user_fname'] = $user_fname;
+                $_SESSION['user_lname'] = $user_lname;
+                $_SESSION['user_email'] = $user_email;
+                $_SESSION['user_power'] = $user_power;
 
                 header('Location: ../index.php');
                 die();
@@ -117,13 +128,13 @@
         <div class="nav-items">
             <div class="nav-item"><a href="../index.php">Home</a></div>
             <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
             <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
             <div class="nav-item"><a href="../pages/about.php">About</a></div>
             <?php
-                if (isset($_COOKIE['user_fname'])) {
-                    $user_fname = $_COOKIE['user_fname'];
-                    $user_power = $_COOKIE['user_power'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_fname = $_SESSION['user_fname'];
+                    $user_power = $_SESSION['user_power'];
                     
                     switch ($user_power) {
                         case "User":

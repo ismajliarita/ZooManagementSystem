@@ -1,6 +1,8 @@
 <?php
-    if(isset($_COOKIE['user_id'])) {
-        $user_power = $_COOKIE['user_power'];
+    session_start();
+
+    if(isset($_COOKIE['logged'])) {
+        $user_power = $_SESSION['user_power'];
 
         if($user_power !== 'User') {
             header('Location: animals.php');
@@ -18,8 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
-	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
-
+    
     <title>Document</title>
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -33,13 +34,13 @@
         <div class="nav-items">
             <div class="nav-item"><a href="../index.php">Home</a></div>
             <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
             <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
             <div class="nav-item"><a href="../pages/about.php">About</a></div>
             <?php
-                if (isset($_COOKIE['user_fname'])) {
-                    $user_fname = $_COOKIE['user_fname'];
-                    $user_power = $_COOKIE['user_power'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_fname = $_SESSION['user_fname'];
+                    $user_power = $_SESSION['user_power'];
                     
                     switch ($user_power) {
                         case "User":
