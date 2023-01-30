@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2023 at 09:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jan 30, 2023 at 10:42 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `animals` (
-  `id` int(11) NOT NULL,
+  `id` int(20) NOT NULL,
   `name` varchar(30) NOT NULL,
   `type` varchar(30) NOT NULL,
   `age` int(11) NOT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE `animals` (
 --
 
 INSERT INTO `animals` (`id`, `name`, `type`, `age`, `description`, `habitat`, `vet_help`, `food_time`, `water_time`, `clean_time`) VALUES
-(17, 'Shimpanze', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert', 1, '2023-01-30 20:09:51', '2023-01-30 21:20:08', 0),
-(18, 'Leart', 'Tiger', 21, 'haha bro t shtina me kesh a ahaha haha hahah  haah', 'Arctic', 0, '2023-01-30 20:14:51', '', 1),
+(17, 'Shimpanze', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Desert', 1, '2023-01-30 20:09:51', '2023-01-30 22:39:39', 0),
+(18, 'Leart', 'Tiger', 21, 'haha bro t shtina me kesh a ahaha haha hahah  haah', 'Arctic', 0, '2023-01-30 20:14:51', '2023-01-30 22:39:41', 1),
 (19, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 1, '2023-01-30 20:14:47', '', 1),
 (20, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Arctic', 0, '2023-01-30 20:14:53', '', 0),
 (21, 'Leart', 'tiger', 20, 'haha bro t shtina me kesh a hahah', 'Jungle', 0, '', '', 0),
@@ -97,7 +97,7 @@ CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `url` varchar(200) NOT NULL,
   `animal_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `images`
@@ -123,7 +123,7 @@ CREATE TABLE `tickets` (
   `user_id` int(20) NOT NULL,
   `adults` int(3) NOT NULL DEFAULT 1,
   `children` int(3) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tickets`
@@ -146,7 +146,7 @@ CREATE TABLE `users` (
   `email` varchar(25) NOT NULL,
   `pass` varchar(20) NOT NULL,
   `power` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -168,6 +168,7 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `pass`, `power`) VALUES
 (59, '123', '123', '21!@1', '123', 'Admin'),
 (60, '123', '123', '123@123', '123', 'Helper');
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `wishlist`
@@ -176,11 +177,7 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `pass`, `power`) VALUES
 CREATE TABLE `wishlist` (
   `user_id` int(12) NOT NULL,
   `animal_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Indexes for dumped tables
---
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -220,7 +217,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `animals`
 --
 ALTER TABLE `animals`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -233,43 +230,6 @@ ALTER TABLE `images`
 --
 ALTER TABLE `users`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `images`
---
-ALTER TABLE `images`
-  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
-
---
--- Constraints for table `tickets`
---
-ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-COMMIT;
-
-
-
---
--- Indexes for table `wishlist`
---
-ALTER TABLE `wishlist`
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `animal_id` (`animal_id`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `wishlist`
---
-ALTER TABLE `wishlist`
-  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
