@@ -117,13 +117,6 @@
 				}
 			}
 
-
-			// Fatal error
-			// : Uncaught mysqli_sql_exception: Table 'zoo.wishlist' doesn't exist in C:\xampp\htdocs\zozo\pages\viewAnimal.php:111 Stack trace: #0 C:\xampp\htdocs\zozo\pages\viewAnimal.php(111): mysqli_query(Object(mysqli), 'SELECT * FROM w...') #1 {main} thrown in
-			// C:\xampp\htdocs\zozo\pages\viewAnimal.php
-			// on line
-			// 111
-
         	echo <<<"EOD"
 				<div class='animal-main $format'>
 					<div class="animal-info-container">

@@ -168,6 +168,20 @@ INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `pass`, `power`) VALUES
 (59, '123', '123', '21!@1', '123', 'Admin'),
 (60, '123', '123', '123@123', '123', 'Helper');
 
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `user_id` int(5) NOT NULL,
+  `animal_id` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
 --
 -- Indexes for dumped tables
 --
@@ -235,6 +249,27 @@ ALTER TABLE `images`
 --
 ALTER TABLE `tickets`
   ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+COMMIT;
+
+
+
+--
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `animal_id` (`animal_id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `wishlist_ibfk_2` FOREIGN KEY (`animal_id`) REFERENCES `animals` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
