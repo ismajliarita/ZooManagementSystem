@@ -375,6 +375,25 @@
     background-color: rgb(255, 35, 35);
 }
 
+.editAnimal {
+    box-shadow: 0 0 10px rgba(202, 158, 11, 0.2);
+    background-color: rgb(236, 189, 35);
+}
+
+.editAnimal:hover {
+    box-shadow: 0 0 15px rgba(229, 252, 26, 0.6);
+    background-color: rgb(255, 251, 0);
+}
+
+.unchecked {
+    box-shadow: 0 0 5px rgba(32, 32, 32, 0.2);
+    background-color: rgb(108, 126, 108);
+}
+.unchecked:hover {
+    box-shadow: 0 0 5px rgba(109, 109, 109, 0.2);
+    background-color: rgb(208, 233, 208);
+}
+
 .exception-overlay {
     box-sizing: border-box;
     color: aliceblue;
@@ -991,6 +1010,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
     background-color: white;
     padding: 10px;
@@ -1028,6 +1048,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .admin-animal-left>* {
@@ -1051,6 +1072,7 @@
     border: 2px solid rgb(62, 109, 212);
     padding: 0.6rem;
 }
+
 
 .Arctic {
     background-color: rgb(167, 198, 224);
@@ -1223,7 +1245,7 @@ html {
 }
 
 .sidebar {
-    width: 100px;
+    width: 120px;
     background-color: #f1f1f1;
     position: fixed;
     top: 50%;
@@ -1234,7 +1256,7 @@ html {
     transition: left 0.5s ease-in-out;
   }
   .hidden{
-    left: -100px;
+    left: -120px;
     transition: left 0.5s ease-in-out;
   }
   
@@ -1251,8 +1273,11 @@ html {
   
   #collapse-button {
     background-color: transparent;
-    color: rgb(91, 91, 177);
-    border: none;
+    color: rgb(175, 165, 158);
+    text-shadow: 0px 0px 20px rgb(52, 54, 51);
+    /* border-radius: 50%; */
+    /* padding: 20px; */
+    /* border: 1px solid black; */
     cursor: pointer;
     font-size: 2.5rem;
     z-index: 4;

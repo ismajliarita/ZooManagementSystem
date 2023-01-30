@@ -167,7 +167,7 @@ function editAnimal(e) {
     console.log(animalId);
     document.getElementById('editFormFixed').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
-    let url = 'getAnimalEdit.php?id='+animalId;
+    let url = 'getAnimalEdit.php?id=' + animalId;
     loadDoc(url, displayAttributes, animalId);
 }
 function loadDoc(url, cFunction, target) {
@@ -177,7 +177,7 @@ function loadDoc(url, cFunction, target) {
     xhttp.send();
 }
 
-function displayAttributes(stmt, target){
+function displayAttributes(stmt, target) {
     var response = stmt.responseText;
     var element = document.createElement('div');
     element.innerHTML = response;
@@ -204,7 +204,69 @@ for (let i = 0; i < editButtons.length; i++) {
 const sidebar = document.querySelector(".sidebar");
 const collapseButton = document.querySelector("#collapse-button");
 
-collapseButton.addEventListener("click", function() {
+collapseButton.addEventListener("click", function () {
     sidebar.classList.toggle('hidden');
 
 });
+
+function helper(e) {
+    var button = e.currentTarget;
+    var id = button.parentElement.parentElement.firstElementChild.innerHTML;
+
+    let url = './helperChecks.php?id=' + id;
+
+    if (button.classList.contains('cleanAnimal')) {
+        url = url + '&vet=&food=&water=&clean=1'
+    }
+    else if (button.classList.contains('helpAnimal')) {
+        url = url + '&vet=1&food=&water=&clean='
+
+    }
+    else if (button.classList.contains('waterAnimal')) {
+        url = url + '&vet=&food=&water=1&clean='
+    }
+    else if (button.classList.contains('feedAnimal')) {
+
+        url = url + '&vet=&food=1&water=&clean=';
+
+    }
+    loadDoc(url,handleHelp,button);
+}
+
+function handleHelp(xhttp, button){
+    console.log(xhttp.responseText);
+    if(xhttp.responseText.includes('Finished')){
+        if (button.classList.contains('cleanAnimal')) {
+            button.classList.toggle('unchecked');
+        }
+        else if (button.classList.contains('helpAnimal')) {
+            button.classList.toggle('unchecked');
+        }
+        else if (button.classList.contains('waterAnimal')) {
+            if(button.classList.contains('unchecked')){
+                button.classList.remove('unchecked')
+            }
+            else{
+                alert('You are giving too much water!!!')
+            }
+        }
+        else if (button.classList.contains('feedAnimal')) {
+            if(button.classList.contains('unchecked')){
+                button.classList.remove('unchecked')
+            }
+            else{
+                alert('You are feeding too much!!!')
+            }
+        }
+    }
+    else{
+        alert('Couldnt help the animal :(');
+    }
+}
+
+
+const helperBtns = document.getElementsByClassName('helperBtn');
+for (let i = 0; i < helperBtns.length; i++) {
+    helperBtns[i].addEventListener('click', helper);
+}
+
