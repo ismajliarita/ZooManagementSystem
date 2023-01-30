@@ -1,14 +1,22 @@
 <?php
-    if(isset($_COOKIE['user_id'])) {
-        $user_power = $_COOKIE['user_power'];
+if(!isset($_COOKIE['user_id'])){
+    header("location:./signup.php");
+}
 
-        if($user_power !== 'User') {
-            header('Location: animals.php');
-            die();
-        }
-    }
+$con = mysqli_connect("localhost", "root", "", "zoo");
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// $animal_id = $_GET['animalid'];
+// $GLOBALS['animalID'] = $animal_id;
+
+// $sql_get = "SELECT * FROM animals WHERE id = '$animal_id'";
+// $result = mysqli_fetch_assoc(mysqli_query($con, $sql_get));
+
+// $GLOBALS['animal'] = $result;
+// mysqli_close($con);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +25,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/413ecd623f.js" crossorigin="anonymous"></script>
 
     <title>Document</title>
@@ -120,8 +127,10 @@
                 <input class="btn btn-success" type="submit" value="Submit">
             </form>
             
-            
-            <div class="results">
+            <h1 style="margin-top:20px;">Wishlist for animals you want to visit</h1>
+
+            <div class="results_wishlist">
+
                 <?php 
                     $servername = "localhost";
                     $username = "root";
@@ -134,19 +143,8 @@
                     if (!$conn) {
                       die("Connection failed: " . mysqli_connect_error());
                     }
-                    // echo "Connected successfully";
 
-                    // $sql = "SELECT * FROM animals";
-                    // $result = mysqli_query($conn, $sql);
-                    // if(mysqli_num_rows($result) > 0){
-                    //     while($row = mysqli_fetch_assoc($result)){
-                    //         addCard($row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
-                    //     }
-                    // }
-                    // <p class="habitat-icon"><i class="fa-solid fa-water"></i></p>
-                    // <i class="fa-solid fa-igloo"></i>
-
-
+                    
 
                     function addCard($id, $animalName, $habitat, $animalType, $animalAge, $description){
                         switch($habitat){
@@ -168,10 +166,11 @@
                             default:
                                 $icon = '<i class="fa-regular fa-location-question"></i>';
                         }
+                        $user_id = $_COOKIE['user_id'];
 
                         echo <<<"EOD"
-                        
-                        <a id="linkNr$id" class="card-container" href="viewAnimal.php?id=$id" style="align-items:center; margin-top: 0;"> 
+                        <div class="card-container" style="display: flex; align-items: center; margin-top: 2rem;">
+                            <a id="linkNr$id" class="photolinks" href="viewAnimal.php?id=$id">
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
@@ -200,20 +199,34 @@
                                 </div>
                             </div>
                         </a>
+                        <div class="heartDiv">
+                            <span class="heart">
+                                <i class="fa-solid fa-heart"></i>
+                                <div style="display: none;" id="animalID">$id</div>
+                                <div style="display: none;" id="userID">$user_id</div>
+                            </span>
+                        </div>
+                        </div>
                         EOD;
+
+                         
+                        
+
+
                     }
-                    
-                    $sql = 'SELECT * FROM animals ';
+                    $user_id = $_COOKIE['user_id'];
+
+                    $sql = "SELECT a.* FROM animals a JOIN wishlist w ON a.id = w.animal_id WHERE w.user_id = $user_id";
                     if(isset($_GET['name'])) {
                         $name = $_GET['name'];
-                        $sql = $sql . "WHERE name LIKE '%$name%'";
+                        $sql = $sql . "AND a.name LIKE '%$name%'";
                         if($_GET['map'] != ''){
                             $map = $_GET['map'];
-                            $sql = $sql . "AND habitat = '$map' ";
+                            $sql = $sql . "AND a.habitat = '$map' ";
                         }
                         if($_GET['type'] != ''){
                             $type = $_GET['type'];
-                            $sql = $sql . "AND type = '$type' ";
+                            $sql = $sql . "AND a.type = '$type' ";
                         }
 
                     }

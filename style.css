@@ -958,7 +958,7 @@
     background-position: center;
     background-size: cover;
 
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
@@ -1262,7 +1262,6 @@ html {
     width: 300px;
     height: 300px;
     perspective: 1000px;
-    margin-top: 2rem;
 }
 
 .flip-card-inner {
@@ -1663,3 +1662,71 @@ html {
     text-shadow: 0 0 25px rgb(123, 240, 255);
 }
 
+.age-nr{
+    font-size: 2rem;
+}
+
+.yrs{
+    font-size: 0.7rem;
+    align-items: center;
+    display: inherit;
+    margin-left: 5px;
+}
+
+.overtext{
+    position: absolute;
+    z-index: 999;
+    background-image: linear-gradient(transparent, black);
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    bottom: 0px;
+    padding: 0 1.5rem;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.type-kitty{
+    font-size: 0.7rem;
+    float: left;
+    margin-bottom: -50px;
+}
+
+
+/* Arita code in VIEW ANIMAL */
+.nameInViewAnimal{
+    display: inline-block;
+}
+
+.heart{
+    cursor: pointer;
+    -webkit-appearance: none;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    margin-left: 10px;
+    color: white;
+    -webkit-transition: ease-in-out 0.2s;
+}
+
+.heart:hover{
+    font-size: 35px;
+    
+    transition: ease-in-out 0.2s;
+}
+
+/* Arita Code in Wishlisst */
+.results_wishlist{
+    width: 100%;
+    display: contents;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: auto;
+}
+
+.card-container{
+    margin-top: 2rem !important;
+}
