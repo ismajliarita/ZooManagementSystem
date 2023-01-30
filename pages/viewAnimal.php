@@ -1,5 +1,5 @@
 <?php
-    session_start();
+	session_start();
 
 	if (!isset($_GET['id'])) {
 		header('Location: animals-user.php');
@@ -54,7 +54,7 @@
 			<div class="nav-items">
 				<div class="nav-item"><a href="../index.php">Home</a></div>
 				<div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-				<div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            	<div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
 				<div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
 				<div class="nav-item"><a href="../pages/about.php">About</a></div>
 				<?php

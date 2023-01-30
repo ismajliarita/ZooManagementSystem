@@ -1,18 +1,18 @@
 <?php
-if (isset($_COOKIE['user_id'])) {
     session_start();
+    
+    if (isset($_COOKIE['logged'])) {
+        $user_power = $_SESSION['user_power'];
 
-    $user_power = $_COOKIE['user_power'];
-
-    if($user_power === 'User') {
+        if($user_power === 'User') {
+            header('Location: animals-user.php');
+            die();
+        }
+    }  
+    else {
         header('Location: animals-user.php');
         die();
     }
-}  
-else {
-    header('Location: animals-user.php');
-    die();
-}
 ?>
 
 <!DOCTYPE html>
@@ -165,13 +165,13 @@ else {
         <div class="nav-items">
             <div class="nav-item"><a href="../index.php">Home</a></div>
             <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
             <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
             <div class="nav-item"><a href="../pages/about.php">About</a></div>
             <?php
-                if (isset($_COOKIE['user_fname'])) {
-                    $user_fname = $_COOKIE['user_fname'];
-                    $user_power = $_COOKIE['user_power'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_fname = $_SESSION['user_fname'];
+                    $user_power = $_SESSION['user_power'];
                     
                     switch ($user_power) {
                         case "User":

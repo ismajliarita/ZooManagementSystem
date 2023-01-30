@@ -4,8 +4,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    if (isset($_COOKIE['user_fname']))
-        session_start();
+    session_start();
 
     $con = mysqli_connect("localhost", "root", "", "zoo");
 	if (!$con) {
@@ -13,7 +12,7 @@
 	}
 
     
-    if (isset($_COOKIE["user_id"]) && isset($_POST['ticket-email'])) {
+    if (isset($_COOKIE["loggged"]) && isset($_POST['ticket-email'])) {
         if (!($_POST['ticket-adults'] < 1) && !($_POST['ticket-childs'] < 0)) {
             $ticket_email = $_POST['ticket-email'];
             $ticket_adults = $_POST['ticket-adults'];
@@ -140,13 +139,13 @@
         <div class="nav-items">
             <div class="nav-item"><a href="../index.php">Home</a></div>
             <div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-            <div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+            <div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
             <div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
             <div class="nav-item"><a href="../pages/about.php">About</a></div>
             <?php
-                if (isset($_COOKIE['user_fname'])) {
-                    $user_fname = $_COOKIE['user_fname'];
-                    $user_power = $_COOKIE['user_power'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_fname = $_SESSION['user_fname'];
+                    $user_power = $_SESSION['user_power'];
                     
                     switch ($user_power) {
                         case "User":
@@ -199,8 +198,8 @@
 
                         <form action="#" class="ticket-form" method="POST">
                             <?php
-                                if (isset($_COOKIE['user_email'])) {
-                                    $email = $_COOKIE['user_email'];
+                                if (isset($_COOKIE['logged'])) {
+                                    $email = $_SESSION['user_email'];
                                 } else {
                                     $email = "Please log in to book a ticket";
                                 }
@@ -233,8 +232,8 @@
             </div>
 
             <?php
-                if (isset($_COOKIE['user_id'])) {
-                    $user_id = $_COOKIE['user_id'];
+                if (isset($_COOKIE['logged'])) {
+                    $user_id = $_SESSION['user_id'];
 
                     $sql_get = "SELECT * FROM tickets WHERE user_id = '$user_id'";
 

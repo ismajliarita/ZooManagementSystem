@@ -1,9 +1,9 @@
 <?php
-    if (isset($_COOKIE['user_id'])) {
-        session_start();
-	}
-	else{
+	session_start();
+
+	if (!isset($_COOKIE['logged'])){
 		header('Location: ../index.php');
+		die();
 	}
 
 	$con = mysqli_connect("localhost", "root", "", "zoo");
@@ -11,7 +11,7 @@
 		die("Connection failed: " . mysqli_connect_error());
 	}
 
-	$user_id = $_COOKIE["user_id"];
+	$user_id = $_SESSION["user_id"];
 
 	$sql_user = "SELECT * FROM users WHERE id = $user_id";
 	$result = mysqli_fetch_assoc(mysqli_query($con, $sql_user));
@@ -52,7 +52,8 @@
 			$sql_changeemail = "UPDATE users SET email = '$newemail' WHERE id = $user_id";
 			try {
 				mysqli_query($con, $sql_changeemail);
-				setcookie("user_email", $newemail, time() + 600, "/");
+				// setcookie("user_email", $newemail, time() + 600, "/");
+				$_SESSION['user_email'] = $newemail;
 
 				header('Location: '.$_SERVER['PHP_SELF']);
 				die();
@@ -73,8 +74,10 @@
 
 			$sql_changename = "UPDATE users SET fname = '$newfname', lname = '$newlname' WHERE id = $user_id";
 			if (mysqli_query($con, $sql_changename)) {
-				setcookie("user_fname", $newfname, time() + 600, "/");
-				setcookie("user_lname", $newlname, time() + 600, "/");
+				// setcookie("user_fname", $newfname, time() + 600, "/");
+				// setcookie("user_lname", $newlname, time() + 600, "/");
+				$_SESSION['user_fname'] = $newfname;
+				$_SESSION['user_lnmae'] = $newlname;
 				
 				header('Location: '.$_SERVER['PHP_SELF']);
 				die;
@@ -135,13 +138,13 @@
 		<div class="nav-items">
 			<div class="nav-item"><a href="../index.php">Home</a></div>
 			<div class="nav-item"><a href="../pages/habitatMap.php">Habitats</a></div>
-			<div class="nav-item"><a href="../pages/animals-user.php">Animals</a></div>
+			<div class="nav-item"><a href="../pages/animalFacts.php">AnimalFacts</a></div>
 			<div class="nav-item"><a href="../pages/ticket.php">Tickets</a></div>
 			<div class="nav-item"><a href="../pages/about.php">About</a></div>
 			<?php
-				if (isset($_COOKIE['user_fname'])) {
-					$user_fname = $_COOKIE['user_fname'];
-					$user_power = $_COOKIE['user_power'];
+				if (isset($_COOKIE['logged'])) {
+					$user_fname = $_SESSION['user_fname'];
+					$user_power = $_SESSION['user_power'];
 					
 					switch ($user_power) {
 						case "User":
@@ -177,10 +180,10 @@
                 <div class="form-overlay" id="account-overlay">
 					<div class='account-details'>
 						<?php
-							$user_fname = $_COOKIE['user_fname'];
-							$user_lname = $_COOKIE['user_lname'];
-							$user_email = $_COOKIE['user_email'];
-							$user_power = $_COOKIE['user_power'];
+							$user_fname = $_SESSION['user_fname'];
+							$user_lname = $_SESSION['user_lname'];
+							$user_email = $_SESSION['user_email'];
+							$user_power = $_SESSION['user_power'];
 
 							echo <<<"EOD"
 								<p>User: $user_fname $user_lname
@@ -199,7 +202,7 @@
 					</div>
 
 					<?php
-						$user_power = $_COOKIE['user_power'];
+						$user_power = $_SESSION['user_power'];
 
 						if ($user_power === "Admin") {
 							echo <<<"EOD"
