@@ -190,10 +190,14 @@
 								<button class='edit-btn' onclick="editOverlay('update-name-overlay')"> <i class='fa-solid fa-pen'></i></p> </button> <br>
 								
 								<p>Email: $user_email
-								<button class='edit-btn' onclick="editOverlay('update-email-overlay')"> <i class='fa-solid fa-pen'></i></p> </button> <br>
-								
-								<p>Power: <span style='color: lime'> $user_power </span> </p>
+								<button class='edit-btn' onclick="editOverlay('update-email-overlay')"> <i class='fa-solid fa-pen'></i></p> </button> <br>	
 							EOD;
+
+							echo <<<"EOD"
+								<button class='edit-btn wishlink' onclick="window.location.href='../pages/wishlist.php'"> My Wishlist <i class='fa-solid fa-heart'></i></p> </button> <br>
+							EOD;
+
+							echo "<p>Power: <span style='color: lime'> $user_power </span> </p>";
 						?>
 
 						<div id="changepass-container">

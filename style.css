@@ -213,7 +213,7 @@
 }
 
 #account-overlay {
-    height: 50vh;
+    height: 55vh;
 }
 
 #update-name-overlay {
@@ -352,6 +352,12 @@
     transition: 0.4s;
     color: white;
     background-color: rgb(18, 137, 53);
+}
+
+.wishlink {
+    margin-top: 1.2rem;
+    width: auto;
+    padding: 15px;
 }
 
 .red-btn {
