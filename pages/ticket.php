@@ -12,7 +12,6 @@
 
     
     if (isset($_COOKIE["logged"]) && isset($_POST['ticket-email'])) {
-        echo "i am here";
         if (!($_POST['ticket-adults'] < 1) && !($_POST['ticket-childs'] < 0)) {
             $ticket_email = $_POST['ticket-email'];
             $ticket_adults = $_POST['ticket-adults'];
