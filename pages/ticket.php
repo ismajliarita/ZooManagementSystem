@@ -1,10 +1,9 @@
 <?php
+    session_start();
 
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-
-    session_start();
 
     $con = mysqli_connect("localhost", "root", "", "zoo");
 	if (!$con) {
@@ -12,7 +11,8 @@
 	}
 
     
-    if (isset($_COOKIE["loggged"]) && isset($_POST['ticket-email'])) {
+    if (isset($_COOKIE["logged"]) && isset($_POST['ticket-email'])) {
+        echo "i am here";
         if (!($_POST['ticket-adults'] < 1) && !($_POST['ticket-childs'] < 0)) {
             $ticket_email = $_POST['ticket-email'];
             $ticket_adults = $_POST['ticket-adults'];
@@ -37,14 +37,10 @@
                 $GLOBALS['success'] = 'New ticket saved successfully!';
             }
 
-
-
-
             // $email = $_POST['email'];
             // $adults = $_POST['adults'];
             // $kids = $_POST['kids'];
             // $id = random_int(1, 100);
-
 
             //Load Composer's autoloader
             require '../vendor/autoload.php';
