@@ -148,7 +148,7 @@ if (!$con) {
 
                     
 
-                    function addCard($id, $animalName, $habitat, $animalType, $animalAge, $description){
+                    function addCard($id, $animalName, $habitat, $animalType, $animalAge, $description, $conn){
                         switch($habitat){
                             case "Forest":
                                 $icon = '<i class="fa-solid fa-tree"></i>';
@@ -171,6 +171,10 @@ if (!$con) {
 
                         $user_id = $_SESSION['user_id'];
 
+                        $sql_imgs = "SELECT * FROM images WHERE animal_id = $id";
+                        $images = mysqli_fetch_assoc(mysqli_query($conn, $sql_imgs));
+                        $image = $images['url'];
+
                         echo <<<"EOD"
                         <div class="card-container" style="display: flex; align-items: center; margin-top: 2rem;">
                             <a id="linkNr$id" class="photolinks" href="viewAnimal.php?id=$id">
@@ -181,7 +185,14 @@ if (!$con) {
                                             <p><strong>$animalName</strong></p>    
                                             <p class="habitat-icon">$icon</p>
                                         </div>
-                                        <img class="flipcard-image" src="../media/flipcard_sample.png">  
+                        EOD;
+                                        try {
+                                            echo "<img class='flipcard-image' src='$image'>";
+                                        }
+                                        catch (Exception $e) {
+                                            echo "<img class='flipcard-image' src='../media/flipcard_sample.png'>";
+                                        }
+                        echo <<<"EOD"
                                     </div>   
                                     <div class="flip-card-back">
                                         <div class="flipback-header">
@@ -234,7 +245,7 @@ if (!$con) {
 
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
-                            addCard($row['id'], $row['name'], $row['habitat'], $row['type'], $row['age'], $row['description']);
+                            addCard($row['id'], $row['name'], $row['habitat'], $row['type'], $row['age'], $row['description'], $conn);
                         }
                     }else{
                         echo "0 results";
